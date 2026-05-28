@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Tambah FAQ - Rakira CMS')
+@section('title', 'Tambah FAQ - AKA Consulting CMS')
 @section('page_title', 'Tambah FAQ Baru')
 
 @section('content')
@@ -20,15 +20,15 @@
             {{-- Pertanyaan --}}
             <div class="space-y-3">
                 <label for="question_id" class="text-[11px] font-black uppercase tracking-widest text-slate-400 ml-1">Pertanyaan (Indonesia) *</label>
-                <input type="text" name="question_id" id="question_id" required value="{{ old('question_id') }}"
-                    placeholder="Contoh: Berapa lama waktu pengerjaan website?"
+                    <input type="text" name="question_id" id="question_id" required value="{{ old('question_id') }}"
+                    placeholder="Contoh: Berapa lama proses konsultasi dan perizinan?"
                     class="w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 py-4 text-sm focus:bg-white focus:ring-4 focus:ring-primary/5 focus:border-primary transition-all font-bold outline-none">
             </div>
 
             <div class="space-y-3">
                 <label for="question_en" class="text-[11px] font-black uppercase tracking-widest text-slate-400 ml-1">Question (English)</label>
-                <input type="text" name="question_en" id="question_en" value="{{ old('question_en') }}"
-                    placeholder="Example: How long does the website development take?"
+                    <input type="text" name="question_en" id="question_en" value="{{ old('question_en') }}"
+                    placeholder="Example: How long does the consultation and permit process take?"
                     class="w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 py-4 text-sm focus:bg-white focus:ring-4 focus:ring-primary/5 focus:border-primary transition-all font-bold outline-none">
             </div>
 

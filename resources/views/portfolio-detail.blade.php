@@ -2,7 +2,7 @@
 
 @section('title', __t($portfolio->project_name) . ' - Portofolio Rakira')
 @section('meta_description', \Illuminate\Support\Str::limit(strip_tags(__t($portfolio->description)), 150))
-@section('meta_keywords', __t($portfolio->project_name) . ', ' . __t($portfolio->category->name ?? 'Portofolio') . ', portofolio rakira digital')
+@section('meta_keywords', __t($portfolio->project_name) . ', ' . __t($portfolio->category->name ?? 'Portofolio') . ', portofolio aka consulting')
 
 @section('content')
 <div class="pt-24 min-h-screen bg-white">
@@ -12,7 +12,7 @@
         @if($portfolio->thumbnail_image)
             <img src="{{ asset('storage/' . $portfolio->thumbnail_image) }}" 
                  alt="{{ __t($portfolio->project_name) }}" 
-                 class="w-full h-full object-cover animate-in fade-in zoom-in duration-1000">
+                 class="w-full h-full object-cover animate-in fade-in duration-1000">
         @else
             <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200" 
                  class="w-full h-full object-cover">
@@ -41,7 +41,7 @@
     <main class="max-w-7xl mx-auto px-8 md:px-20 py-20">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-20">
             {{-- Kiri: Detail Deskripsi --}}
-            <div class="lg:col-span-8 space-y-12" data-aos="fade-right">
+            <div class="lg:col-span-8 space-y-12" data-aos="fade-up" data-aos-duration="700">
                 <div class="space-y-6">
                     <h2 class="text-3xl font-black text-slate-900 flex items-center gap-4">
                         <span class="w-12 h-1.5 bg-primary rounded-full"></span>
@@ -63,8 +63,9 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                             @foreach($portfolio->gallery_images as $index => $img)
                                 <div class="group relative rounded-[2.5rem] overflow-hidden shadow-2xl border border-slate-100 h-96" 
-                                     data-aos="zoom-in" 
-                                     data-aos-delay="{{ $index * 100 }}">
+                                     data-aos="fade-up" 
+                                     data-aos-delay="{{ $index * 100 }}"
+                                     data-aos-duration="650">
                                     <img src="{{ asset('storage/' . $img) }}" 
                                          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                                     <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
@@ -82,7 +83,7 @@
             </div>
 
             {{-- Kanan: Info Sidebar --}}
-            <div class="lg:col-span-4 space-y-8" data-aos="fade-left">
+            <div class="lg:col-span-4 space-y-8" data-aos="fade-up" data-aos-delay="120" data-aos-duration="700">
                 <div class="bg-slate-50 rounded-[3rem] p-10 space-y-10 sticky top-32 border border-slate-100 shadow-sm">
                     <div class="space-y-2">
                         <p class="text-[11px] font-black uppercase tracking-widest text-slate-400">{{ __('Nama Klien') }}</p>
@@ -91,7 +92,7 @@
                     
                     <div class="space-y-2">
                         <p class="text-[11px] font-black uppercase tracking-widest text-slate-400">{{ __('Industri / Kategori') }}</p>
-                        <p class="text-xl font-bold text-slate-900">{{ __t($portfolio->category->name ?? 'Digital Solution') }}</p>
+                        <p class="text-xl font-bold text-slate-900">{{ __t($portfolio->category->name ?? 'Solusi Konsultasi') }}</p>
                     </div>
 
                     <div class="space-y-2">

@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 
-@section('title', 'Admin Dashboard - Rakira CMS')
+@section('title', 'Dashboard Admin - AKA Consulting CMS')
 @section('page_title', 'Dashboard Overview')
-@section('page_subtitle', 'Manage and monitor your digital ecosystem.')
+@section('page_subtitle', 'Manage and monitor your consultancy and compliance operations.')
 
 @section('content')
     <div class="max-w-7xl mx-auto space-y-8">
@@ -150,13 +150,13 @@
                 datasets: [{
                     label: 'Kunjungan',
                     data: @json($visitorStats['data']),
-                    borderColor: '#006491',
-                    backgroundColor: 'rgba(0, 100, 145, 0.05)',
+                    borderColor: '#8d6408',
+                    backgroundColor: 'rgba(141, 100, 8, 0.08)',
                     fill: true,
                     tension: 0.4,
                     borderWidth: 3,
                     pointBackgroundColor: '#fff',
-                    pointBorderColor: '#006491',
+                    pointBorderColor: '#8d6408',
                     pointBorderWidth: 2,
                     pointRadius: 4,
                     pointHoverRadius: 6

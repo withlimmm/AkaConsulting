@@ -1,6 +1,6 @@
 @extends('templates.premium.layout')
 
-@section('title', 'Rakira Digital | Solusi Digital Premium Masa Depan')
+@section('title', 'AKA Consulting, Konsultan Terpercaya')
 
 @push('styles')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -11,10 +11,10 @@
         opacity: 1;
     }
     .premium-swiper .swiper-pagination-bullet-active {
-        background: #3b82f6 !important; /* Blue-500 */
+        background: #d9a11a !important;
         width: 28px;
         border-radius: 4px;
-        box-shadow: 0 0 10px rgba(59, 130, 246, 0.6);
+        box-shadow: 0 0 10px rgba(217, 161, 26, 0.45);
     }
     .premium-swiper .swiper-pagination {
         bottom: 0 !important;
@@ -44,8 +44,8 @@
         height: 18px;
         border-radius: 50%;
         background: #030712;
-        border: 3px solid #3b82f6;
-        box-shadow: 0 0 10px rgba(59, 130, 246, 0.8);
+        border: 3px solid #d9a11a;
+        box-shadow: 0 0 10px rgba(217, 161, 26, 0.75);
     }
     
     /* Direct style overrides for premium dark theme */
@@ -61,8 +61,8 @@
     }
     
     .premium-hero-section {
-        background: radial-gradient(circle at 80% 20%, rgba(37, 99, 235, 0.15), transparent 50%), 
-                    radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.1), transparent 50%),
+        background: radial-gradient(circle at 80% 20%, rgba(217, 161, 26, 0.12), transparent 50%), 
+                radial-gradient(circle at 20% 80%, rgba(141, 100, 8, 0.12), transparent 50%),
                     #030712 !important;
     }
     
@@ -79,8 +79,8 @@
     
     .premium-glass-card:hover {
         background: rgba(30, 41, 59, 0.75) !important;
-        border-color: rgba(59, 130, 246, 0.4) !important;
-        box-shadow: 0 20px 40px -15px rgba(59, 130, 246, 0.3) !important;
+        border-color: rgba(217, 161, 26, 0.3) !important;
+        box-shadow: 0 20px 40px -15px rgba(217, 161, 26, 0.18) !important;
         transform: translateY(-4px) !important;
     }
 
@@ -120,8 +120,8 @@
     }
     
     input:focus, select:focus, textarea:focus {
-        border-color: #3b82f6 !important;
-        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2) !important;
+        border-color: #d9a11a !important;
+        box-shadow: 0 0 0 4px rgba(217, 161, 26, 0.18) !important;
         outline: none !important;
     }
     
@@ -133,8 +133,8 @@
     }
     
     .swiper-prev:hover, .swiper-next:hover {
-        color: #3b82f6 !important;
-        border-color: #3b82f6 !important;
+        color: #d9a11a !important;
+        border-color: #d9a11a !important;
     }
 </style>
 @endpush
@@ -146,9 +146,9 @@
 <section class="premium-hero-section relative min-h-[95vh] flex items-center overflow-hidden pt-28 pb-16 lg:pb-24">
     <!-- Cyberpunk grid & ambient light background -->
     <div class="absolute inset-0 z-0 pointer-events-none">
-        <div class="absolute -top-40 -right-40 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[130px]"></div>
-        <div class="absolute top-1/2 left-1/4 w-[400px] h-[400px] bg-purple-600/10 rounded-full blur-[100px]"></div>
-        <div class="absolute -bottom-20 right-1/3 w-[500px] h-[500px] bg-cyan-600/5 rounded-full blur-[120px]"></div>
+        <div class="absolute -top-40 -right-40 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[130px]"></div>
+        <div class="absolute top-1/2 left-1/4 w-[400px] h-[400px] bg-primary-container/10 rounded-full blur-[100px]"></div>
+        <div class="absolute -bottom-20 right-1/3 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px]"></div>
         <!-- Dot pattern -->
         <div class="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.015)_1px,transparent_1px)] [background-size:24px_24px]"></div>
     </div>
@@ -158,7 +158,7 @@
         <div class="lg:col-span-7 flex flex-col gap-6 text-center lg:text-left"
              x-data="{ 
                 text1: '', 
-                fullText1: 'Solusi Digital Terpadu ',
+                fullText1: 'Solusi Konsultasi Terpadu ',
                 showPremium: false,
                 text2: '',
                 fullText2: ' untuk Bisnis Global Anda',
@@ -182,21 +182,21 @@
                     }, 60);
                 }
              }">
-            <div class="inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 text-xs font-black uppercase tracking-[0.2em] text-blue-400 self-center lg:self-start">
-                <span class="w-1.5 h-1.5 bg-blue-400 rounded-full animate-ping"></span>
-                Next-Gen Agency
+            <div class="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-black uppercase tracking-[0.2em] text-primary-container self-center lg:self-start">
+                <span class="w-1.5 h-1.5 bg-primary-container rounded-full animate-ping"></span>
+                Konsultasi Strategis
             </div>
             
             <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.1] tracking-tight text-white min-h-[3em]">
-                <span x-text="text1"></span><template x-if="showPremium"><span class="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent glow-text-indigo" x-transition:enter="transition ease-out duration-700" x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0">Premium</span></template><span x-text="text2"></span><span class="animate-pulse text-blue-500" x-show="text2.length < fullText2.length">|</span>
+                <span x-text="text1"></span><template x-if="showPremium"><span class="bg-gradient-to-r from-primary-container via-primary to-primary bg-clip-text text-transparent" x-transition:enter="transition ease-out duration-700" x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0">Premium</span></template><span x-text="text2"></span><span class="animate-pulse text-primary-container" x-show="text2.length < fullText2.length">|</span>
             </h1>
 
-            <p class="text-base sm:text-lg text-slate-400 max-w-xl mx-auto lg:mx-0 leading-relaxed"
-               x-show="text2.length === fullText2.length" x-transition:enter="transition ease-out duration-1000" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0">
-                Kami merancang produk digital kelas dunia. Menghadirkan kombinasi desain kelas tinggi, arsitektur software berkinerja tinggi, dan inovasi masa depan.
+            <p class="text-base sm:text-lg text-slate-400 max-w-xl mx-auto lg:mx-0 leading-relaxed transition-all duration-1000"
+               :class="text2.length === fullText2.length ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'">
+                Kami menyediakan layanan konsultasi hukum dan perizinan yang menggabungkan kepakaran regulasi, proses perizinan efisien, dan praktik terbaik manajemen risiko.
             </p>
-            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4"
-                 x-show="text2.length === fullText2.length" x-transition:enter="transition ease-out duration-1000" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0">
+            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4 transition-all duration-1000"
+                 :class="text2.length === fullText2.length ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'">
                 <a href="#kontak" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold rounded-xl shadow-[0_4px_20px_rgba(59,130,246,0.3)] hover:shadow-[0_4px_30px_rgba(59,130,246,0.5)] hover:-translate-y-0.5 transition-all duration-300 text-center">
                     Konsultasi Eksklusif
                 </a>
@@ -210,21 +210,21 @@
         {{-- Visual Section --}}
         <div class="lg:col-span-5 relative hidden lg:block h-[500px]" data-aos data-aos-delay="200">
             <!-- Glowing back panel -->
-            <div class="absolute inset-0 bg-gradient-to-tr from-blue-600 to-indigo-600 rounded-3xl opacity-20 blur-xl"></div>
+            <div class="absolute inset-0 bg-gradient-to-tr from-primary to-primary-container rounded-3xl opacity-20 blur-xl"></div>
             <!-- Mockup container -->
             <div class="absolute inset-0 rounded-3xl border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.6)] p-3 overflow-hidden backdrop-blur-md bg-slate-900/50 glow-border">
-                <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=2070" alt="Rakira Dev Process" class="w-full h-full object-cover rounded-2xl opacity-75">
+                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=2070" fetchpriority="high" width="800" height="600" alt="Consulting Meeting" class="w-full h-full object-cover rounded-2xl opacity-75">
             </div>
             
             <!-- Float statistics 1 -->
             <div class="absolute -left-10 top-1/4 premium-glass p-4 rounded-2xl shadow-[0_20px_40px_rgba(0,0,0,0.4)] border border-white/10" data-float>
                 <div class="flex items-center gap-3">
-                    <div class="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center text-blue-400">
+                    <div class="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center text-primary-container">
                         <span class="material-symbols-outlined text-[18px]">verified</span>
                     </div>
                     <div>
-                        <p class="text-slate-400 text-[10px] uppercase font-black tracking-wider">Keamanan</p>
-                        <p class="text-white font-bold text-xs">Standar Enterprise</p>
+                        <p class="text-slate-400 text-[10px] uppercase font-black tracking-wider">Pendampingan</p>
+                        <p class="text-white font-bold text-xs">Proses Tertata</p>
                     </div>
                 </div>
             </div>
@@ -232,12 +232,12 @@
             <!-- Float statistics 2 -->
             <div class="absolute -right-8 bottom-1/4 premium-glass p-4 rounded-2xl shadow-[0_20px_40px_rgba(0,0,0,0.4)] border border-white/10" data-float style="animation-delay: 2.5s">
                 <div class="flex items-center gap-3">
-                    <div class="w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center text-emerald-400">
+                    <div class="w-8 h-8 rounded-lg bg-primary-container/20 flex items-center justify-center text-primary-container">
                         <span class="material-symbols-outlined text-[18px]">speed</span>
                     </div>
                     <div>
-                        <p class="text-slate-400 text-[10px] uppercase font-black tracking-wider">Performa</p>
-                        <p class="text-white font-bold text-xs">99+ Google Lighthouse</p>
+                        <p class="text-slate-400 text-[10px] uppercase font-black tracking-wider">Respons</p>
+                        <p class="text-white font-bold text-xs">Cepat & Jelas</p>
                     </div>
                 </div>
             </div>
@@ -251,7 +251,7 @@
 @if($client_logos->isNotEmpty())
 <section class="py-16 border-y border-white/5 bg-[#020617] overflow-hidden relative" data-aos>
     <div class="mx-auto max-w-7xl px-6 md:px-8 lg:px-20 mb-8">
-        <p class="text-center text-slate-500 text-[10px] font-black uppercase tracking-[0.4em]">Dipercaya Oleh Partner Internasional</p>
+        <p class="text-center text-slate-500 text-[10px] font-black uppercase tracking-[0.4em]">{{ __('Dipercaya Oleh Partner Internasional') }}</p>
     </div>
 
     @php
@@ -263,7 +263,7 @@
             @foreach ($client_logos as $client)
                 <div class="group relative h-12 flex-shrink-0 flex items-center cursor-pointer">
                     @if($client->company_logo)
-                        <img src="{{ asset('storage/' . $client->company_logo) }}" alt="{{ $client->company_name }}" 
+                        <img src="{{ asset('storage/' . $client->company_logo) }}" loading="lazy" width="150" height="60" alt="{{ $client->company_name }}" 
                              class="h-full w-auto object-contain opacity-40 hover:opacity-100 transition-opacity duration-300">
                     @else
                         <span class="text-slate-500 font-bold text-lg hover:text-white transition-colors">{{ $client->company_name }}</span>
@@ -284,7 +284,7 @@
                 @foreach ($displayRow as $client)
                     <div class="group relative h-10 flex-shrink-0 flex items-center cursor-pointer px-4">
                         @if($client->company_logo)
-                            <img src="{{ asset('storage/' . $client->company_logo) }}" alt="{{ $client->company_name }}" 
+                            <img src="{{ asset('storage/' . $client->company_logo) }}" loading="lazy" width="150" height="60" alt="{{ $client->company_name }}" 
                                  class="h-full w-auto object-contain opacity-40 group-hover:opacity-100 transition-all duration-300">
                         @else
                             <span class="text-slate-500 font-black tracking-tight text-lg group-hover:text-white transition-all">{{ $client->company_name }}</span>
@@ -330,17 +330,17 @@
             
             {{-- Text & Kicker --}}
             <div class="lg:col-span-5 flex flex-col justify-center space-y-6" data-aos>
-                <div class="inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/5 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-blue-400 self-start">
+                <div class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-primary-container self-start">
                     {{ __('Mengenal Kami') }}
                 </div>
                 <h2 class="text-3xl sm:text-4xl font-black text-white leading-tight">
-                    {{ __('Arsitek di Balik Lanskap Digital Modern') }}
+                    {{ __('Mitra di Balik Kepatuhan dan Pertumbuhan Bisnis Modern') }}
                 </h2>
                 <p class="text-slate-400 text-sm md:text-base leading-relaxed">
-                    {{ __t($settings->about_us ?? 'Rakira Digital Nusantara adalah software house butik yang mendesain solusi digital berskala global. Kami membantu startup dan korporasi meluncurkan platform modern dengan teknologi terbaru.') }}
+                    {{ __t($settings->about_us ?? 'AKA Consulting, Konsultan Terpercaya adalah firma konsultasi yang menyediakan layanan hukum, perizinan, dan manajemen kepatuhan untuk membantu bisnis beroperasi sesuai regulasi dan tumbuh berkelanjutan.') }}
                 </p>
                 <div class="pt-4">
-                    <a href="/tentang-kami?theme=premium" aria-label="{{ __('Pelajari Selengkapnya tentang Rakira Digital') }}" class="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-bold text-xs uppercase tracking-widest transition-colors">
+                    <a href="/tentang-kami?theme=premium" aria-label="{{ __('Pelajari Selengkapnya tentang AKA Consulting') }}" class="inline-flex items-center gap-2 text-primary-container hover:text-primary font-bold text-xs uppercase tracking-widest transition-colors">
                         {{ __('Pelajari Selengkapnya') }}
                         <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
                     </a>
@@ -352,12 +352,12 @@
                 <!-- Card 1: Visi -->
                 <div class="premium-glass-card p-8 rounded-3xl flex flex-col justify-between" data-aos data-aos-delay="100">
                     <div>
-                        <div class="w-12 h-12 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-400 mb-6">
+                        <div class="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary-container mb-6">
                             <span class="material-symbols-outlined text-2xl">visibility</span>
                         </div>
                         <h4 class="text-lg font-bold text-white mb-2">{{ __('Visi Kami') }}</h4>
                         <p class="text-slate-400 text-xs md:text-sm leading-relaxed">
-                            {!! nl2br(e(__t($settings->vision ?? 'Menjadi mitra teknologi utama untuk transformasi digital global yang aman, inovatif, dan berkinerja tinggi.'))) !!}
+                            {!! nl2br(e(__t($settings->vision ?? "Menjadi firma konsultan terdepan yang terpercaya dalam memberikan solusi hukum, perizinan, dan kepatuhan untuk mendukung pertumbuhan bisnis klien.||To be the leading and trusted consulting firm in providing legal, licensing, and compliance solutions to support the growth of our clients' businesses."))) !!}
                         </p>
                     </div>
                 </div>
@@ -365,12 +365,12 @@
                 <!-- Card 2: Misi -->
                 <div class="premium-glass-card p-8 rounded-3xl flex flex-col justify-between" data-aos data-aos-delay="200">
                     <div>
-                        <div class="w-12 h-12 rounded-2xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 mb-6">
+                        <div class="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary-container mb-6">
                             <span class="material-symbols-outlined text-2xl">flag</span>
                         </div>
                         <h4 class="text-lg font-bold text-white mb-2">{{ __('Misi Kami') }}</h4>
                         <p class="text-slate-400 text-xs md:text-sm leading-relaxed">
-                            {!! nl2br(e(__t($settings->mission ?? 'Menyediakan arsitektur software modular, antarmuka premium, serta efisiensi proses digital bisnis.'))) !!}
+                            {!! nl2br(e(__t($settings->mission ?? "1. Menyediakan pendampingan perizinan dan kepatuhan regulasi yang efisien.\n2. Memberikan solusi strategis untuk meminimalisasi risiko legalitas operasional.\n3. Menjalin kemitraan jangka panjang berbasis integritas dan profesionalisme.||1. Provide efficient assistance with licensing and regulatory compliance.\n2. Deliver strategic solutions to minimize operational legality risks.\n3. Build long-term partnerships based on integrity and professionalism."))) !!}
                         </p>
                     </div>
                 </div>
@@ -378,14 +378,14 @@
                 <!-- Card 3: Big Stat (Full Width on Mobile) -->
                 <div class="premium-glass-card p-8 rounded-3xl sm:col-span-2 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6" data-aos data-aos-delay="300">
                     <div>
-                        <h3 class="text-4xl font-black bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">50+ Proyek Sukses</h3>
-                        <p class="text-slate-400 text-sm mt-1">Solusi digital berkinerja tinggi yang diselesaikan secara presisi.</p>
+                        <h3 class="text-4xl font-black bg-gradient-to-r from-primary-container to-primary bg-clip-text text-transparent">{{ __('50+ Pendampingan Berhasil') }}</h3>
+                        <p class="text-slate-400 text-sm mt-1">{{ __('Solusi konsultasi dan perizinan berkinerja tinggi yang diselesaikan secara presisi.') }}</p>
                     </div>
                     <div class="flex items-center -space-x-3">
-                        <img class="w-10 h-10 rounded-full border-2 border-slate-900 object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="Client avatar">
-                        <img class="w-10 h-10 rounded-full border-2 border-slate-900 object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="Client avatar">
-                        <img class="w-10 h-10 rounded-full border-2 border-slate-900 object-cover" src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=100&q=80" alt="Client avatar">
-                        <div class="w-10 h-10 rounded-full bg-blue-600 border-2 border-slate-900 flex items-center justify-center text-white font-bold text-xs">+12</div>
+                        <img class="w-10 h-10 rounded-full border-2 border-slate-900 object-cover" loading="lazy" width="100" height="100" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="Client avatar">
+                        <img class="w-10 h-10 rounded-full border-2 border-slate-900 object-cover" loading="lazy" width="100" height="100" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="Client avatar">
+                        <img class="w-10 h-10 rounded-full border-2 border-slate-900 object-cover" loading="lazy" width="100" height="100" src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=100&q=80" alt="Client avatar">
+                        <div class="w-10 h-10 rounded-full bg-primary border-2 border-slate-900 flex items-center justify-center text-white font-bold text-xs">+12</div>
                     </div>
                 </div>
             </div>
@@ -399,37 +399,38 @@
 ═══════════════════════════════════════════════ --}}
 <section class="py-24 bg-slate-950/40 relative">
     <div class="absolute inset-0 z-0 pointer-events-none">
-        <div class="absolute top-1/2 right-1/4 w-[300px] h-[300px] bg-blue-500/5 rounded-full blur-[90px]"></div>
+        <div class="absolute top-1/2 right-1/4 w-[300px] h-[300px] bg-primary/5 rounded-full blur-[90px]"></div>
     </div>
     
     <div class="mx-auto w-full max-w-7xl px-6 md:px-8 lg:px-20 relative z-10">
         <div class="text-center max-w-3xl mx-auto space-y-3 mb-16" data-aos>
-            <div class="inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/5 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-blue-400">
+            <div class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-primary-container">
                 {{ __('Layanan Kami') }}
             </div>
-            <h2 class="text-3xl sm:text-4xl font-black text-white">{{ __('Layanan Rekayasa Digital') }}</h2>
-            <p class="text-slate-400 text-sm md:text-base mx-auto">{{ __('Kami menghadirkan keunggulan teknis terbaik untuk melayani impian bisnis Anda.') }}</p>
+            <h2 class="text-3xl sm:text-4xl font-black text-white">{{ __('Layanan Konsultasi Regulasi') }}</h2>
+            <p class="text-slate-400 text-sm md:text-base mx-auto">{{ __('Kami menghadirkan pendampingan yang rapi, responsif, dan mudah dipahami untuk kebutuhan bisnis Anda.') }}</p>
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @forelse($services as $index => $service)
-            <a href="/layanan/{{ $service->slug }}?theme=premium" 
-               aria-label="{{ __('Detail Layanan') }}: {{ __t($service->title) }}"
-               class="premium-glass-card p-8 rounded-[2rem] flex flex-col justify-between min-h-[300px] group"
-               data-aos data-aos-delay="{{ $index * 80 }}">
-                <div>
-                    <div class="w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-400 mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 group-hover:shadow-[0_0_15px_rgba(59,130,246,0.5)]">
-                        <span class="material-symbols-outlined text-3xl">{{ $service->icon_image ?: 'terminal' }}</span>
+            <div data-aos data-aos-delay="{{ $index * 80 }}" class="h-full">
+                <a href="/layanan/{{ $service->slug }}?theme=premium" 
+                   aria-label="{{ __('Detail Layanan') }}: {{ __t($service->title) }}"
+                   class="premium-glass-card p-8 rounded-[2rem] flex flex-col justify-between h-full group">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary-container mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-300 group-hover:shadow-[0_0_15px_rgba(217,161,26,0.35)]">
+                            <span class="material-symbols-outlined text-3xl">{{ $service->icon_image ?: 'terminal' }}</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-primary-container transition-colors">{{ __t($service->title) }}</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed line-clamp-3">{{ __t($service->short_description) }}</p>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">{{ __t($service->title) }}</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed line-clamp-3">{{ __t($service->short_description) }}</p>
-                </div>
-                
-                <div class="mt-8 flex items-center text-blue-400 font-bold text-xs uppercase tracking-widest gap-2">
-                    {{ __('Selengkapnya') }}
-                    <span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
-                </div>
-            </a>
+                    
+                    <div class="mt-8 flex items-center text-primary-container font-bold text-xs uppercase tracking-widest gap-2">
+                        {{ __('Selengkapnya') }}
+                        <span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                    </div>
+                </a>
+            </div>
             @empty
             <div class="col-span-full py-16 text-center text-slate-500">
                 <span class="material-symbols-outlined text-5xl mb-3">cloud_off</span>
@@ -447,7 +448,7 @@
     <div class="mx-auto w-full max-w-7xl px-6 md:px-8 lg:px-20">
         @if($clients->isNotEmpty())
         <div class="text-center max-w-2xl mx-auto space-y-3 mb-16" data-aos>
-            <div class="inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/5 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-blue-400">
+            <div class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-primary-container">
                 {{ __('Ulasan Klien') }}
             </div>
             <h2 class="text-3xl sm:text-4xl font-black text-white">{{ __('Apa yang Mitra Kami Katakan') }}</h2>
@@ -460,11 +461,11 @@
                     <div class="swiper-slide h-auto">
                         <div class="premium-glass-card p-8 rounded-[2rem] flex flex-col justify-between h-full relative overflow-hidden group">
                             <!-- Glowing overlay -->
-                            <div class="absolute inset-0 bg-gradient-to-b from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div class="absolute inset-0 bg-gradient-to-b from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                             
                             <div>
                                 <div class="flex items-center gap-4 mb-6 relative z-10">
-                                    <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-blue-600 to-indigo-500 text-white flex items-center justify-center font-bold text-lg shadow-lg">
+                                    <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-primary to-primary-container text-white flex items-center justify-center font-bold text-lg shadow-lg">
                                         {{ $client['initial'] }}
                                     </div>
                                     <div>
@@ -483,7 +484,7 @@
                             </div>
                             
                             <div class="mt-8 pt-6 border-t border-white/5 flex items-center justify-between relative z-10">
-                                <span class="text-[9px] font-black uppercase tracking-widest text-blue-400">{{ __('Mitra Terverifikasi') }}</span>
+                                <span class="text-[9px] font-black uppercase tracking-widest text-primary-container">{{ __('Mitra Terverifikasi') }}</span>
                                 <span class="material-symbols-outlined text-slate-700 text-2xl">format_quote</span>
                             </div>
                         </div>
@@ -509,13 +510,13 @@
                 
                 <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
                     <div class="lg:col-span-2 space-y-4">
-                        <h3 class="text-2xl font-black text-white">Bagikan Cerita Anda</h3>
+                        <h3 class="text-2xl font-black text-white">{{ __('Bagikan Cerita Anda') }}</h3>
                         <p class="text-slate-400 text-sm leading-relaxed">
-                            Kami menghargai kolaborasi bersama Anda. Tuliskan ulasan Anda untuk meningkatkan layanan eksklusif kami.
+                            {{ __('Kami menghargai kolaborasi bersama Anda. Tuliskan ulasan Anda untuk meningkatkan layanan eksklusif kami.') }}
                         </p>
-                        <div class="flex items-center gap-2 text-blue-400 font-bold text-xs uppercase tracking-wider pt-4">
+                        <div class="flex items-center gap-2 text-primary-container font-bold text-xs uppercase tracking-wider pt-4">
                             <span class="material-symbols-outlined text-base">verified</span>
-                            Moderasi Aktif
+                            {{ __('Moderasi Aktif') }}
                         </div>
                     </div>
 
@@ -531,9 +532,9 @@
                             @csrf
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <input type="text" name="name" required placeholder="Nama Lengkap *" 
-                                    class="w-full rounded-xl border border-white/10 bg-slate-900/50 px-4 py-3.5 text-sm text-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 transition-all placeholder:text-slate-500">
+                                    class="w-full rounded-xl border border-white/10 bg-slate-900/50 px-4 py-3.5 text-sm text-white focus:border-primary focus:ring-4 focus:ring-primary/20 transition-all placeholder:text-slate-500">
                                 <input type="text" name="company" placeholder="Instansi/Perusahaan" 
-                                    class="w-full rounded-xl border border-white/10 bg-slate-900/50 px-4 py-3.5 text-sm text-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 transition-all placeholder:text-slate-500">
+                                    class="w-full rounded-xl border border-white/10 bg-slate-900/50 px-4 py-3.5 text-sm text-white focus:border-primary focus:ring-4 focus:ring-primary/20 transition-all placeholder:text-slate-500">
                             </div>
                             
                             <div x-data="{ rating: 5, hover: 0 }">
@@ -557,11 +558,11 @@
                             </div>
 
                             <textarea name="comment" required rows="3" placeholder="Tulis testimoni kolaborasi Anda di sini... *"
-                                class="w-full rounded-xl border border-white/10 bg-slate-900/50 px-4 py-3.5 text-sm text-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 transition-all resize-none placeholder:text-slate-500"></textarea>
+                                class="w-full rounded-xl border border-white/10 bg-slate-900/50 px-4 py-3.5 text-sm text-white focus:border-primary focus:ring-4 focus:ring-primary/20 transition-all resize-none placeholder:text-slate-500"></textarea>
 
                             <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold py-4 rounded-xl hover:opacity-90 shadow-lg flex items-center justify-center gap-2">
                                 <span class="material-symbols-outlined text-sm">send</span>
-                                Kirim Review
+                                {{ __('Kirim Review') }}
                             </button>
                         </form>
                     </div>
@@ -578,7 +579,7 @@
 <section class="py-24 bg-slate-950/30">
     <div class="mx-auto w-full max-w-4xl px-6 md:px-8 lg:px-20">
         <div class="text-center space-y-3 mb-16" data-aos>
-            <div class="inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/5 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-blue-400">
+            <div class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-primary-container">
                 {{ __('Tanya Jawab') }}
             </div>
             <h2 class="text-3xl sm:text-4xl font-black text-white">{{ __('Pertanyaan Umum') }}</h2>
@@ -602,7 +603,7 @@
             <details class="premium-glass-card overflow-hidden rounded-2xl transition-all duration-300 group" data-aos data-aos-delay="{{ (int) $index * 60 }}">
                 <summary class="flex items-center justify-between cursor-pointer px-6 py-5 md:px-8 md:py-6 select-none list-none outline-none">
                     <span class="font-bold text-slate-200 group-hover:text-white pr-4 transition-colors">{{ $faqQuestion }}</span>
-                    <span class="material-symbols-outlined text-slate-500 group-open:rotate-45 group-open:text-blue-400 transition-all duration-300 flex-shrink-0">add</span>
+                    <span class="material-symbols-outlined text-slate-500 group-open:rotate-45 group-open:text-primary-container transition-all duration-300 flex-shrink-0">add</span>
                 </summary>
                 <div class="px-6 pb-6 md:px-8 md:pb-8 text-slate-400 text-sm leading-relaxed border-t border-white/5 pt-4">
                     {{ $faqAnswer }}
@@ -622,31 +623,31 @@
         
         {{-- Info --}}
         <div class="space-y-6" data-aos>
-            <div class="inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/5 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-blue-400">
-                Mulai Proyek
+            <div class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-primary-container">
+                {{ __('Mulai Konsultasi') }}
             </div>
-            <h2 class="text-3xl sm:text-4xl font-black text-white">Mari Diskusikan Proyek Hebat Anda</h2>
+            <h2 class="text-3xl sm:text-4xl font-black text-white">{{ __('Mari Diskusikan Kebutuhan Anda') }}</h2>
             <p class="text-slate-400 text-sm md:text-base leading-relaxed">
-                Kirim pesan Anda dan tim Strategic Consultant kami akan merespons dalam waktu 1x24 jam kerja dengan proposal awal gratis.
+                {{ __('Kirim pesan Anda dan tim Strategic Consultant kami akan merespons dalam waktu 1x24 jam kerja dengan rencana awal gratis.') }}
             </p>
             
             <div class="space-y-6 pt-4">
                 <div class="flex items-start gap-4">
-                    <div class="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 flex-shrink-0">
+                    <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary-container flex-shrink-0">
                         <span class="material-symbols-outlined">schedule</span>
                     </div>
                     <div>
-                        <p class="font-bold text-white text-sm">Respon Eksklusif</p>
-                        <p class="text-slate-400 text-xs mt-1">Kami menghargai waktu Anda. Estimasi feedback dalam 12-24 jam.</p>
+                        <p class="font-bold text-white text-sm">{{ __('Respon Eksklusif') }}</p>
+                        <p class="text-slate-400 text-xs mt-1">{{ __('Kami menghargai waktu Anda. Estimasi feedback dalam 12-24 jam.') }}</p>
                     </div>
                 </div>
                 <div class="flex items-start gap-4">
-                    <div class="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 flex-shrink-0">
+                    <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary-container flex-shrink-0">
                         <span class="material-symbols-outlined">lock</span>
                     </div>
                     <div>
-                        <p class="font-bold text-white text-sm">Jaminan NDA (Kerahasiaan)</p>
-                        <p class="text-slate-400 text-xs mt-1">Semua data konsep dan bisnis Anda dienkripsi serta dijaga secara aman.</p>
+                        <p class="font-bold text-white text-sm">{{ __('Jaminan NDA (Kerahasiaan)') }}</p>
+                        <p class="text-slate-400 text-xs mt-1">{{ __('Semua data konsep dan bisnis Anda dienkripsi serta dijaga secara aman.') }}</p>
                     </div>
                 </div>
             </div>
@@ -664,25 +665,25 @@
             <form action="{{ route('konsultasi.store') }}" method="POST" class="premium-glass rounded-[2rem] p-8 space-y-6 glow-border">
                 @csrf
                 <div>
-                    <label class="block text-[10px] font-black uppercase tracking-wider text-slate-400 mb-2" for="sender_name">Nama Lengkap *</label>
+                    <label class="block text-[10px] font-black uppercase tracking-wider text-slate-400 mb-2" for="sender_name">{{ __('Nama Lengkap *') }}</label>
                     <input type="text" id="sender_name" name="sender_name" value="{{ old('sender_name') }}" required
-                        class="w-full rounded-xl border border-white/10 bg-slate-900/50 px-4 py-3.5 text-sm text-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 transition-all placeholder:text-slate-500"
+                        class="w-full rounded-xl border border-white/10 bg-slate-900/50 px-4 py-3.5 text-sm text-white focus:border-primary focus:ring-4 focus:ring-primary/20 transition-all placeholder:text-slate-500"
                         placeholder="Masukkan nama lengkap">
                     @error('sender_name') <p class="text-rose-400 text-xs mt-1">{{ $message }}</p> @enderror
                 </div>
 
                 <div>
-                    <label class="block text-[10px] font-black uppercase tracking-wider text-slate-400 mb-2" for="sender_email">Email Aktif *</label>
+                    <label class="block text-[10px] font-black uppercase tracking-wider text-slate-400 mb-2" for="sender_email">{{ __('Email Aktif *') }}</label>
                     <input type="email" id="sender_email" name="sender_email" value="{{ old('sender_email') }}" required
-                        class="w-full rounded-xl border border-white/10 bg-slate-900/50 px-4 py-3.5 text-sm text-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 transition-all placeholder:text-slate-500"
+                        class="w-full rounded-xl border border-white/10 bg-slate-900/50 px-4 py-3.5 text-sm text-white focus:border-primary focus:ring-4 focus:ring-primary/20 transition-all placeholder:text-slate-500"
                         placeholder="email@bisnis.com">
                     @error('sender_email') <p class="text-rose-400 text-xs mt-1">{{ $message }}</p> @enderror
                 </div>
 
                 <div>
-                    <label class="block text-[10px] font-black uppercase tracking-wider text-slate-400 mb-2" for="phone">No. WhatsApp *</label>
+                    <label class="block text-[10px] font-black uppercase tracking-wider text-slate-400 mb-2" for="phone">{{ __('No. WhatsApp *') }}</label>
                     <input type="text" id="phone" name="phone" value="{{ old('phone') }}" required
-                        class="w-full rounded-xl border border-white/10 bg-slate-900/50 px-4 py-3.5 text-sm text-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 transition-all placeholder:text-slate-500"
+                        class="w-full rounded-xl border border-white/10 bg-slate-900/50 px-4 py-3.5 text-sm text-white focus:border-primary focus:ring-4 focus:ring-primary/20 transition-all placeholder:text-slate-500"
                         placeholder="Contoh: 081234567890">
                     @error('phone') <p class="text-rose-400 text-xs mt-1">{{ $message }}</p> @enderror
                 </div>
@@ -690,7 +691,7 @@
                 <div>
                     <label class="block text-[10px] font-black uppercase tracking-wider text-slate-400 mb-2" for="service">Layanan Utama *</label>
                     <select id="service" name="service" required
-                        class="w-full rounded-xl border border-white/10 bg-slate-900/80 px-4 py-3.5 text-sm text-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 transition-all">
+                        class="w-full rounded-xl border border-white/10 bg-slate-900/80 px-4 py-3.5 text-sm text-white focus:border-primary focus:ring-4 focus:ring-primary/20 transition-all">
                         <option value="" class="bg-slate-950">-- {{ __('Pilih Layanan Premium') }} --</option>
                         @foreach($services as $srv)
                             @php
@@ -705,15 +706,15 @@
                 </div>
 
                 <div>
-                    <label class="block text-[10px] font-black uppercase tracking-wider text-slate-400 mb-2" for="message_body">Deskripsi Proyek Singkat</label>
+                    <label class="block text-[10px] font-black uppercase tracking-wider text-slate-400 mb-2" for="message_body">{{ __('Deskripsi Kebutuhan Singkat') }}</label>
                     <textarea id="message_body" name="message_body" rows="3"
-                        class="w-full rounded-xl border border-white/10 bg-slate-900/50 px-4 py-3.5 text-sm text-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 transition-all resize-none placeholder:text-slate-500"
-                        placeholder="Tuliskan tujuan proyek digital Anda...">{{ old('message_body') }}</textarea>
+                        class="w-full rounded-xl border border-white/10 bg-slate-900/50 px-4 py-3.5 text-sm text-white focus:border-primary focus:ring-4 focus:ring-primary/20 transition-all resize-none placeholder:text-slate-500"
+                        placeholder="Tuliskan tujuan konsultasi atau kebutuhan perizinan Anda...">{{ old('message_body') }}</textarea>
                 </div>
 
-                <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold py-4 rounded-xl shadow-[0_4px_25px_rgba(59,130,246,0.3)] transition-all flex items-center justify-center gap-2">
+                <button type="submit" class="w-full bg-gradient-to-r from-primary to-primary-container hover:opacity-95 text-white font-bold py-4 rounded-xl shadow-[0_4px_25px_rgba(217,161,26,0.25)] transition-all flex items-center justify-center gap-2">
                     <span class="material-symbols-outlined text-sm">send</span>
-                    Kirim Penawaran
+                    {{ __('Kirim Penawaran') }}
                 </button>
             </form>
         </div>

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Detail Pesan - Rakira CMS')
+@section('title', 'Detail Pesan - AKA Consulting CMS')
 @section('page_title', 'Detail Pesan Konsultasi')
 @section('page_subtitle', 'Dari: {{ $message->sender_name }}')
 
@@ -42,7 +42,7 @@
                     <p class="font-bold text-primary text-lg">{{ $message->service ?: '-' }}</p>
                 </div>
                 <div class="surface-card p-4 rounded-xl text-center">
-                    <p class="text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-1">WhatsApp</p>
+                    <p class="text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-1">Nomor WhatsApp</p>
                     @if($message->phone)
                     <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $message->phone) }}" target="_blank" class="font-bold text-success text-lg hover:underline">
                         {{ $message->phone }}
@@ -82,7 +82,7 @@
                 </button>
             </form>
             @if($message->phone)
-            <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $message->phone) }}?text={{ urlencode('Halo ' . $message->sender_name . ', terima kasih telah menghubungi Rakira Digital. Kami ingin membahas kebutuhan ' . ($message->service ?: 'proyek') . ' Anda.') }}"
+                <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $message->phone) }}?text={{ urlencode('Halo ' . $message->sender_name . ', terima kasih telah menghubungi AKA Consulting. Kami ingin membahas kebutuhan ' . ($message->service ?: 'konsultasi') . ' Anda.') }}"
                 target="_blank"
                 class="bg-[#25D366] text-white px-6 py-2.5 rounded-lg font-bold text-sm flex items-center gap-2 hover:bg-[#1fb855] transition-all">
                 <span class="material-symbols-outlined text-sm">chat</span>

@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 
-@section('title', 'Edit Anggota Tim - Rakira CMS')
+@section('title', 'Edit Anggota Tim - AKA Consulting CMS')
 @section('page_title', 'Perbarui Data Tim')
-@section('page_subtitle', 'Sesuaikan informasi profil anggota tim Rakira Digital.')
+@section('page_subtitle', 'Sesuaikan informasi profil anggota tim AKA Consulting.')
 
 @section('content')
 <div class="max-w-4xl mx-auto pb-20 animate-in fade-in duration-700">

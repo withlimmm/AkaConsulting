@@ -1,6 +1,6 @@
 <x-guest-layout>
     <div class="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] items-stretch">
-        <section class="glass-panel relative overflow-hidden p-8 md:p-10 text-white shadow-soft" data-aos="fade-right">
+        <section class="glass-panel relative overflow-hidden p-8 md:p-10 text-white shadow-soft" data-aos="fade-up" data-aos-duration="700">
             <div class="absolute inset-0 bg-gradient-to-br from-primary via-[#00526f] to-primary-container"></div>
             <div class="absolute -right-20 top-10 h-56 w-56 rounded-full bg-white/10 blur-3xl"></div>
             <div class="absolute bottom-0 left-0 h-64 w-64 rounded-full bg-black/10 blur-3xl"></div>
@@ -13,15 +13,15 @@
                 </div>
 
                 <div class="grid gap-4 sm:grid-cols-3">
-                    <div class="rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-md" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-md" data-aos="fade-up" data-aos-delay="100" data-aos-duration="650">
                         <p class="text-2xl font-black">24/7</p>
                         <p class="text-sm text-white/80">Akses dashboard</p>
                     </div>
-                    <div class="rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-md" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-md" data-aos="fade-up" data-aos-delay="200" data-aos-duration="650">
                         <p class="text-2xl font-black">Role</p>
                         <p class="text-sm text-white/80">Super admin & editor</p>
                     </div>
-                    <div class="rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-md" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-md" data-aos="fade-up" data-aos-delay="300" data-aos-duration="650">
                         <p class="text-2xl font-black">Fast</p>
                         <p class="text-sm text-white/80">Vite + Tailwind</p>
                     </div>
@@ -29,10 +29,10 @@
             </div>
         </section>
 
-        <section class="surface-card p-6 md:p-10" data-aos="fade-left" data-aos-delay="150">
+        <section class="surface-card p-6 md:p-10" data-aos="fade-up" data-aos-delay="150" data-aos-duration="700">
             <div class="mb-8 text-center">
-                <img src="/images/logo-rakira.png" alt="Rakira Digital" class="mx-auto mb-5 h-16 w-16">
-                <h2 class="text-2xl font-black text-on-surface">Rakira Digital Nusantara</h2>
+                <img src="/images/logo_aka.png" alt="AKA Consulting" class="mx-auto mb-5 h-16 w-auto object-contain">
+                <h2 class="text-2xl font-black text-on-surface">AKA Consulting, Konsultan Terpercaya</h2>
                 <p class="mt-2 text-sm font-semibold text-on-surface-variant">CMS Management Login</p>
             </div>
 

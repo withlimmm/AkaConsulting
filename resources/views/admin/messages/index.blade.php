@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Pesan Konsultasi - Rakira CMS')
+@section('title', 'Pesan Konsultasi - AKA Consulting CMS')
 @section('page_title', 'Pesan Konsultasi Masuk')
 @section('page_subtitle', 'Lihat dan kelola permintaan konsultasi dari calon klien.')
 
@@ -39,7 +39,7 @@
                         <th class="py-4 px-6 text-[11px] font-black uppercase tracking-widest text-on-surface w-10"></th>
                         <th class="py-4 px-6 text-[11px] font-black uppercase tracking-widest text-on-surface">Pengirim</th>
                         <th class="py-4 px-6 text-[11px] font-black uppercase tracking-widest text-on-surface">Layanan</th>
-                        <th class="py-4 px-6 text-[11px] font-black uppercase tracking-widest text-on-surface">WhatsApp</th>
+                        <th class="py-4 px-6 text-[11px] font-black uppercase tracking-widest text-on-surface">Kontak WhatsApp</th>
                         <th class="py-4 px-6 text-[11px] font-black uppercase tracking-widest text-on-surface">Tanggal</th>
                         <th class="py-4 px-6 text-[11px] font-black uppercase tracking-widest text-on-surface w-28 text-right">Aksi</th>
                     </tr>

@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 
-@section('title', 'Manajemen Portofolio - Rakira CMS')
+@section('title', 'Manajemen Portofolio - AKA Consulting CMS')
 @section('page_title', 'Portofolio Proyek')
-@section('page_subtitle', 'Kelola daftar karya terbaik Rakira Digital yang ditampilkan di website.')
+@section('page_subtitle', 'Kelola daftar karya terbaik AKA Consulting yang ditampilkan di website.')
 
 @section('content')
 <div class="space-y-6 animate-in fade-in duration-700">

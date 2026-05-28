@@ -1,12 +1,12 @@
 @extends('templates.default.layout')
 
-@section('title', 'Rakira Digital Nusantara | Solusi Digital Inovatif')
+@section('title', 'AKA Consulting, Konsultan Terpercaya')
 
 @push('styles')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 <style>
     .testimonial-swiper .swiper-pagination-bullet-active {
-        background: #009fe3 !important;
+        background: #d9a11a !important;
         width: 24px;
         border-radius: 4px;
     }
@@ -20,7 +20,7 @@
         transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .testimonial-card:hover {
-        background-color: #009fe3 !important;
+        background-color: #8d6408 !important;
         transform: translateY(-8px);
     }
     .testimonial-card:hover p, 
@@ -41,7 +41,7 @@
         border-color: rgba(255, 255, 255, 0.2) !important;
     }
     .default-hero {
-        background: linear-gradient(135deg, #00324b 0%, #006491 50%, #009fe3 100%) !important;
+        background: linear-gradient(135deg, #15100a 0%, #8d6408 50%, #d9a11a 100%) !important;
     }
 </style>
 @endpush
@@ -54,7 +54,7 @@
     <div class="absolute inset-0 pointer-events-none">
         <div class="absolute -top-40 -right-40 w-[500px] h-[500px] bg-white/10 rounded-full blur-3xl" data-float></div>
         <div class="absolute bottom-0 -left-20 w-80 h-80 bg-white/5 rounded-full blur-3xl" data-float style="animation-delay: 3s"></div>
-        <div class="bg-grid-pattern absolute inset-0 opacity-[0.04]"></div>
+        <div class="bg-grid-pattern absolute inset-0 opacity-[0.06]"></div>
     </div>
     
     <div class="content-container grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center relative z-10">
@@ -62,10 +62,9 @@
         <div class="flex flex-col gap-6 text-white text-center lg:text-left" 
              x-data="{ 
                 text1: '', 
-                fullText1: 'Solusi Digital ',
-                showInovatif: false,
+                fullText1: 'Solusi Konsultasi Profesional untuk',
                 text2: '',
-                fullText2: ' untuk Pertumbuhan Bisnis Anda',
+                fullText2: ' Pertumbuhan Bisnis Anda',
                 init() {
                     let i = 0;
                     let timer1 = setInterval(() => {
@@ -73,7 +72,6 @@
                         i++;
                         if (i >= this.fullText1.length) {
                             clearInterval(timer1);
-                            this.showInovatif = true;
                             setTimeout(() => {
                                 let j = 0;
                                 let timer2 = setInterval(() => {
@@ -87,24 +85,24 @@
                 }
              }">
             <span class="section-kicker !border-white/20 !bg-white/10 !text-white self-center lg:self-start transition-all duration-700"
-                  x-show="text1.length > 0" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 -translate-y-4" x-transition:enter-end="opacity-100 translate-y-0">
-                Rakira Digital Nusantara
+                  :class="text1.length > 0 ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'">
+                AKA Consulting, Konsultan Terpercaya
             </span>
             
             <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tight min-h-[2.2em]">
-                <span x-text="text1"></span><template x-if="showInovatif"><span class="text-[#8aceff]" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">Inovatif</span></template><span x-text="text2"></span><span class="animate-pulse text-[#8aceff]" x-show="text2.length < fullText2.length">|</span>
+                <span x-text="text1"></span><span x-text="text2"></span><span class="animate-pulse text-primary-container" x-show="text2.length < fullText2.length">|</span>
             </h1>
 
             <p class="text-base md:text-lg text-white/85 max-w-xl mx-auto lg:mx-0 leading-relaxed transition-all duration-1000"
-               x-show="text2.length === fullText2.length" x-transition:enter="transition ease-out duration-1000" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0">
-                Transformasi digital bukan lagi pilihan, tapi keharusan. Rakira Digital Nusantara hadir sebagai mitra strategis untuk membangun ekosistem digital yang scalable.
+               :class="text2.length === fullText2.length ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'">
+                Partner profesional yang membantu bisnis bertumbuh melalui solusi legal dan perizinan yang terpercaya, efektif, dan berintegritas.
             </p>
             <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
                 <a href="#kontak" class="w-full sm:w-auto px-8 py-4 bg-white text-primary font-bold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-center">
-                    Konsultasi Gratis
+                    {{ __('Konsultasi Gratis') }}
                 </a>
                 <a href="/portofolio" class="w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-white/25 text-white font-bold rounded-xl hover:bg-white/10 hover:border-white/50 transition-all duration-300 text-center flex items-center justify-center gap-2">
-                    Lihat Portofolio
+                    {{ __('Lihat Portofolio') }}
                     <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
                 </a>
             </div>
@@ -113,7 +111,7 @@
         {{-- Visual --}}
         <div class="relative hidden lg:block h-[480px] w-full" data-aos data-aos-delay="200">
             <div class="absolute inset-0 rounded-3xl border border-white/10 shadow-2xl p-4 overflow-hidden backdrop-blur-sm bg-white/5">
-                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426" alt="Dashboard Preview" class="w-full h-full object-cover rounded-2xl opacity-80">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=2426" fetchpriority="high" width="800" height="600" alt="Consulting Meeting" class="w-full h-full object-cover rounded-2xl opacity-80">
             </div>
             {{-- Floating stat --}}
             <div class="absolute -left-8 bottom-16 glass-panel !bg-white/10 !border-white/20 p-4 rounded-xl shadow-2xl" data-float>
@@ -122,8 +120,8 @@
                         <span class="material-symbols-outlined text-success text-[20px]">trending_up</span>
                     </div>
                     <div>
-                        <p class="text-white/60 text-xs font-semibold">Kinerja Sistem</p>
-                        <p class="text-white font-bold text-sm">+99.9% Uptime</p>
+                        <p class="text-white/60 text-xs font-semibold">{{ __('Konsultasi Bisnis') }}</p>
+                        <p class="text-white font-bold text-sm">{{ __('Strategi & Kepatuhan') }}</p>
                     </div>
                 </div>
             </div>
@@ -137,7 +135,7 @@
 @if($client_logos->isNotEmpty())
 <section class="page-section !py-20 bg-white border-b border-slate-50 overflow-hidden relative" data-aos>
     <div class="content-container mb-8">
-        <p class="text-center text-slate-400 text-[10px] font-black uppercase tracking-[0.4em]">Dipercaya Oleh Berbagai Industri</p>
+        <p class="text-center text-slate-400 text-[10px] font-black uppercase tracking-[0.4em]">{{ __('Dipercaya Oleh Berbagai Industri') }}</p>
     </div>
 
     @php
@@ -285,10 +283,10 @@
 <section class="page-section bg-white">
     <div class="content-container grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
         <div class="space-y-6" data-aos>
-            <span class="section-kicker">Tentang Rakira Digital</span>
-            <h2 class="section-title">Arsitek Ekosistem Digital Masa Depan</h2>
+            <span class="section-kicker">{{ __('Tentang AKA Consulting') }}</span>
+            <h2 class="section-title">{{ __('Mitra Strategis Kepatuhan dan Pertumbuhan Bisnis') }}</h2>
             <p class="section-subtitle">
-                {{ $settings->about_us ?? 'Rakira Digital Nusantara adalah software house premium yang berdedikasi untuk memberikan solusi teknologi end-to-end. Kami menggabungkan keahlian teknis mendalam dengan pemahaman bisnis strategis.' }}
+                {{ $settings->about_us ?? 'AKA Consulting, Konsultan Terpercaya adalah mitra konsultasi yang berdedikasi mendampingi bisnis melalui layanan hukum, perizinan, dan kepatuhan dengan pendekatan yang jelas dan strategis.' }}
             </p>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                 <div class="surface-card p-6 rounded-2xl hover:shadow-2xl transition-shadow">
@@ -297,7 +295,7 @@
                     </div>
                     <h4 class="text-lg font-bold mb-1">Visi</h4>
                     <p class="text-on-surface-variant text-sm leading-relaxed">
-                        {!! nl2br(e($settings->vision ?? 'Menjadi katalisator utama transformasi digital bagi perusahaan.')) !!}
+                        {!! nl2br(e(__t($settings->vision ?? "Menjadi firma konsultan terdepan yang terpercaya dalam memberikan solusi hukum, perizinan, dan kepatuhan untuk mendukung pertumbuhan bisnis klien.||To be the leading and trusted consulting firm in providing legal, licensing, and compliance solutions to support the growth of our clients' businesses."))) !!}
                     </p>
                 </div>
                 <div class="surface-card p-6 rounded-2xl hover:shadow-2xl transition-shadow">
@@ -306,18 +304,18 @@
                     </div>
                     <h4 class="text-lg font-bold mb-1">Misi</h4>
                     <p class="text-on-surface-variant text-sm leading-relaxed">
-                        {!! nl2br(e($settings->mission ?? 'Memberikan solusi software yang scalable dan aman.')) !!}
+                        {!! nl2br(e(__t($settings->mission ?? "1. Menyediakan pendampingan perizinan dan kepatuhan regulasi yang efisien.\n2. Memberikan solusi strategis untuk meminimalisasi risiko legalitas operasional.\n3. Menjalin kemitraan jangka panjang berbasis integritas dan profesionalisme.||1. Provide efficient assistance with licensing and regulatory compliance.\n2. Deliver strategic solutions to minimize operational legality risks.\n3. Build long-term partnerships based on integrity and professionalism."))) !!}
                     </p>
                 </div>
             </div>
         </div>
         <div class="relative h-[420px] md:h-[500px] rounded-3xl overflow-hidden shadow-2xl" data-aos data-aos-delay="150">
-            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=2070" alt="Tim Rakira Digital" class="w-full h-full object-cover">
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=2070" loading="lazy" width="800" height="500" alt="Tim AKA Consulting" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-[#171c20]/80 via-transparent to-transparent"></div>
             <div class="absolute bottom-6 left-6 right-6">
                 <div class="glass-panel p-5 rounded-xl">
-                    <p class="text-xl font-bold text-on-surface">50+ Proyek Sukses</p>
-                    <p class="text-on-surface-variant text-sm">Diselesaikan dengan tingkat kepuasan tinggi.</p>
+                    <p class="text-xl font-bold text-on-surface">{{ __('50+ Proyek Sukses') }}</p>
+                    <p class="text-on-surface-variant text-sm">{{ __('Diselesaikan dengan tingkat kepuasan tinggi.') }}</p>
                 </div>
             </div>
         </div>
@@ -330,30 +328,31 @@
 <section class="page-section bg-background">
     <div class="content-container">
         <div class="text-center max-w-2xl mx-auto space-y-3 mb-14" data-aos>
-            <span class="section-kicker">{{ __('Layanan Rakira Digital') }}</span>
+            <span class="section-kicker">{{ __('Layanan AKA Consulting') }}</span>
             <h2 class="section-title">{{ __('Solusi End-to-End untuk Anda') }}</h2>
             <p class="section-subtitle mx-auto">{{ __('Klik layanan untuk melihat detail dan langsung chat via WhatsApp.') }}</p>
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @forelse($services as $index => $service)
-            <a 
-                href="{{ route('services.show', $service->slug) }}"
-                aria-label="{{ __('Detail Layanan') }}: {{ __t($service->title) }}"
-                class="interactive-card {{ $loop->first ? 'lg:col-span-2' : '' }} group"
-                data-aos data-aos-delay="{{ $index * 100 }}"
-            >
-                <div class="interactive-card-icon w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-5 transition-colors">
-                    <span class="material-symbols-outlined text-3xl">{{ $service->icon_image ?: 'settings' }}</span>
-                </div>
-                <h3 class="interactive-card-title text-xl font-bold text-on-surface mb-2 transition-colors">{{ __t($service->title) }}</h3>
-                <p class="interactive-card-description text-on-surface-variant text-sm transition-colors">{{ __t($service->short_description) }}</p>
-                
-                <div class="mt-6 flex items-center text-primary font-bold text-sm group-hover:text-white transition-colors">
-                    {{ __('Lihat Detail') }}
-                    <span class="material-symbols-outlined ml-2 text-sm">arrow_forward</span>
-                </div>
-            </a>
+            <div data-aos data-aos-delay="{{ $index * 100 }}" class="{{ $loop->first ? 'lg:col-span-2' : '' }}">
+                <a 
+                    href="{{ route('services.show', $service->slug) }}"
+                    aria-label="{{ __('Detail Layanan') }}: {{ __t($service->title) }}"
+                    class="interactive-card group transition-all duration-200 hover:-translate-y-2 hover:shadow-[0_24px_60px_-20px_rgba(0,0,0,0.15)] h-full"
+                >
+                    <div class="interactive-card-icon w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-5 transition-all duration-200 group-hover:scale-110 group-hover:rotate-6">
+                        <span class="material-symbols-outlined text-3xl">{{ $service->icon_image ?: 'settings' }}</span>
+                    </div>
+                    <h3 class="interactive-card-title text-xl font-bold text-on-surface mb-2 transition-colors duration-200">{{ __t($service->title) }}</h3>
+                    <p class="interactive-card-description text-on-surface-variant text-sm transition-colors duration-200">{{ __t($service->short_description) }}</p>
+                    
+                    <div class="mt-6 flex items-center text-primary font-bold text-sm group-hover:text-white transition-colors duration-200">
+                        {{ __('Lihat Detail') }}
+                        <span class="material-symbols-outlined ml-2 text-sm">arrow_forward</span>
+                    </div>
+                </a>
+            </div>
             @empty
             <div class="col-span-full py-12 text-center text-on-surface-variant">
                 <p>{{ __('Layanan belum tersedia.') }}</p>
@@ -371,7 +370,7 @@
         @if($clients->isNotEmpty())
         <div class="text-center max-w-2xl mx-auto space-y-3 mb-14" data-aos>
             <span class="section-kicker">{{ __('Kata Mereka') }}</span>
-            <h2 class="section-title">{{ __('Testimoni Klien Rakira Digital') }}</h2>
+            <h2 class="section-title">{{ __('Testimoni Klien AKA Consulting') }}</h2>
         </div>
         {{-- Testimonial Slider --}}
         <div class="relative px-4 md:px-10">
@@ -424,7 +423,7 @@
         {{-- Review Form (Integrated) --}}
         <div class="{{ $clients->isNotEmpty() ? 'mt-20' : '' }} max-w-4xl mx-auto">
             <div class="glass-panel p-8 md:p-12 rounded-[2.5rem] shadow-2xl relative overflow-hidden" data-aos="fade-up">
-                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary"></div>
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-primary-container"></div>
                 
                 <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
                     <div class="lg:col-span-2 space-y-4">
@@ -440,7 +439,7 @@
 
                     <div class="lg:col-span-3">
                         @if(session('success_review'))
-                        <div class="mb-6 p-4 bg-green-50 border border-green-200 text-green-700 rounded-2xl text-sm font-semibold flex items-center gap-3 animate-bounce">
+                        <div class="mb-6 p-4 bg-green-50 border border-green-200 text-green-700 rounded-2xl text-sm font-semibold flex items-center gap-3 animate-pulse [animation-duration:4s]">
                             <span class="material-symbols-outlined">check_circle</span>
                             {{ session('success_review') }}
                         </div>
@@ -500,7 +499,7 @@
         <div class="text-center space-y-3 mb-14" data-aos>
             <span class="section-kicker">F.A.Q</span>
             <h2 class="section-title">{{ __('Pertanyaan Umum') }}</h2>
-            <p class="section-subtitle mx-auto">{{ __('Pertanyaan yang sering ditanyakan tentang layanan Rakira Digital.') }}</p>
+            <p class="section-subtitle mx-auto">{{ __('Pertanyaan yang sering ditanyakan tentang layanan AKA Consulting.') }}</p>
         </div>
 
         <div class="space-y-4">
@@ -542,10 +541,10 @@
     <div class="content-container grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
         {{-- Info --}}
         <div class="space-y-6" data-aos>
-            <span class="section-kicker">Konsultasi Gratis</span>
-            <h2 class="section-title">Mulai Proyek Digital Anda Sekarang</h2>
+            <span class="section-kicker">{{ __('Konsultasi Gratis') }}</span>
+            <h2 class="section-title">{{ __('Mulai Konsultasi Anda Sekarang') }}</h2>
             <p class="section-subtitle">
-                Isi formulir di samping dan tim Rakira Digital akan menghubungi Anda dalam waktu 1×24 jam untuk membahas kebutuhan proyek Anda.
+                {{ __('Isi formulir di samping dan tim AKA Consulting akan menghubungi Anda dalam waktu 1×24 jam untuk membahas kebutuhan bisnis dan legalitas Anda.') }}
             </p>
             <div class="space-y-5 pt-4">
                 <div class="flex items-center gap-4">
@@ -553,8 +552,8 @@
                         <span class="material-symbols-outlined">schedule</span>
                     </div>
                     <div>
-                        <p class="font-bold text-on-surface">Respons Cepat</p>
-                        <p class="text-on-surface-variant text-sm">Balasan dalam 1×24 jam kerja</p>
+                        <p class="font-bold text-on-surface">{{ __('Respons Cepat') }}</p>
+                        <p class="text-on-surface-variant text-sm">{{ __('Balasan dalam 1×24 jam kerja') }}</p>
                     </div>
                 </div>
                 <div class="flex items-center gap-4">
@@ -562,8 +561,8 @@
                         <span class="material-symbols-outlined">verified</span>
                     </div>
                     <div>
-                        <p class="font-bold text-on-surface">Konsultasi Tanpa Biaya</p>
-                        <p class="text-on-surface-variant text-sm">Diskusi awal 100% gratis</p>
+                        <p class="font-bold text-on-surface">{{ __('Konsultasi Tanpa Biaya') }}</p>
+                        <p class="text-on-surface-variant text-sm">{{ __('Diskusi awal 100% gratis') }}</p>
                     </div>
                 </div>
                 <div class="flex items-center gap-4">
@@ -571,8 +570,8 @@
                         <span class="material-symbols-outlined">lock</span>
                     </div>
                     <div>
-                        <p class="font-bold text-on-surface">Data Aman</p>
-                        <p class="text-on-surface-variant text-sm">Informasi Anda dijaga kerahasiaannya</p>
+                        <p class="font-bold text-on-surface">{{ __('Data Aman') }}</p>
+                        <p class="text-on-surface-variant text-sm">{{ __('Informasi Anda dijaga kerahasiaannya') }}</p>
                     </div>
                 </div>
             </div>
@@ -592,7 +591,7 @@
                 @csrf
                 {{-- Nama --}}
                 <div>
-                    <label class="block text-xs font-bold uppercase tracking-wider text-on-surface mb-2" for="sender_name">Nama Lengkap *</label>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-on-surface mb-2" for="sender_name">{{ __('Nama Lengkap *') }}</label>
                     <input type="text" id="sender_name" name="sender_name" value="{{ old('sender_name') }}" required
                         class="w-full rounded-xl border border-outline-variant/50 px-4 py-3 text-sm transition-all focus:border-primary focus:ring-4 focus:ring-primary/10"
                         placeholder="Nama lengkap Anda">
@@ -601,7 +600,7 @@
 
                 {{-- Email --}}
                 <div>
-                    <label class="block text-xs font-bold uppercase tracking-wider text-on-surface mb-2" for="sender_email">Email Aktif *</label>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-on-surface mb-2" for="sender_email">{{ __('Email Aktif *') }}</label>
                     <input type="email" id="sender_email" name="sender_email" value="{{ old('sender_email') }}" required
                         class="w-full rounded-xl border border-outline-variant/50 px-4 py-3 text-sm transition-all focus:border-primary focus:ring-4 focus:ring-primary/10"
                         placeholder="email@anda.com">
@@ -610,7 +609,7 @@
 
                 {{-- WhatsApp --}}
                 <div>
-                    <label class="block text-xs font-bold uppercase tracking-wider text-on-surface mb-2" for="phone">No. WhatsApp *</label>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-on-surface mb-2" for="phone">{{ __('No. WhatsApp *') }}</label>
                     <input type="text" id="phone" name="phone" value="{{ old('phone') }}" required
                         class="w-full rounded-xl border border-outline-variant/50 px-4 py-3 text-sm transition-all focus:border-primary focus:ring-4 focus:ring-primary/10"
                         placeholder="08xx-xxxx-xxxx">
@@ -619,7 +618,7 @@
 
                 {{-- Layanan --}}
                 <div>
-                    <label class="block text-xs font-bold uppercase tracking-wider text-on-surface mb-2" for="service">Layanan yang Dibutuhkan *</label>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-on-surface mb-2" for="service">{{ __('Layanan yang Dibutuhkan *') }}</label>
                     <select id="service" name="service" required
                         class="w-full rounded-xl border border-outline-variant/50 px-4 py-3 text-sm transition-all focus:border-primary focus:ring-4 focus:ring-primary/10 bg-white">
                         <option value="">-- {{ __('Pilih Layanan') }} --</option>
@@ -637,16 +636,16 @@
 
                 {{-- Pesan --}}
                 <div>
-                    <label class="block text-xs font-bold uppercase tracking-wider text-on-surface mb-2" for="message_body">Pesan Tambahan <span class="font-normal text-on-surface-variant">(opsional)</span></label>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-on-surface mb-2" for="message_body">{{ __('Pesan Tambahan') }} <span class="font-normal text-on-surface-variant">({{ __('opsional') }})</span></label>
                     <textarea id="message_body" name="message_body" rows="3"
                         class="w-full rounded-xl border border-outline-variant/50 px-4 py-3 text-sm transition-all focus:border-primary focus:ring-4 focus:ring-primary/10 resize-none"
-                        placeholder="Ceritakan sedikit tentang proyek Anda...">{{ old('message_body') }}</textarea>
+                        placeholder="Ceritakan sedikit tentang kebutuhan Anda...">{{ old('message_body') }}</textarea>
                 </div>
 
                 {{-- Submit --}}
                 <button type="submit" class="btn-primary w-full !py-4 !text-base shadow-lg">
                     <span class="material-symbols-outlined">send</span>
-                    Kirim Konsultasi
+                    {{ __('Kirim Konsultasi') }}
                 </button>
             </form>
         </div>
@@ -658,16 +657,16 @@
 ═══════════════════════════════════════════════ --}}
 <section class="page-section bg-background">
     <div class="content-container max-w-5xl">
-        <div class="bg-gradient-to-br from-[#006491] to-[#009fe3] rounded-3xl p-10 md:p-16 text-center text-white shadow-2xl relative overflow-hidden" data-aos>
+        <div class="bg-gradient-to-br from-[#15100a] via-primary to-primary-container rounded-3xl p-10 md:p-16 text-center text-white shadow-2xl relative overflow-hidden" data-aos>
             <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4"></div>
             <div class="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/4"></div>
             <div class="relative z-10">
-                <h2 class="text-3xl md:text-5xl font-bold mb-5">Siap Mewujudkan Ide Digital Anda?</h2>
+                <h2 class="text-3xl md:text-5xl font-bold mb-5">{{ __('Siap Meningkatkan Kepatuhan & Pertumbuhan Bisnis Anda?') }}</h2>
                 <p class="text-base md:text-lg text-white/85 max-w-2xl mx-auto mb-8 leading-relaxed">
-                    Jangan biarkan bisnis Anda tertinggal. Jadwalkan sesi konsultasi gratis dengan tim expert Rakira Digital hari ini.
+                    {{ __('Jangan biarkan bisnis Anda tertinggal. Jadwalkan sesi konsultasi gratis dengan tim expert AKA Consulting hari ini.') }}
                 </p>
-                <a href="{{ $whatsAppUrl ?? '#kontak' }}" target="_blank" class="inline-flex items-center gap-2 bg-white text-primary font-bold px-8 py-4 rounded-xl hover:shadow-xl hover:scale-105 transition-all duration-300">
-                    Mulai Proyek Sekarang
+                <a href="{{ $whatsAppUrl ?? '#kontak' }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-white text-primary font-bold px-8 py-4 rounded-xl hover:shadow-xl hover:scale-105 transition-all duration-300">
+                    {{ __('Mulai Konsultasi Sekarang') }}
                     <span class="material-symbols-outlined">arrow_forward</span>
                 </a>
             </div>

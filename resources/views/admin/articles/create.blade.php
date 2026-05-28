@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Tulis Artikel - Rakira CMS')
+@section('title', 'Tulis Artikel - AKA Consulting CMS')
 @section('page_title', 'Tulis Artikel Baru')
 
 @section('content')
@@ -24,7 +24,7 @@
                     <div class="space-y-2">
                         <label for="title" class="text-[11px] font-black uppercase tracking-widest text-slate-400 ml-1">Judul Artikel</label>
                         <input type="text" name="title" id="title" required value="{{ old('title') }}"
-                            placeholder="Contoh: 5 Tren Teknologi 2026 yang Wajib Diketahui"
+                            placeholder="Contoh: 5 Tren Konsultasi Bisnis yang Wajib Diketahui"
                             class="w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 py-4 text-lg focus:bg-white focus:ring-4 focus:ring-primary/5 focus:border-primary transition-all font-bold outline-none">
                     </div>
 

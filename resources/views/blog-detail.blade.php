@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', __t($article->title) . ' - Rakira Digital Blog')
+@section('title', __t($article->title) . ' - AKA Consulting Blog')
 @section('meta_description', \Illuminate\Support\Str::limit(strip_tags(__t($article->content)), 150))
 @section('meta_keywords', __t($article->category->name ?? 'Update') . ', ' . __t($article->title))
 
@@ -37,7 +37,7 @@
         </header>
 
         {{-- Gambar Sampul Besar --}}
-        <div class="content-container max-w-6xl mb-16" data-aos="zoom-in">
+        <div class="content-container max-w-6xl mb-16" data-aos="fade-up" data-aos-duration="700">
             <div class="aspect-[21/9] rounded-[3rem] overflow-hidden shadow-2xl bg-slate-100 border border-slate-100">
                 @if($article->cover_image)
                     <img src="{{ asset('storage/' . $article->cover_image) }}" alt="{{ __t($article->title) }}" class="w-full h-full object-cover">

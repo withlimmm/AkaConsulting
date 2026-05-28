@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Edit Artikel - Rakira CMS')
+@section('title', 'Edit Artikel - AKA Consulting CMS')
 @section('page_title', 'Perbarui Artikel')
 
 @section('content')

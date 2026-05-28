@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 
-@section('title', 'Tambah Anggota Tim - Rakira CMS')
+@section('title', 'Tambah Anggota Tim - AKA Consulting CMS')
 @section('page_title', 'Anggota Tim Baru')
-@section('page_subtitle', 'Tambahkan talenta berbakat ke dalam keluarga Rakira Digital.')
+@section('page_subtitle', 'Tambahkan talenta berbakat ke dalam tim AKA Consulting.')
 
 @section('content')
 <div class="max-w-4xl mx-auto pb-20 animate-in fade-in duration-700">
@@ -41,7 +41,7 @@
                     <div class="space-y-3">
                         <label for="position" class="text-[11px] font-black uppercase tracking-widest text-slate-400 ml-1">Jabatan / Posisi</label>
                         <input type="text" name="position" id="position" required value="{{ old('position') }}"
-                            placeholder="Contoh: Senior Web Developer"
+                            placeholder="Contoh: Senior Konsultan"
                             class="w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 py-4 text-sm focus:bg-white focus:ring-4 focus:ring-primary/5 focus:border-primary transition-all font-bold outline-none">
                         @error('position') <p class="text-error text-[10px] mt-1 ml-1">{{ $message }}</p> @enderror
                     </div>

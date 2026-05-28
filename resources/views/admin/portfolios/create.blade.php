@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 
-@section('title', 'Tambah Proyek - Rakira CMS')
+@section('title', 'Tambah Proyek - AKA Consulting CMS')
 @section('page_title', 'Tambah Proyek Baru')
-@section('page_subtitle', 'Masukkan detail proyek portofolio baru Anda.')
+@section('page_subtitle', 'Masukkan detail karya konsultasi baru Anda.')
 
 @section('content')
 <div class="max-w-5xl mx-auto pb-20">
@@ -18,7 +18,7 @@
                         <div class="space-y-2">
                             <label for="project_name" class="text-[11px] font-black uppercase tracking-widest text-slate-400 ml-1">Nama Proyek</label>
                             <input type="text" name="project_name" id="project_name" required value="{{ old('project_name') }}"
-                                placeholder="Contoh: Website E-Commerce Nusantara"
+                                placeholder="Contoh: Dokumen Pendampingan Perizinan Nusantara"
                                 class="w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 py-4 text-sm focus:bg-white focus:ring-4 focus:ring-primary/5 focus:border-primary transition-all font-bold outline-none">
                             @error('project_name') <p class="text-error text-[10px] mt-1">{{ $message }}</p> @enderror
                         </div>
@@ -62,7 +62,7 @@
             <div class="lg:col-span-4 space-y-8">
                 {{-- Upload Foto --}}
                 <div class="bg-white border border-slate-200 rounded-[2rem] p-8 shadow-sm space-y-4">
-                    <label class="text-[11px] font-black uppercase tracking-widest text-slate-400 ml-1">Banner Proyek</label>
+                    <label class="text-[11px] font-black uppercase tracking-widest text-slate-400 ml-1">Banner Karya</label>
                     <input type="file" name="thumbnail_image" id="imageInput" class="hidden" accept="image/*" onchange="previewImage(event)">
                     <div onclick="document.getElementById('imageInput').click()" 
                          class="aspect-video w-full rounded-2xl bg-slate-50 border-2 border-dashed border-slate-200 flex flex-col items-center justify-center gap-3 cursor-pointer hover:bg-slate-100 hover:border-primary transition-all group overflow-hidden relative">
@@ -71,7 +71,7 @@
                         
                         <div id="uploadPlaceholder" class="flex flex-col items-center gap-2">
                             <span class="material-symbols-outlined text-slate-300 group-hover:text-primary transition-all text-4xl">add_photo_alternate</span>
-                            <p class="text-[9px] font-black uppercase tracking-widest text-slate-400 group-hover:text-primary transition-colors text-center">Klik untuk Unggah Foto</p>
+                            <p class="text-[9px] font-black uppercase tracking-widest text-slate-400 group-hover:text-primary transition-colors text-center">Klik untuk Unggah Gambar</p>
                         </div>
                     </div>
                     @error('thumbnail_image') <p class="text-error text-[10px] mt-1">{{ $message }}</p> @enderror
@@ -102,7 +102,7 @@
 
                 {{-- Upload Galeri --}}
                 <div class="bg-white border border-slate-200 rounded-[2rem] p-8 shadow-sm space-y-4">
-                    <label class="text-[11px] font-black uppercase tracking-widest text-slate-400 ml-1">Galeri Proyek (Multiple)</label>
+                    <label class="text-[11px] font-black uppercase tracking-widest text-slate-400 ml-1">Galeri Karya (Multiple)</label>
                     <input type="file" name="gallery_images[]" id="galleryInput" class="hidden" accept="image/*" multiple onchange="previewGallery(event)">
                     <div onclick="document.getElementById('galleryInput').click()" 
                          class="min-h-[150px] w-full rounded-2xl bg-slate-50 border-2 border-dashed border-slate-200 flex flex-col items-center justify-center gap-3 cursor-pointer hover:bg-slate-100 hover:border-primary transition-all group overflow-hidden p-6">
@@ -113,7 +113,7 @@
                         
                         <div id="galleryPlaceholder" class="flex flex-col items-center gap-2">
                             <span class="material-symbols-outlined text-slate-300 group-hover:text-primary transition-all text-4xl">collections</span>
-                            <p class="text-[9px] font-black uppercase tracking-widest text-slate-400 group-hover:text-primary transition-colors text-center">Pilih Beberapa Foto</p>
+                            <p class="text-[9px] font-black uppercase tracking-widest text-slate-400 group-hover:text-primary transition-colors text-center">Pilih Beberapa Gambar</p>
                         </div>
                     </div>
                     @error('gallery_images') <p class="text-error text-[10px] mt-1">{{ $message }}</p> @enderror

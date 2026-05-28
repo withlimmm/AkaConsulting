@@ -1,0 +1,27 @@
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
+    RewriteEngine On
+
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^ %1 [L,R=301]
+
+    # Mengarahkan semua request ke folder public/
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+
+# Keamanan Ekstra: Blokir akses langsung ke file sensitif
+<FilesMatch "^\.env|^\.git|^\.htaccess|^composer\.json|^package\.json|^webpack\.mix\.js|^artisan">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Blokir akses ke folder internal Laravel
+<IfModule mod_rewrite.c>
+    RewriteRule ^(app|bootstrap|config|database|resources|routes|storage|tests|vendor)(/.*)?$ - [F,L]
+</IfModule>

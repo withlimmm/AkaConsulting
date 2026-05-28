@@ -30,7 +30,7 @@ class ArticleController extends Controller
             'category_id' => 'required|exists:categories,id',
             'content' => 'required',
             'status' => 'required|in:published,draft',
-            'cover_image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048'
+            'cover_image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:512'
         ]);
 
         $validated['slug'] = Str::slug($request->title) . '-' . time();
@@ -63,7 +63,7 @@ class ArticleController extends Controller
             'category_id' => 'required|exists:categories,id',
             'content' => 'required',
             'status' => 'required|in:published,draft',
-            'cover_image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048'
+            'cover_image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:512'
         ]);
 
         // Tetap gunakan slug lama kecuali jika judul berubah drastis? 

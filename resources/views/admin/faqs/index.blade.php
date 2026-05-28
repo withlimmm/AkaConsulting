@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Manajemen FAQ - Rakira CMS')
+@section('title', 'Manajemen FAQ - AKA Consulting CMS')
 @section('page_title', 'Tanya Jawab (FAQ)')
 @section('page_subtitle', 'Kelola pertanyaan yang sering diajukan untuk memudahkan calon klien.')
 

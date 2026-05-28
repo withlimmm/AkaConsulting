@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Edit Kategori - Rakira CMS')
+@section('title', 'Edit Kategori - AKA Consulting CMS')
 @section('page_title', 'Perbarui Kategori')
 @section('page_subtitle', 'Sesuaikan nama atau status kategori portofolio Anda.')
 

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Tambah Kategori - Rakira CMS')
+@section('title', 'Tambah Kategori - AKA Consulting CMS')
 @section('page_title', 'Buat Kategori Baru')
 @section('page_subtitle', 'Tambahkan kategori baru untuk mengelompokkan proyek portofolio Anda.')
 
@@ -14,7 +14,7 @@
             <div class="space-y-2">
                 <label for="name" class="text-[11px] font-black uppercase tracking-widest text-slate-400 ml-1">Nama Kategori</label>
                 <input type="text" name="name" id="name" required value="{{ old('name') }}"
-                    placeholder="Contoh: Web Application, Mobile App, Branding"
+                    placeholder="Contoh: Konsultasi Bisnis, Perizinan Usaha, Kepatuhan"
                     class="w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 py-4 text-sm focus:bg-white focus:ring-4 focus:ring-primary/5 focus:border-primary transition-all font-bold outline-none">
                 @error('name') <p class="text-error text-[10px] mt-1">{{ $message }}</p> @enderror
             </div>

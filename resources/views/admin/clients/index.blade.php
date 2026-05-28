@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Kelola Klien - Rakira CMS')
+@section('title', 'Kelola Klien - AKA Consulting CMS')
 @section('page_title', 'Kelola Klien & Testimonial')
 @section('page_subtitle', 'Tambah, edit, dan kelola testimoni klien yang tampil di beranda.')
 

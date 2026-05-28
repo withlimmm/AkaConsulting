@@ -31,9 +31,9 @@ class PortfolioController extends Controller
             'status' => 'required|in:active,done,draft',
             'description' => 'nullable|string',
             'client_name' => 'nullable|string|max:150',
-            'thumbnail_image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'thumbnail_image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:512',
             'gallery_images' => 'nullable|array',
-            'gallery_images.*' => 'image|mimes:jpeg,png,jpg,webp|max:2048',
+            'gallery_images.*' => 'image|mimes:jpeg,png,jpg,webp|max:512',
         ]);
 
         // Slug hanya dibuat sekali di sini
@@ -70,9 +70,9 @@ class PortfolioController extends Controller
             'status' => 'required|in:active,done,draft',
             'description' => 'nullable|string',
             'client_name' => 'nullable|string|max:150',
-            'thumbnail_image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'thumbnail_image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:512',
             'gallery_images' => 'nullable|array',
-            'gallery_images.*' => 'image|mimes:jpeg,png,jpg,webp|max:2048',
+            'gallery_images.*' => 'image|mimes:jpeg,png,jpg,webp|max:512',
         ]);
 
         // Update slug HANYA jika nama proyek berubah

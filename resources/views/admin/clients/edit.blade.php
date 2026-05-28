@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Edit Klien - Rakira CMS')
+@section('title', 'Edit Klien - AKA Consulting CMS')
 @section('page_title', 'Perbarui Data Klien')
 
 @section('content')
@@ -43,7 +43,7 @@
                                 class="w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 py-4 text-sm focus:bg-white focus:ring-4 focus:ring-primary/5 focus:border-primary transition-all font-bold outline-none">
                         </div>
                         <div class="space-y-2">
-                            <label for="phone" class="text-[11px] font-black uppercase tracking-widest text-slate-400 ml-1">WhatsApp/Telepon</label>
+                            <label for="phone" class="text-[11px] font-black uppercase tracking-widest text-slate-400 ml-1">Nomor WhatsApp/Telepon</label>
                             <input type="text" name="phone" id="phone" value="{{ old('phone', $client->phone) }}"
                                 class="w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 py-4 text-sm focus:bg-white focus:ring-4 focus:ring-primary/5 focus:border-primary transition-all font-bold outline-none">
                         </div>

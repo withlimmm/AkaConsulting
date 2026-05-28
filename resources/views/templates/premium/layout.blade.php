@@ -4,9 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>@yield('title', 'Rakira Premium - Solusi Digital Terdepan')</title>
-    <meta name="description" content="@yield('meta_description', $settings->about_us ?? 'Solusi teknologi premium untuk bisnis modern. Pengembangan web, aplikasi kustom, dan transformasi digital yang scalable.')">
-    <meta name="keywords" content="@yield('meta_keywords', 'jasa pembuatan website company profile, jasa pembuatan aplikasi android ios, jasa pembuatan web app kustom, developer aplikasi mobile indonesia, software house indonesia, software house jakarta, software house tangerang, it consultant jakarta, konsultan teknologi informasi, jasa desain ui ux profesional, rakira digital')">
+    <title>@yield('title', 'AKA Consulting Premium - Layanan Konsultasi Terdepan')</title>
+    <meta name="description" content="@yield('meta_description', $settings->about_us ?? 'AKA Consulting menyediakan layanan konsultasi hukum, perizinan, dan manajemen kepatuhan untuk membantu bisnis beroperasi sesuai regulasi dan tumbuh berkelanjutan.')">
+    <meta name="keywords" content="@yield('meta_keywords', 'konsultan hukum perusahaan, jasa perizinan usaha, konsultan kepatuhan bisnis, manajemen risiko usaha, layanan konsultasi bisnis, aka consulting')">
     <link rel="canonical" href="{{ url()->current() }}">
 
     <!-- Structured Data (JSON-LD) -->
@@ -14,11 +14,11 @@
     {
       "@@context": "https://schema.org",
       "@@type": "Organization",
-      "name": "{{ $settings->company_name ?? 'Rakira Digital Nusantara' }}",
-      "alternateName": "Rakira Digital",
+    "name": "{{ $settings->company_name ?? 'AKA Consulting, Konsultan Terpercaya' }}",
+    "alternateName": "AKA Consulting",
       "url": "{{ url('/') }}",
-      "logo": "{{ isset($settings) && $settings->logo_path ? asset('storage/' . $settings->logo_path) : asset('images/logo-rakira.png') }}",
-      "description": "{{ $settings->about_us ?? 'Solusi teknologi premium untuk bisnis modern. Pengembangan web, aplikasi kustom, dan transformasi digital yang scalable.' }}",
+      "logo": "{{ isset($settings) && $settings->logo_path ? asset('storage/' . $settings->logo_path) : asset('images/logo_aka.png') }}",
+    "description": "{{ $settings->about_us ?? 'AKA Consulting menyediakan layanan konsultasi hukum, perizinan, dan manajemen kepatuhan untuk membantu bisnis beroperasi sesuai regulasi dan tumbuh berkelanjutan.' }}",
       "contactPoint": {
         "@@type": "ContactPoint",
         "telephone": "+{{ $settings->phone ?? '6287868184742' }}",
@@ -27,7 +27,7 @@
         "availableLanguage": ["id", "en"]
       },
       "sameAs": [
-        "https://www.instagram.com/rakiradigital"
+        "https://www.instagram.com/akaconsulting"
       ]
     }
     </script>
@@ -114,11 +114,9 @@
     <div class="fixed top-4 left-0 z-50 w-full px-4 md:px-8">
         <nav class="mx-auto max-w-7xl premium-glass rounded-2xl shadow-2xl transition-all duration-300">
             <div class="flex h-20 items-center justify-between px-6 md:px-10">
-                <a href="/?theme=premium" class="flex items-center gap-3 group">
-                    <div class="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 shadow-[0_0_20px_rgba(59,130,246,0.5)]">
-                        <img src="/images/logo-rakira.png" alt="Rakira Premium" class="h-6 w-6">
-                    </div>
-                    <span class="text-xl font-black tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">Rakira <span class="text-blue-500 font-normal">Premium</span></span>
+                <a href="/?theme=premium" class="flex items-center group">
+                    <img src="/images/logo_aka.png" alt="AKA Consulting"
+                        class="h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105 md:h-20">
                 </a>
 
                 <div class="hidden items-center space-x-8 md:flex">
@@ -135,10 +133,34 @@
                 </div>
 
                 <div class="hidden md:flex items-center gap-4">
-                    <div class="flex items-center gap-2 border border-white/10 rounded-xl px-3 py-1.5 bg-white/5 backdrop-blur-md text-xs font-bold text-white">
-                        <a href="{{ route('lang.switch', 'id') }}" class="{{ app()->getLocale() == 'id' ? 'text-blue-400' : 'text-slate-400 hover:text-white' }} transition-colors">ID</a>
-                        <span class="text-white/20">|</span>
-                        <a href="{{ route('lang.switch', 'en') }}" class="{{ app()->getLocale() == 'en' ? 'text-blue-400' : 'text-slate-400 hover:text-white' }} transition-colors">EN</a>
+                    <div class="relative" x-data="{ langOpen: false }" @click.away="langOpen = false">
+                        <button @click="langOpen = !langOpen" class="flex items-center gap-2 border border-white/10 rounded-xl px-3 py-1.5 bg-white/5 backdrop-blur-md text-xs font-bold text-white hover:bg-white/10 transition-colors notranslate" translate="no">
+                            @if(app()->getLocale() == 'id')
+                                <img src="https://flagcdn.com/w20/id.png" alt="ID" class="w-4 h-3 object-cover rounded-[2px] shadow-sm">
+                                <span>ID</span>
+                            @else
+                                <img src="https://flagcdn.com/w20/gb.png" alt="EN" class="w-4 h-3 object-cover rounded-[2px] shadow-sm">
+                                <span>EN</span>
+                            @endif
+                            <span class="material-symbols-outlined text-[14px] transition-transform duration-200" :class="langOpen ? 'rotate-180' : ''">expand_more</span>
+                        </button>
+                        <div x-show="langOpen" 
+                             x-transition:enter="transition ease-out duration-200"
+                             x-transition:enter-start="opacity-0 translate-y-2"
+                             x-transition:enter-end="opacity-100 translate-y-0"
+                             x-transition:leave="transition ease-in duration-150"
+                             x-transition:leave-start="opacity-100 translate-y-0"
+                             x-transition:leave-end="opacity-0 translate-y-2"
+                             class="absolute right-0 mt-2 w-36 bg-slate-900 rounded-2xl shadow-[0_20px_40px_rgba(0,0,0,0.5)] border border-white/10 py-2 z-50 notranslate" style="display:none;" translate="no">
+                            <a href="{{ route('lang.switch', 'id') }}" class="flex items-center gap-3 px-4 py-2.5 hover:bg-white/5 transition-colors {{ app()->getLocale() == 'id' ? 'text-blue-400 font-black bg-blue-500/10 border-l-2 border-blue-500' : 'text-slate-300 font-semibold border-l-2 border-transparent' }}">
+                                <img src="https://flagcdn.com/w20/id.png" alt="ID" class="w-5 h-3.5 object-cover rounded-[3px] shadow-[0_1px_2px_rgba(0,0,0,0.3)]">
+                                <span class="text-[11px] uppercase tracking-wider">Indonesia</span>
+                            </a>
+                            <a href="{{ route('lang.switch', 'en') }}" class="flex items-center gap-3 px-4 py-2.5 hover:bg-white/5 transition-colors {{ app()->getLocale() == 'en' ? 'text-blue-400 font-black bg-blue-500/10 border-l-2 border-blue-500' : 'text-slate-300 font-semibold border-l-2 border-transparent' }}">
+                                <img src="https://flagcdn.com/w20/gb.png" alt="EN" class="w-5 h-3.5 object-cover rounded-[3px] shadow-[0_1px_2px_rgba(0,0,0,0.3)]">
+                                <span class="text-[11px] uppercase tracking-wider">English</span>
+                            </a>
+                        </div>
                     </div>
                     <a href="#kontak" class="relative group overflow-hidden rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-3 text-sm font-bold text-white shadow-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_25px_rgba(59,130,246,0.4)]">
                         <span class="relative z-10">{{ __('Mulai Konsultasi') }}</span>
@@ -166,10 +188,29 @@
                 </div>
 
                 <div class="mt-6 grid gap-3">
-                    <div class="flex gap-2 text-xs font-bold px-4 mb-4 text-white">
-                        <a href="{{ route('lang.switch', 'id') }}" class="{{ app()->getLocale() == 'id' ? 'text-blue-400' : 'text-slate-400' }}">ID</a>
-                        <span class="text-white/20">|</span>
-                        <a href="{{ route('lang.switch', 'en') }}" class="{{ app()->getLocale() == 'en' ? 'text-blue-400' : 'text-slate-400' }}">EN</a>
+                    <div class="px-4 mb-4" x-data="{ langOpenMob: false }">
+                        <button @click="langOpenMob = !langOpenMob" class="flex items-center justify-between w-full rounded-xl border border-white/10 px-4 py-3 bg-white/5 text-xs font-bold text-white hover:bg-white/10 transition-colors notranslate" translate="no">
+                            <div class="flex items-center gap-2.5">
+                                @if(app()->getLocale() == 'id')
+                                    <img src="https://flagcdn.com/w20/id.png" alt="ID" class="w-5 h-3.5 object-cover rounded-[3px] shadow-[0_1px_2px_rgba(0,0,0,0.3)]">
+                                    <span>Indonesia</span>
+                                @else
+                                    <img src="https://flagcdn.com/w20/gb.png" alt="EN" class="w-5 h-3.5 object-cover rounded-[3px] shadow-[0_1px_2px_rgba(0,0,0,0.3)]">
+                                    <span>English</span>
+                                @endif
+                            </div>
+                            <span class="material-symbols-outlined text-[16px] transition-transform duration-200" :class="langOpenMob ? 'rotate-180' : ''">expand_more</span>
+                        </button>
+                        <div x-show="langOpenMob" class="mt-2 flex flex-col gap-1 pl-2 notranslate" style="display:none;" translate="no">
+                            <a href="{{ route('lang.switch', 'id') }}" class="flex items-center gap-3 px-4 py-2.5 rounded-lg hover:bg-white/5 {{ app()->getLocale() == 'id' ? 'text-blue-400 font-black bg-blue-500/10' : 'text-slate-300 font-semibold' }}">
+                                <img src="https://flagcdn.com/w20/id.png" alt="ID" class="w-5 h-3.5 object-cover rounded-[3px] shadow-[0_1px_2px_rgba(0,0,0,0.3)]">
+                                <span class="text-xs">Indonesia</span>
+                            </a>
+                            <a href="{{ route('lang.switch', 'en') }}" class="flex items-center gap-3 px-4 py-2.5 rounded-lg hover:bg-white/5 {{ app()->getLocale() == 'en' ? 'text-blue-400 font-black bg-blue-500/10' : 'text-slate-300 font-semibold' }}">
+                                <img src="https://flagcdn.com/w20/gb.png" alt="EN" class="w-5 h-3.5 object-cover rounded-[3px] shadow-[0_1px_2px_rgba(0,0,0,0.3)]">
+                                <span class="text-xs">English</span>
+                            </a>
+                        </div>
                     </div>
                     <a href="/?theme=premium"
                         class="rounded-xl px-4 py-3 font-semibold text-slate-300 hover:bg-white/5 hover:text-white">{{ __('Beranda') }}</a>
@@ -200,41 +241,94 @@
         <div class="absolute bottom-0 left-1/4 w-[400px] h-[400px] bg-purple-900/10 rounded-full blur-[100px] pointer-events-none"></div>
 
         <div class="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 md:grid-cols-4 md:px-8 lg:px-20 relative z-10">
+            {{-- Col 1: Brand + Alamat + WA --}}
             <div class="col-span-1 md:col-span-2">
                 <div class="flex items-center gap-3 mb-6">
-                    <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500">
-                        <img src="/images/logo-rakira.png" alt="Rakira Premium" class="h-6 w-6">
-                    </div>
-                    <h3 class="text-2xl font-black text-white tracking-tight">{{ $settings->company_name ?? 'Rakira Digital Nusantara' }}</h3>
+                    <img src="/images/logo_aka.png" alt="AKA Consulting" class="h-16 w-auto object-contain md:h-20">
+                    <h3 class="text-2xl font-black text-white tracking-tight">{{ $settings->company_name ?? 'AKA Consulting' }}</h3>
                 </div>
                 @if($settings->motto)
-                    <p class="text-blue-400 max-w-md mb-4 italic font-medium">"{{ $settings->motto }}"</p>
+                    <p class="text-yellow-400/80 max-w-md mb-4 italic font-medium">"{{ $settings->motto }}"</p>
                 @endif
-                <p class="text-slate-400 max-w-md leading-relaxed">
-                    {{ $settings->about_us ?? 'Membangun ekosistem teknologi premium yang scalable untuk mendukung transformasi digital masa depan bisnis Anda.' }}
+                <p class="text-slate-400 max-w-md leading-relaxed mb-6">
+                    {{ $settings->about_us ?? 'Partner profesional yang membantu bisnis bertumbuh melalui solusi legal dan perizinan yang terpercaya, efektif, dan berintegritas.' }}
                 </p>
+
+                {{-- Alamat --}}
+                @if($settings->address ?? null)
+                <div class="flex items-start gap-2 mb-6 text-slate-400 text-sm">
+                    <span class="material-symbols-outlined text-yellow-400 mt-0.5 text-base">location_on</span>
+                    <span class="leading-relaxed">{{ $settings->address }}</span>
+                </div>
+                @endif
+
+                {{-- Tombol WA Admin --}}
+                <div class="space-y-2">
+                    <p class="text-xs font-bold uppercase tracking-widest text-slate-500 mb-3">Hubungi Admin</p>
+                    <a href="https://wa.me/6282318390714?text=Halo%20Admin%201%2C%20saya%20ingin%20konsultasi%20layanan%20AKA%20Consulting."
+                       target="_blank"
+                       class="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-green-500/10 border border-green-500/20 hover:bg-green-500/20 transition-all group w-fit">
+                        <svg class="w-4 h-4 text-green-400 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        <span class="text-sm text-green-400 font-semibold group-hover:text-green-300">Admin 1 — 0823-1839-0714</span>
+                    </a>
+                    <a href="https://wa.me/6289609127094?text=Halo%20Admin%202%2C%20saya%20ingin%20konsultasi%20layanan%20AKA%20Consulting."
+                       target="_blank"
+                       class="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-green-500/10 border border-green-500/20 hover:bg-green-500/20 transition-all group w-fit">
+                        <svg class="w-4 h-4 text-green-400 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        <span class="text-sm text-green-400 font-semibold group-hover:text-green-300">Admin 2 — 0896-0912-7094</span>
+                    </a>
+                    <a href="https://wa.me/6285280980748?text=Halo%20Admin%203%2C%20saya%20ingin%20konsultasi%20layanan%20AKA%20Consulting."
+                       target="_blank"
+                       class="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-green-500/10 border border-green-500/20 hover:bg-green-500/20 transition-all group w-fit">
+                        <svg class="w-4 h-4 text-green-400 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        <span class="text-sm text-green-400 font-semibold group-hover:text-green-300">Admin 3 — 0852-8098-0748</span>
+                    </a>
+                </div>
             </div>
+
+            {{-- Col 3: Layanan Dinamis dari DB --}}
             <div>
-                <h4 class="font-bold mb-6 uppercase tracking-wider text-white text-sm">Layanan Utama</h4>
-                <ul class="space-y-3 text-slate-400">
-                    <li><a href="/layanan?theme=premium" class="hover:text-blue-400 transition-colors">Web Development</a></li>
-                    <li><a href="/layanan?theme=premium" class="hover:text-blue-400 transition-colors">Mobile App Development</a></li>
-                    <li><a href="/layanan?theme=premium" class="hover:text-blue-400 transition-colors">UI/UX Design</a></li>
+                <h4 class="font-bold mb-6 uppercase tracking-wider text-white text-sm">Layanan Kami</h4>
+                <ul class="space-y-2.5 text-slate-400">
+                    @php
+                        $footerServices = \App\Models\Service::where('status', 'active')
+                            ->orderBy('sort_order')->limit(8)->get();
+                    @endphp
+                    @forelse($footerServices as $fs)
+                        <li>
+                            <a href="/layanan/{{ $fs->slug }}?theme=premium"
+                               class="hover:text-yellow-400 transition-colors text-sm leading-snug line-clamp-1">
+                                {{ __t($fs->title) }}
+                            </a>
+                        </li>
+                    @empty
+                        <li><a href="/layanan?theme=premium" class="hover:text-yellow-400 transition-colors">Lihat Semua Layanan</a></li>
+                    @endforelse
+                    <li class="pt-1">
+                        <a href="/layanan?theme=premium" class="text-yellow-400 hover:text-yellow-300 text-sm font-semibold transition-colors">
+                            Lihat Semua →
+                        </a>
+                    </li>
                 </ul>
             </div>
+
+            {{-- Col 4: Navigasi --}}
             <div>
-                <h4 class="font-bold mb-6 uppercase tracking-wider text-white text-sm">Navigasi</h4>
+                <h4 class="font-bold mb-6 uppercase tracking-wider text-white text-sm">Perusahaan</h4>
                 <ul class="space-y-3 text-slate-400">
-                    <li><a href="/tentang-kami?theme=premium" class="hover:text-blue-400 transition-colors">Tentang Kami</a></li>
-                    <li><a href="/portofolio?theme=premium" class="hover:text-blue-400 transition-colors">Portofolio</a></li>
-                    <li><a href="/blog?theme=premium" class="hover:text-blue-400 transition-colors">Blog & Update</a></li>
+                    <li><a href="/tentang-kami?theme=premium" class="hover:text-yellow-400 transition-colors text-sm">Tentang Kami</a></li>
+                    <li><a href="/portofolio?theme=premium" class="hover:text-yellow-400 transition-colors text-sm">Portofolio</a></li>
+                    <li><a href="/blog?theme=premium" class="hover:text-yellow-400 transition-colors text-sm">Blog & Update</a></li>
+                    <li><a href="/kontak?theme=premium" class="hover:text-yellow-400 transition-colors text-sm">Kontak Kami</a></li>
                 </ul>
             </div>
         </div>
+
         <div class="mx-auto max-w-7xl mt-16 pt-8 border-t border-white/5 text-center text-slate-600 text-sm px-6 md:px-8">
-            &copy; {{ date('Y') }} {{ $settings->company_name ?? 'Rakira Digital Nusantara' }}. Semua Hak Dilindungi.
+            &copy; {{ date('Y') }} {{ $settings->company_name ?? 'AKA Consulting' }}. Hak Cipta Dilindungi.
         </div>
     </footer>
+
 
     <!-- Premium Chat Widget -->
     <div x-data="{ 
@@ -272,7 +366,7 @@
                 <span class="w-2 h-2 bg-emerald-400 rounded-full animate-ping"></span>
                 <span class="text-[9px] font-black text-emerald-400 uppercase tracking-widest">Premium Assistant</span>
             </div>
-            <p class="text-xs text-slate-200 leading-relaxed font-semibold">Ada ide proyek digital? Mari diskusikan bersama tim ahli kami.</p>
+            <p class="text-xs text-slate-200 leading-relaxed font-semibold">Ada kebutuhan konsultasi atau perizinan? Mari diskusikan bersama tim ahli kami.</p>
             <div class="absolute bottom-[-6px] right-6 w-3 h-3 bg-slate-900 rotate-45 border-r border-b border-white/10"></div>
         </div>
 
@@ -328,7 +422,7 @@
                         <a href="https://wa.me/{{ $settings->phone ?? '6287868184742' }}" target="_blank" class="flex items-center justify-center gap-2 py-2.5 bg-slate-900/50 border border-white/5 rounded-lg text-[11px] font-bold text-slate-300 hover:border-emerald-500 hover:text-emerald-400 transition-all shadow-sm">
                             <img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" class="w-3.5 h-3.5" alt="WA"> WhatsApp
                         </a>
-                        <a href="https://www.instagram.com/rakiradigital?igsh=MWRpdnR3Ym8wazMxbQ%3D%3D&utm_source=qr" target="_blank" class="flex items-center justify-center gap-2 py-2.5 bg-slate-900/50 border border-white/5 rounded-lg text-[11px] font-bold text-slate-300 hover:border-pink-500 hover:text-pink-400 transition-all shadow-sm">
+                        <a href="https://www.instagram.com/akaconsulting" target="_blank" class="flex items-center justify-center gap-2 py-2.5 bg-slate-900/50 border border-white/5 rounded-lg text-[11px] font-bold text-slate-300 hover:border-primary-container hover:text-primary-container transition-all shadow-sm">
                             <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" class="w-3.5 h-3.5" alt="IG"> Instagram
                         </a>
                     </div>

@@ -1,150 +1,229 @@
 @extends('layouts.main')
 
-@section('title', __('Portofolio - Rakira Digital Nusantara'))
-@section('meta_description', __('Galeri karya dan proyek digital terbaik dari Rakira Digital Nusantara, mencakup pengembangan web, aplikasi mobile, UI/UX, dan solusi IT bisnis.'))
+@section('title', __('Portofolio - AKA Consulting, Konsultan Terpercaya'))
+@section('meta_description', __('Galeri portofolio proyek konsultasi hukum, perizinan, sertifikasi, dan kepatuhan dari AKA Consulting untuk berbagai klien korporasi dan UMKM.'))
 
 @section('content')
-<div class="pt-24 min-h-screen bg-surface">
-    {{-- Page Header --}}
-    <header class="py-24 px-4 md:px-20 text-center relative overflow-hidden">
-        <div class="absolute inset-0 z-0 opacity-20 pointer-events-none" style="background: radial-gradient(circle at 50% 50%, rgba(0, 159, 227, 0.15) 0%, transparent 70%);"></div>
-        <div class="max-w-4xl mx-auto relative z-10" x-data="{ shown: false }" x-init="setTimeout(() => shown = true, 100)">
-            <h1 class="text-4xl md:text-7xl font-black text-on-surface mb-6 tracking-tight leading-tight">
-                <span class="inline-block overflow-hidden">
-                    <span class="inline-block" x-show="shown" 
-                          x-transition:enter="transition ease-out duration-1000" 
-                          x-transition:enter-start="translate-y-full opacity-0" 
-                          x-transition:enter-end="translate-y-0 opacity-100">{{ __('portfolio.hero_prefix') }}&nbsp;</span>
-                </span>
-                <span class="inline-block overflow-hidden">
-                    <span class="inline-block text-primary" x-show="shown" 
-                          x-transition:enter="transition ease-out duration-1000" 
-                          x-transition:enter-start="translate-y-full opacity-0" 
-                          x-transition:enter-end="translate-y-0 opacity-100"
-                          style="transition-delay: 200ms">{{ __('portfolio.hero_highlight') }}&nbsp;</span>
-                </span>
-                <span class="inline-block overflow-hidden">
-                    <span class="inline-block" x-show="shown" 
-                          x-transition:enter="transition ease-out duration-1000" 
-                          x-transition:enter-start="translate-y-full opacity-0" 
-                          x-transition:enter-end="translate-y-0 opacity-100"
-                          style="transition-delay: 400ms">{{ __('portfolio.hero_suffix') }}</span>
-                </span>
+<div class="pt-24 pb-16 bg-[#f7f2e8]">
+
+    {{-- ═══ HERO ═══ --}}
+    <section class="relative overflow-hidden py-14 md:py-20">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(217,161,26,0.13),_transparent_40%),radial-gradient(circle_at_bottom_right,_rgba(73,53,28,0.07),_transparent_40%)]"></div>
+        <div class="content-container relative z-10 text-center max-w-3xl mx-auto">
+            <div class="inline-flex items-center gap-2 rounded-full border border-[#d9a11a]/25 bg-white/70 px-4 py-2 text-xs font-black uppercase tracking-[0.25em] text-[#8d6408] shadow-sm mb-6" data-aos="fade-up">
+                <span class="material-symbols-outlined text-[16px]">workspace_premium</span>
+                {{ __('Rekam Jejak Kami') }}
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black leading-[1.05] tracking-tight text-on-surface mb-5" data-aos="fade-up" data-aos-delay="80">
+                {{ __('Portofolio') }} <span class="text-[#8d6408]">{{ __('Proyek') }}</span> {{ __('Konsultasi') }}
             </h1>
-            <p class="text-lg md:text-xl text-on-surface-variant max-w-2xl mx-auto leading-relaxed" 
-               x-show="shown" 
-               x-transition:enter="transition ease-out duration-1000" 
-               x-transition:enter-start="opacity-0 translate-y-4" 
-               x-transition:enter-end="opacity-100 translate-y-0"
-               style="transition-delay: 800ms">
-                {{ __('Mengeksplorasi solusi digital yang inovatif. Berikut adalah portofolio proyek yang telah kami selesaikan dengan teknologi terkini.') }}
+            <p class="text-base md:text-lg text-on-surface-variant leading-relaxed max-w-xl mx-auto" data-aos="fade-up" data-aos-delay="160">
+                {{ __('Rekam jejak layanan hukum, perizinan, sertifikasi, dan kepatuhan yang telah kami selesaikan bersama klien dari berbagai industri.') }}
             </p>
         </div>
-    </header>
+    </section>
 
-    {{-- Portfolio Filter & Grid --}}
-    <main class="px-4 md:px-20 pb-32 max-w-7xl mx-auto">
-        {{-- Dynamic Category Filters --}}
-        <div class="flex flex-wrap justify-center gap-3 mb-16" data-aos="fade-up">
-            <button class="filter-btn px-8 py-3 rounded-full bg-primary text-white font-bold shadow-xl shadow-primary/20 transition-all hover:scale-105 active:scale-95" data-filter="all">
-                {{ __('Semua Karya') }}
-            </button>
-            @foreach($categories as $category)
-                <button class="filter-btn px-8 py-3 rounded-full bg-white text-on-surface-variant border border-outline-variant/30 font-bold transition-all hover:bg-primary/5 hover:text-primary hover:border-primary/20 active:scale-95" data-filter="{{ __t($category->name) }}">
-                    {{ __t($category->name) }}
-                </button>
-            @endforeach
+    {{-- ═══ FILTER KATEGORI ═══ --}}
+    <section class="py-4">
+        <div class="content-container">
+            <div class="sticky top-24 z-20 rounded-[1.75rem] border border-[#dccaa2] bg-white/90 px-4 py-3 shadow-sm backdrop-blur-md" data-aos="fade-up">
+                <div class="flex flex-wrap gap-2 justify-center">
+                    <button class="filter-btn px-5 py-2 rounded-full bg-[#8d6408] text-white text-xs font-black uppercase tracking-[0.18em] transition-all duration-200 hover:scale-105"
+                            data-filter="all">
+                        <span class="material-symbols-outlined text-[14px] align-middle mr-1">apps</span>
+                        {{ __('Semua Karya') }}
+                    </button>
+                    @foreach($categories as $cat)
+                    <button class="filter-btn px-5 py-2 rounded-full border border-[#e6d7b7] bg-[#fbf8f1] text-xs font-black uppercase tracking-[0.18em] text-[#5a4327] transition-all duration-200 hover:border-[#8d6408] hover:text-[#8d6408]"
+                            data-filter="{{ $cat->id }}">
+                        {{ __t($cat->name) }}
+                    </button>
+                    @endforeach
+                </div>
+            </div>
         </div>
+    </section>
 
-        {{-- Dynamic Grid --}}
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            @forelse($portfolios as $index => $portfolio)
-                <div class="portfolio-item group surface-card overflow-hidden rounded-[2.5rem] bg-white border border-outline-variant/10 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500" 
-                     data-aos="fade-up" 
-                     data-aos-delay="{{ $index * 100 }}"
-                     data-category="{{ __t($portfolio->category->name ?? 'Uncategorized') }}">
-                    
-                    <div class="relative h-72 overflow-hidden">
-                        {{-- Memanggil thumbnail_image dari database --}}
-                        <img src="{{ $portfolio->thumbnail_image ? asset('storage/' . $portfolio->thumbnail_image) : 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800' }}" 
-                             alt="{{ __t($portfolio->project_name) }}" 
-                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                        
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8">
-                            <a href="{{ route('portfolio.show', $portfolio->slug) }}" aria-label="{{ __('Lihat Detail Proyek') }}: {{ __t($portfolio->project_name) }}" class="w-full bg-white text-black py-4 rounded-2xl font-black text-xs uppercase tracking-widest flex items-center justify-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+    {{-- ═══ GRID PORTFOLIO ═══ --}}
+    <section class="py-8">
+        <div class="content-container">
+
+            {{-- Statistik singkat --}}
+            <div class="flex flex-wrap items-center justify-between gap-4 mb-8 px-2">
+                <p class="text-sm text-on-surface-variant">
+                    <span class="font-black text-on-surface" id="visible-count">{{ $portfolios->count() }}</span> {{ __('proyek') }}
+                </p>
+                <div class="flex items-center gap-2 text-xs text-on-surface-variant">
+                    <span class="material-symbols-outlined text-[16px] text-[#8d6408]">filter_list</span>
+                    {{ __('Filter berdasarkan kategori') }}
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="portfolio-grid">
+                @forelse($portfolios as $index => $portfolio)
+                <div class="portfolio-item group relative overflow-hidden rounded-[2rem] bg-white border border-[#eadfcb] shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-500"
+                     data-aos="fade-up" data-aos-delay="{{ ($index % 6) * 80 }}"
+                     data-category="{{ $portfolio->category_id ?? 'none' }}"
+                     data-category-name="{{ __t($portfolio->category->name ?? '') }}">
+
+                    {{-- Gambar --}}
+                    <div class="relative aspect-[4/3] overflow-hidden">
+                        @if($portfolio->thumbnail_image)
+                            <img src="{{ asset('storage/' . $portfolio->thumbnail_image) }}"
+                                 alt="{{ __t($portfolio->project_name) }}"
+                                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        @else
+                            <div class="w-full h-full bg-gradient-to-br from-[#f7f2e8] to-[#e8dcc8] flex items-center justify-center">
+                                <span class="material-symbols-outlined text-[64px] text-[#8d6408]/30">business_center</span>
+                            </div>
+                        @endif
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent"></div>
+
+                        {{-- Badge kategori --}}
+                        <div class="absolute top-4 left-4">
+                            <span class="inline-flex items-center gap-1.5 rounded-full bg-white/90 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.18em] text-[#8d6408] backdrop-blur-md shadow-sm">
+                                <span class="material-symbols-outlined text-[12px]">category</span>
+                                {{ __t($portfolio->category->name ?? 'Lainnya') }}
+                            </span>
+                        </div>
+
+                        {{-- Hover CTA --}}
+                        <div class="absolute inset-x-4 bottom-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-400">
+                            <a href="{{ route('portfolio.show', $portfolio->slug) }}"
+                               class="flex items-center justify-center gap-2 rounded-2xl bg-white px-5 py-3 font-black text-[11px] uppercase tracking-widest text-[#1c140c] hover:bg-[#f7f2e8] transition-colors">
                                 {{ __('Lihat Detail Proyek') }}
-                                <span class="material-symbols-outlined notranslate text-lg" translate="no">arrow_outward</span>
+                                <span class="material-symbols-outlined text-[18px]">arrow_outward</span>
                             </a>
                         </div>
                     </div>
 
-                    <div class="p-8">
-                        <div class="flex items-center gap-2 mb-4">
-                            <span class="bg-primary/5 text-primary text-[10px] uppercase font-black tracking-widest px-3 py-1.5 rounded-lg border border-primary/10">
-                                {{ __t($portfolio->category->name ?? 'Uncategorized') }}
-                            </span>
-                            {{-- Client Name --}}
-                            @if($portfolio->client_name)
-                                <span class="bg-surface-container text-on-surface-variant text-[10px] uppercase font-black tracking-widest px-3 py-1.5 rounded-lg">
-                                    {{ __t($portfolio->client_name) }}
-                                </span>
-                            @endif
-                        </div>
-                        {{-- Memanggil project_name --}}
-                        <h3 class="text-2xl font-bold text-on-surface mb-3 group-hover:text-primary transition-colors leading-snug">
+                    {{-- Konten --}}
+                    <div class="p-6">
+                        @if($portfolio->client_name)
+                        <p class="text-[10px] font-black uppercase tracking-widest text-[#8d6408]/70 mb-2">{{ $portfolio->client_name }}</p>
+                        @endif
+                        <h3 class="text-lg font-black text-on-surface mb-2 group-hover:text-[#8d6408] transition-colors line-clamp-2 leading-snug">
                             {{ __t($portfolio->project_name) }}
                         </h3>
-                        <p class="text-on-surface-variant text-sm line-clamp-2 leading-relaxed italic">
-                            {{ __t($portfolio->description) }}
+                        <p class="text-sm text-on-surface-variant line-clamp-2 leading-relaxed mb-4">
+                            {{ Str::limit(strip_tags(__t($portfolio->description)), 100) }}
                         </p>
+                        <div class="flex items-center justify-between pt-3 border-t border-[#f0e8d8]">
+                            @if($portfolio->project_date)
+                            <span class="flex items-center gap-1.5 text-[10px] text-on-surface-variant">
+                                <span class="material-symbols-outlined text-[14px]">calendar_today</span>
+                                {{ $portfolio->project_date->format('M Y') }}
+                            </span>
+                            @endif
+                            <a href="{{ route('portfolio.show', $portfolio->slug) }}"
+                               class="text-[11px] font-black text-[#8d6408] flex items-center gap-1 hover:gap-2 transition-all">
+                                {{ __('Selengkapnya') }}
+                                <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
-            @empty
-                <div class="col-span-full py-32 text-center" data-aos="zoom-in">
-                    <div class="w-24 h-24 bg-surface-container rounded-full flex items-center justify-center mx-auto mb-6 text-outline-variant">
-                        <span class="material-symbols-outlined notranslate text-5xl" translate="no">folder_open</span>
+                @empty
+                <div class="col-span-full py-24 text-center" data-aos="fade-up">
+                    <div class="w-20 h-20 bg-[#8d6408]/10 rounded-full flex items-center justify-center mx-auto mb-5">
+                        <span class="material-symbols-outlined text-[40px] text-[#8d6408]/40">folder_open</span>
                     </div>
-                    <h3 class="text-2xl font-bold text-on-surface mb-2">{{ __('Belum ada portofolio') }}</h3>
-                    <p class="text-on-surface-variant max-w-sm mx-auto">{{ __('Kami sedang mempersiapkan daftar karya terbaik untuk ditampilkan di sini.') }}</p>
+                    <h3 class="text-xl font-black text-on-surface mb-2">{{ __('Belum ada portofolio') }}</h3>
+                    <p class="text-on-surface-variant text-sm max-w-sm mx-auto">{{ __('Kami sedang mempersiapkan daftar proyek terbaik untuk ditampilkan di sini.') }}</p>
                 </div>
-            @endforelse
+                @endforelse
+            </div>
+
+            {{-- Empty state saat filter tidak ada hasil --}}
+            <div id="empty-filter" class="hidden col-span-full py-16 text-center">
+                <span class="material-symbols-outlined text-[48px] text-[#8d6408]/30 mb-3 block">search_off</span>
+                <p class="font-black text-on-surface">{{ __('Tidak ada proyek dalam kategori ini') }}</p>
+                <p class="text-sm text-on-surface-variant mt-1">{{ __('Coba pilih kategori lain') }}</p>
+            </div>
         </div>
-    </main>
+    </section>
+
+    {{-- ═══ CTA ═══ --}}
+    <section class="py-10">
+        <div class="content-container">
+            <div class="rounded-[2rem] bg-[#1c140c] text-white px-8 py-10 md:px-12 md:py-12 relative overflow-hidden shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="absolute right-0 top-0 h-48 w-48 rounded-full bg-[#d9a11a]/15 blur-3xl pointer-events-none"></div>
+                <div class="relative z-10">
+                    <p class="text-[10px] font-black uppercase tracking-[0.3em] text-[#d9a11a] mb-2">{{ __('Punya proyek baru?') }}</p>
+                    <h2 class="text-2xl md:text-3xl font-black">{{ __('Diskusikan kebutuhan konsultasi Anda bersama kami.') }}</h2>
+                </div>
+                <div class="relative z-10 flex gap-3 shrink-0">
+                    <a href="{{ url('/#kontak') }}"
+                       class="inline-flex items-center gap-2 rounded-full bg-[#d9a11a] px-6 py-3.5 font-black text-sm text-[#1c140c] hover:-translate-y-0.5 transition-all">
+                        {{ __('Konsultasi Gratis') }}
+                        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const items = document.querySelectorAll('.portfolio-item');
+document.addEventListener('DOMContentLoaded', function () {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const items      = document.querySelectorAll('.portfolio-item');
+    const counter    = document.getElementById('visible-count');
+    const emptyMsg   = document.getElementById('empty-filter');
 
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                filterBtns.forEach(b => {
-                    b.classList.remove('bg-primary', 'text-white', 'shadow-xl', 'shadow-primary/20');
-                    b.classList.add('bg-white', 'text-on-surface-variant', 'border', 'border-outline-variant/30');
-                });
-                this.classList.remove('bg-white', 'text-on-surface-variant', 'border', 'border-outline-variant/30');
-                this.classList.add('bg-primary', 'text-white', 'shadow-xl', 'shadow-primary/20');
+    function updateCount() {
+        const visible = document.querySelectorAll('.portfolio-item:not(.hidden)').length;
+        if (counter) counter.textContent = visible;
+        if (emptyMsg) emptyMsg.classList.toggle('hidden', visible > 0);
+    }
 
-                const filter = this.getAttribute('data-filter');
-
-                items.forEach(item => {
-                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
-                        item.classList.remove('hidden');
-                        setTimeout(() => {
-                            item.style.opacity = '1';
-                            item.style.transform = 'scale(1)';
-                        }, 10);
-                    } else {
-                        item.style.opacity = '0';
-                        item.style.transform = 'scale(0.95)';
-                        setTimeout(() => {
-                            item.classList.add('hidden');
-                        }, 300);
-                    }
-                });
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', function () {
+            // Toggle active style
+            filterBtns.forEach(b => {
+                b.classList.remove('bg-[#8d6408]', 'text-white');
+                b.classList.add('bg-[#fbf8f1]', 'text-[#5a4327]', 'border-[#e6d7b7]');
             });
+            this.classList.add('bg-[#8d6408]', 'text-white');
+            this.classList.remove('bg-[#fbf8f1]', 'text-[#5a4327]', 'border-[#e6d7b7]');
+
+            const filter = this.getAttribute('data-filter');
+            let staggerDelay = 0;
+
+            items.forEach(item => {
+                const match = filter === 'all' || item.getAttribute('data-category') === filter;
+                
+                if (match) {
+                    item.classList.remove('hidden');
+                    // Reset state before animating in
+                    item.style.transition = 'none';
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(30px) scale(0.95)';
+                    
+                    // Force reflow
+                    void item.offsetWidth;
+                    
+                    // Animate in with stagger
+                    setTimeout(() => {
+                        item.style.transition = 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0) scale(1)';
+                    }, 50 + staggerDelay);
+                    
+                    staggerDelay += 75; // 75ms delay between each item
+                } else {
+                    item.style.transition = 'all 0.3s ease-out';
+                    item.style.opacity = '0';
+                    item.style.transform = 'scale(0.9)';
+                    setTimeout(() => item.classList.add('hidden'), 300);
+                }
+            });
+
+            setTimeout(updateCount, 350);
         });
     });
+
+    updateCount();
+});
 </script>
 @endsection

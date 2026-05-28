@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Rakira CMS - Management')</title>
+    <title>@yield('title', 'AKA Consulting CMS - Management')</title>
     
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,11 +43,11 @@
 
         <!-- Header / Brand -->
         <div class="mb-6 flex items-center gap-3 p-4 bg-primary/5 rounded-2xl border border-primary/10 mx-2">
-            <div class="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center p-1.5">
-                <img src="/images/logo-rakira.png" alt="Rakira Digital" class="w-full h-full object-contain">
+            <div class="h-10 w-auto rounded-xl shadow-sm flex items-center justify-center p-1.5">
+                <img src="/images/logo_aka.png" alt="AKA Consulting" class="h-full w-auto object-contain">
             </div>
             <div>
-                <h2 class="text-sm font-black text-on-surface leading-tight">Rakira Admin</h2>
+                <h2 class="text-sm font-black text-on-surface leading-tight">AKA Consulting Admin</h2>
                 <p class="text-[10px] text-primary font-bold uppercase tracking-widest">Dashboard v1.0</p>
             </div>
         </div>

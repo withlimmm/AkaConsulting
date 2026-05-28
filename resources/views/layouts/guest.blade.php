@@ -20,9 +20,8 @@
 
             <div class="relative z-10 w-full max-w-6xl">
                 <div class="mb-8 flex items-center justify-between text-sm text-on-surface-variant">
-                    <a href="/" class="inline-flex items-center gap-2 font-bold text-on-surface">
-                        <img src="/images/logo-rakira.png" alt="Rakira Digital" class="h-10 w-10 object-contain">
-                        Rakira Digital Nusantara
+                    <a href="/" class="inline-flex items-center font-bold text-on-surface">
+                        <img src="/images/logo_aka.png" alt="AKA Consulting" class="h-16 w-auto object-contain sm:h-20">
                     </a>
                     @if(!request()->routeIs('login'))
                     <a href="{{ route('login') }}" class="hidden rounded-full border border-primary/15 bg-white px-4 py-2 font-bold text-primary shadow-sm hover:bg-primary hover:text-white sm:inline-flex">Login Admin</a>

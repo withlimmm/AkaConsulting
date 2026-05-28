@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Manajemen Kategori - Rakira CMS')
+@section('title', 'Manajemen Kategori - AKA Consulting CMS')
 @section('page_title', 'Kategori Portofolio')
 @section('page_subtitle', 'Kelola pengelompokan proyek portofolio agar mudah difilter oleh pengunjung.')
 

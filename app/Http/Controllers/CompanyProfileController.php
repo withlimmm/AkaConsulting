@@ -112,7 +112,7 @@ class CompanyProfileController extends Controller
                 session(['theme' => $theme]);
             }
         }
-        
+
         $theme = session('theme', 'default');
 
         // 3. Arahkan ke folder template yang sesuai secara dinamis

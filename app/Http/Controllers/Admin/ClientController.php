@@ -31,7 +31,7 @@ class ClientController extends Controller
             'testimonial' => 'nullable|string',
             'rating' => 'nullable|integer|min:1|max:5',
             'status' => 'required|in:active,inactive',
-            'company_logo' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048'
+            'company_logo' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:307'
         ]);
 
         if ($request->hasFile('company_logo')) {
@@ -59,7 +59,7 @@ class ClientController extends Controller
             'testimonial' => 'nullable|string',
             'rating' => 'nullable|integer|min:1|max:5',
             'status' => 'required|in:active,inactive',
-            'company_logo' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048'
+            'company_logo' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:307'
         ]);
 
         if ($request->hasFile('company_logo')) {

@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('company_settings', function (Blueprint $table) {
             $table->id();
-            $table->string('company_name')->default('Rakira Digital Nusantara');
+            $table->string('company_name')->default('AKA Consulting, Konsultan Terpercaya');
             $table->text('about_us')->nullable();
             $table->text('vision')->nullable();
             $table->text('mission')->nullable();

@@ -43,7 +43,7 @@
     }
 
     .surface-card {
-        @apply rounded-2xl border border-white/30 bg-white/80 shadow-xl backdrop-blur-xl;
+        @apply rounded-2xl border border-primary/10 bg-white/85 shadow-xl backdrop-blur-xl;
     }
 
     .glass-panel {
@@ -51,15 +51,15 @@
     }
 
     .btn-primary {
-        @apply inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-bold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/90 hover:shadow-lg;
+        @apply inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-bold text-white shadow-lg shadow-primary/15 transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/90 hover:shadow-xl;
     }
 
     .btn-secondary {
-        @apply inline-flex items-center justify-center gap-2 rounded-xl border border-primary/15 bg-white px-5 py-3 text-sm font-bold text-primary transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/30 hover:bg-primary/5;
+        @apply inline-flex items-center justify-center gap-2 rounded-xl border border-primary/20 bg-white px-5 py-3 text-sm font-bold text-primary transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:bg-primary/5;
     }
 
     .interactive-card {
-        @apply rounded-3xl border border-outline-variant/40 bg-white p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:border-primary hover:bg-primary hover:text-white cursor-pointer block no-underline;
+        @apply rounded-3xl border border-outline-variant/50 bg-white p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:border-primary/30 hover:bg-primary hover:text-white cursor-pointer block no-underline;
     }
 
     .interactive-card:hover .interactive-card-icon {
@@ -73,7 +73,7 @@
     }
 
     .faq-item {
-        @apply overflow-hidden rounded-3xl border border-outline-variant/30 bg-white transition-all duration-300;
+        @apply overflow-hidden rounded-3xl border border-outline-variant/40 bg-white transition-all duration-300;
     }
 
     .faq-item[open] {
@@ -113,7 +113,7 @@
     }
 
     .mobile-nav-panel {
-        @apply fixed inset-x-4 top-20 z-50 rounded-3xl border border-white/30 bg-white/95 p-4 shadow-2xl backdrop-blur-xl lg:hidden;
+        @apply fixed inset-x-4 top-20 z-50 rounded-3xl border border-primary/10 bg-white/95 p-4 shadow-2xl backdrop-blur-xl lg:hidden;
     }
 
     [data-aos] {
@@ -136,8 +136,8 @@
 @layer utilities {
     .bg-grid-pattern {
         background-size: 40px 40px;
-        background-image: linear-gradient(to right, rgba(0, 100, 145, 0.06) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(0, 100, 145, 0.06) 1px, transparent 1px);
+        background-image: linear-gradient(to right, rgba(141, 100, 8, 0.08) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(141, 100, 8, 0.08) 1px, transparent 1px);
     }
 
     .bg-animated-gradient {
@@ -146,7 +146,7 @@
     }
 
     .shadow-soft {
-        box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+        box-shadow: 0 20px 50px rgba(32, 22, 15, 0.08);
     }
 
     @keyframes gradient-shift {

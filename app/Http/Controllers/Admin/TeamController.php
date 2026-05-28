@@ -25,7 +25,7 @@ class TeamController extends Controller
         $request->validate([
             'name' => 'required|string|max:100',
             'position' => 'required|string|max:100',
-            'photo' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'photo' => 'image|mimes:jpeg,png,jpg|max:307',
             'description' => 'nullable|string'
         ]);
 
@@ -50,7 +50,7 @@ class TeamController extends Controller
         $request->validate([
             'name' => 'required|string|max:100',
             'position' => 'required|string|max:100',
-            'photo' => 'image|mimes:jpeg,png,jpg|max:2048'
+            'photo' => 'image|mimes:jpeg,png,jpg|max:307'
         ]);
 
         $data = $request->all();

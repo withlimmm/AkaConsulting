@@ -12,19 +12,19 @@ class UserSeeder extends Seeder
     {
         // Buat Super Admin
         User::updateOrCreate(
-            ['email' => 'admin@rakiradigital.com'],
+            ['email' => 'admin@akaconsulting.com'],
             [
-                'name' => 'Super Admin Rakira',
+                'name' => 'Super Admin AKA',
                 'password' => Hash::make('password123'),
-                'role' => 'super_admin', // Sesuai migration
+                'role' => 'super_admin',
             ]
         );
 
         // Buat Editor
         User::updateOrCreate(
-            ['email' => 'editor@rakiradigital.com'],
+            ['email' => 'editor@akaconsulting.com'],
             [
-                'name' => 'Editor Rakira',
+                'name' => 'Editor AKA',
                 'password' => Hash::make('password123'),
                 'role' => 'editor',
             ]

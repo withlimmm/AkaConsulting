@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 
-@section('title', 'Edit Proyek - Rakira CMS')
+@section('title', 'Edit Proyek - AKA Consulting CMS')
 @section('page_title', 'Perbarui Proyek')
-@section('page_subtitle', 'Sesuaikan informasi dan media untuk proyek portofolio Anda.')
+@section('page_subtitle', 'Sesuaikan informasi dan media untuk karya konsultasi Anda.')
 
 @section('content')
 <div class="max-w-5xl mx-auto pb-20">
@@ -66,7 +66,7 @@
             {{-- Kanan: Media --}}
             <div class="lg:col-span-4 space-y-8">
                 <div class="bg-white border border-slate-200 rounded-[2rem] p-8 shadow-sm space-y-4">
-                    <label class="text-[11px] font-black uppercase tracking-widest text-slate-400 ml-1">Banner Proyek</label>
+                    <label class="text-[11px] font-black uppercase tracking-widest text-slate-400 ml-1">Banner Karya</label>
                     <input type="file" name="thumbnail_image" id="imageInput" class="hidden" accept="image/*" onchange="previewImage(event)">
                     <div onclick="document.getElementById('imageInput').click()" 
                          class="aspect-video w-full rounded-2xl bg-slate-50 border-2 border-dashed border-slate-200 flex flex-col items-center justify-center gap-3 cursor-pointer hover:bg-slate-100 hover:border-primary transition-all group overflow-hidden relative">
@@ -77,7 +77,7 @@
                         
                         <div id="uploadPlaceholder" class="flex flex-col items-center gap-2 {{ $portfolio->thumbnail_image ? 'hidden' : '' }}">
                             <span class="material-symbols-outlined text-slate-300 group-hover:text-primary transition-all text-4xl">add_photo_alternate</span>
-                            <p class="text-[9px] font-black uppercase tracking-widest text-slate-400 group-hover:text-primary transition-colors text-center">Ganti Foto</p>
+                            <p class="text-[9px] font-black uppercase tracking-widest text-slate-400 group-hover:text-primary transition-colors text-center">Ganti Gambar</p>
                         </div>
 
                         <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
@@ -88,7 +88,7 @@
                 </div>
                 {{-- Upload Galeri --}}
                 <div class="bg-white border border-slate-200 rounded-[2rem] p-8 shadow-sm space-y-4">
-                    <label class="text-[11px] font-black uppercase tracking-widest text-slate-400 ml-1">Galeri Proyek (Multiple)</label>
+                    <label class="text-[11px] font-black uppercase tracking-widest text-slate-400 ml-1">Galeri Karya (Multiple)</label>
                     <input type="file" name="gallery_images[]" id="galleryInput" class="hidden" accept="image/*" multiple onchange="previewGallery(event)">
                     <div onclick="document.getElementById('galleryInput').click()" 
                          class="min-h-[150px] w-full rounded-2xl bg-slate-50 border-2 border-dashed border-slate-200 flex flex-col items-center justify-center gap-3 cursor-pointer hover:bg-slate-100 hover:border-primary transition-all group overflow-hidden p-6 relative">
@@ -105,7 +105,7 @@
                         
                         <div id="galleryPlaceholder" class="flex flex-col items-center gap-2 {{ $portfolio->gallery_images ? 'hidden' : '' }}">
                             <span class="material-symbols-outlined text-slate-300 group-hover:text-primary transition-all text-4xl">collections</span>
-                            <p class="text-[9px] font-black uppercase tracking-widest text-slate-400 group-hover:text-primary transition-colors text-center">Ganti Galeri Foto</p>
+                            <p class="text-[9px] font-black uppercase tracking-widest text-slate-400 group-hover:text-primary transition-colors text-center">Ganti Galeri Gambar</p>
                         </div>
 
                         <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity rounded-2xl">

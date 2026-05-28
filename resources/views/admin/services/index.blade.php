@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 
-@section('title', 'Manajemen Layanan - Rakira CMS')
+@section('title', 'Manajemen Layanan - AKA Consulting CMS')
 @section('page_title', 'Daftar Layanan')
-@section('page_subtitle', 'Kelola kategori layanan yang ditampilkan di website.')
+@section('page_subtitle', 'Kelola kategori, gambar, dan detail layanan konsultasi yang ditampilkan di website.')
 
 @section('content')
 <div class="max-w-7xl mx-auto space-y-6">
@@ -19,13 +19,15 @@
     </div>
     @endif
 
-    <div class="bg-white border border-outline-variant/50 rounded-xl overflow-hidden shadow-sm">
+    <div class="bg-white border border-outline-variant/50 rounded-2xl overflow-hidden shadow-sm">
         <table class="w-full text-left border-collapse">
             <thead class="bg-[#F1F5F9] border-b border-outline-variant/50">
                 <tr>
-                    <th class="py-4 px-6 text-[11px] font-black uppercase tracking-widest text-on-surface">Icon</th>
+                    <th class="py-4 px-6 text-[11px] font-black uppercase tracking-widest text-on-surface">Preview</th>
+                    <th class="py-4 px-6 text-[11px] font-black uppercase tracking-widest text-on-surface">Kategori</th>
                     <th class="py-4 px-6 text-[11px] font-black uppercase tracking-widest text-on-surface">Judul Layanan</th>
                     <th class="py-4 px-6 text-[11px] font-black uppercase tracking-widest text-on-surface">Status</th>
+                    <th class="py-4 px-6 text-[11px] font-black uppercase tracking-widest text-on-surface">Urutan</th>
                     <th class="py-4 px-6 text-[11px] font-black uppercase tracking-widest text-on-surface w-32 text-right">Aksi</th>
                 </tr>
             </thead>
@@ -37,9 +39,12 @@
                 @endphp
                 <tr class="hover:bg-surface-container-low transition-colors group">
                     <td class="py-4 px-6">
-                        <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
-                            <span class="material-symbols-outlined">{{ $s->icon_image ?: 'settings' }}</span>
+                        <div class="w-14 h-12 rounded-xl overflow-hidden bg-surface-container flex items-center justify-center border border-outline-variant/30">
+                            <img src="{{ $s->thumbnail_url }}" alt="{{ $serviceTitle }}" class="h-full w-full object-cover">
                         </div>
+                    </td>
+                    <td class="py-4 px-6">
+                        <span class="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-primary">{{ $s->category ?? 'Layanan Konsultasi' }}</span>
                     </td>
                     <td class="py-4 px-6">
                         <p class="font-bold text-sm text-on-surface">{{ $serviceTitle }}</p>
@@ -51,6 +56,9 @@
                         @else
                             <span class="px-3 py-1 rounded-full text-[10px] font-black bg-gray-100 text-gray-500 uppercase tracking-tighter">Draft</span>
                         @endif
+                    </td>
+                    <td class="py-4 px-6">
+                        <span class="text-sm font-bold text-on-surface">{{ $s->sort_order ?? 0 }}</span>
                     </td>
                     <td class="py-4 px-6 text-right">
                         <div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -68,7 +76,7 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="4" class="py-12 text-center text-on-surface-variant">Belum ada layanan.</td>
+                    <td colspan="6" class="py-12 text-center text-on-surface-variant">Belum ada layanan.</td>
                 </tr>
                 @endforelse
             </tbody>

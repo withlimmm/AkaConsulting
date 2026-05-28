@@ -18,20 +18,21 @@ class SettingController extends Controller
     {
         $validated = $request->validate([
             'company_name' => 'required|string|max:200',
-            'email' => 'required|email|max:150',
-            'phone' => 'required|string|max:50',
-            'address' => 'required|string',
-            'about_us' => 'required|string',
-            'vision' => 'nullable|string',
-            'mission' => 'nullable|string',
-            'motto' => 'nullable|string',
+            'email'        => 'required|email|max:150',
+            'phone'        => 'required|string|max:50',
+            'address'      => 'required|string',
+            'about_us'     => 'required|string',
+            'vision'       => 'nullable|string',
+            'mission'      => 'nullable|string',
+            'motto'        => 'nullable|string',
+            'maps_url'     => 'nullable|url',
         ]);
 
         $setting = CompanySetting::first();
         if (!$setting) {
             $setting = new CompanySetting();
         }
-        
+
         $setting->fill($validated);
         $setting->save();
 

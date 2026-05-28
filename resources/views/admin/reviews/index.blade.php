@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 
-@section('title', 'Manajemen Ulasan - Rakira CMS')
+@section('title', 'Manajemen Ulasan - AKA Consulting CMS')
 @section('page_title', 'Daftar Ulasan')
-@section('page_subtitle', 'Kelola ulasan dari klien yang masuk melalui website.')
+@section('page_subtitle', 'Kelola ulasan dari klien yang masuk melalui website konsultasi.')
 
 @section('content')
 <div class="max-w-7xl mx-auto space-y-6">
@@ -55,7 +55,7 @@
                             <form action="{{ route('admin.reviews.update', $r->id) }}" method="POST">
                                 @csrf @method('PUT')
                                 <input type="hidden" name="status" value="approved">
-                                <button type="submit" class="bg-emerald-500 text-white px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-emerald-600 transition-colors shadow-lg shadow-emerald-200">Approve</button>
+                                <button type="submit" class="bg-emerald-500 text-white px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-emerald-600 transition-colors shadow-lg shadow-emerald-200">Setujui</button>
                             </form>
                             @endif
                             

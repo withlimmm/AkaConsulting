@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @php
     $faqQuestion = json_decode($faq->question, true);
     $faqAnswer = json_decode($faq->answer, true);
@@ -8,9 +9,11 @@
     $answerEn = old('answer_en', is_array($faqAnswer) ? ($faqAnswer['en'] ?? '') : '');
 @endphp
 
+=======
+
 @extends('layouts.admin')
 
-@section('title', 'Edit FAQ - Rakira CMS')
+@section('title', 'Edit FAQ - AKA Consulting CMS')
 @section('page_title', 'Perbarui FAQ')
 
 @section('content')
@@ -30,6 +33,7 @@
         <div class="bg-white border border-slate-200 rounded-[2.5rem] p-8 md:p-10 shadow-sm space-y-8">
             {{-- Pertanyaan --}}
             <div class="space-y-3">
+<<<<<<< HEAD
                 <label for="question_id" class="text-[11px] font-black uppercase tracking-widest text-slate-400 ml-1">Pertanyaan (Indonesia) *</label>
                 <input type="text" name="question_id" id="question_id" required value="{{ $questionId }}"
                     class="w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 py-4 text-sm focus:bg-white focus:ring-4 focus:ring-primary/5 focus:border-primary transition-all font-bold outline-none">
@@ -38,11 +42,16 @@
             <div class="space-y-3">
                 <label for="question_en" class="text-[11px] font-black uppercase tracking-widest text-slate-400 ml-1">Question (English)</label>
                 <input type="text" name="question_en" id="question_en" value="{{ $questionEn }}"
+=======
+                <label for="question" class="text-[11px] font-black uppercase tracking-widest text-slate-400 ml-1">Pertanyaan *</label>
+                <input type="text" name="question" id="question" required value="{{ old('question', $faq->question) }}"
+>>>>>>> 94018cbae93cf5fb7b6d74f8d372a0453771eb4c
                     class="w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 py-4 text-sm focus:bg-white focus:ring-4 focus:ring-primary/5 focus:border-primary transition-all font-bold outline-none">
             </div>
 
             {{-- Jawaban --}}
             <div class="space-y-3">
+<<<<<<< HEAD
                 <label for="answer_id" class="text-[11px] font-black uppercase tracking-widest text-slate-400 ml-1">Jawaban (Indonesia) *</label>
                 <textarea name="answer_id" id="answer_id" rows="6" required
                     class="w-full bg-slate-50 border border-slate-200 rounded-[1.5rem] px-6 py-5 text-sm leading-relaxed focus:bg-white focus:ring-4 focus:ring-primary/5 focus:border-primary transition-all outline-none resize-none">{{ $answerId }}</textarea>
@@ -52,6 +61,11 @@
                 <label for="answer_en" class="text-[11px] font-black uppercase tracking-widest text-slate-400 ml-1">Answer (English)</label>
                 <textarea name="answer_en" id="answer_en" rows="6"
                     class="w-full bg-slate-50 border border-slate-200 rounded-[1.5rem] px-6 py-5 text-sm leading-relaxed focus:bg-white focus:ring-4 focus:ring-primary/5 focus:border-primary transition-all outline-none resize-none">{{ $answerEn }}</textarea>
+=======
+                <label for="answer" class="text-[11px] font-black uppercase tracking-widest text-slate-400 ml-1">Jawaban *</label>
+                <textarea name="answer" id="answer" rows="6" required
+                    class="w-full bg-slate-50 border border-slate-200 rounded-[1.5rem] px-6 py-5 text-sm leading-relaxed focus:bg-white focus:ring-4 focus:ring-primary/5 focus:border-primary transition-all outline-none resize-none">{{ old('answer', $faq->answer) }}</textarea>
+>>>>>>> 94018cbae93cf5fb7b6d74f8d372a0453771eb4c
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">

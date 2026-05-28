@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Manajemen Blog - Rakira CMS')
+@section('title', 'Manajemen Blog - AKA Consulting CMS')
 @section('page_title', 'Artikel & Berita')
 @section('page_subtitle', 'Tulis dan terbitkan konten menarik untuk audiens Anda.')
 

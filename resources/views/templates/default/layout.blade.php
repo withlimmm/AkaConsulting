@@ -4,9 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>@yield('title', 'Rakira Digital Nusantara - Solusi Digital Inovatif')</title>
-    <meta name="description" content="@yield('meta_description', $settings->about_us ?? 'Solusi teknologi premium untuk bisnis modern. Pengembangan web, aplikasi kustom, dan transformasi digital yang scalable.')">
-    <meta name="keywords" content="@yield('meta_keywords', 'jasa pembuatan website company profile, jasa pembuatan aplikasi android ios, jasa pembuatan web app kustom, developer aplikasi mobile indonesia, software house indonesia, software house jakarta, software house tangerang, it consultant jakarta, konsultan teknologi informasi, jasa desain ui ux profesional, rakira digital')">
+    <title>@yield('title', 'AKA Consulting, Konsultan Terpercaya')</title>
+    <meta name="description" content="@yield('meta_description', $settings->about_us ?? 'AKA Consulting menyediakan layanan konsultasi hukum, perizinan, dan manajemen kepatuhan untuk membantu bisnis beroperasi sesuai regulasi dan tumbuh berkelanjutan.')">
+    <meta name="keywords" content="@yield('meta_keywords', 'konsultan hukum perusahaan, jasa perizinan usaha, konsultan kepatuhan bisnis, manajemen risiko usaha, layanan konsultasi bisnis, aka consulting')">
     <link rel="canonical" href="{{ url()->current() }}">
 
     <!-- Structured Data (JSON-LD) -->
@@ -14,11 +14,11 @@
     {
       "@@context": "https://schema.org",
       "@@type": "Organization",
-      "name": "{{ $settings->company_name ?? 'Rakira Digital Nusantara' }}",
-      "alternateName": "Rakira Digital",
+    "name": "{{ $settings->company_name ?? 'AKA Consulting, Konsultan Terpercaya' }}",
+    "alternateName": "AKA Consulting",
       "url": "{{ url('/') }}",
-      "logo": "{{ isset($settings) && $settings->logo_path ? asset('storage/' . $settings->logo_path) : asset('images/logo-rakira.png') }}",
-      "description": "{{ $settings->about_us ?? 'Solusi teknologi premium untuk bisnis modern. Pengembangan web, aplikasi kustom, dan transformasi digital yang scalable.' }}",
+      "logo": "{{ isset($settings) && $settings->logo_path ? asset('storage/' . $settings->logo_path) : asset('images/logo_aka.png') }}",
+    "description": "{{ $settings->about_us ?? 'AKA Consulting menyediakan layanan konsultasi hukum, perizinan, dan manajemen kepatuhan untuk membantu bisnis beroperasi sesuai regulasi dan tumbuh berkelanjutan.' }}",
       "contactPoint": {
         "@@type": "ContactPoint",
         "telephone": "+{{ $settings->phone ?? '6287868184742' }}",
@@ -27,7 +27,7 @@
         "availableLanguage": ["id", "en"]
       },
       "sameAs": [
-        "https://www.instagram.com/rakiradigital"
+        "https://www.instagram.com/akaconsulting"
       ]
     }
     </script>
@@ -49,12 +49,11 @@
 
     <!-- Top Navigation Bar -->
     <nav
-        class="fixed top-0 z-50 w-full border-b border-white/30 bg-glass-fill shadow-soft backdrop-blur-xl transition-all duration-300 data-[scrolled=true]:border-outline-variant/20 data-[scrolled=true]:bg-white/90">
+        class="fixed top-0 z-50 w-full border-b border-primary/10 bg-glass-fill shadow-soft backdrop-blur-xl transition-all duration-300 data-[scrolled=true]:border-outline-variant/30 data-[scrolled=true]:bg-white/92">
         <div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 md:px-8 lg:px-20">
-            <a href="/" class="flex items-center gap-2 group">
-                <img src="/images/logo-rakira.png" alt="Rakira Digital"
-                    class="w-10 h-10 group-hover:scale-105 transition-transform">
-                <span class="text-xl font-bold tracking-tight text-on-surface">Rakira Digital</span>
+            <a href="/" class="flex items-center group">
+                <img src="/images/logo_aka.png" alt="AKA Consulting"
+                    class="h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105 md:h-20">
             </a>
 
             <div class="hidden items-center space-x-8 md:flex">
@@ -71,10 +70,34 @@
             </div>
 
             <div class="hidden items-center gap-4 md:flex">
-                <div class="flex items-center gap-2 border border-outline-variant/30 rounded-full px-3 py-1.5 bg-white/50 backdrop-blur-md text-xs font-bold text-on-surface">
-                    <a href="{{ route('lang.switch', 'id') }}" class="{{ app()->getLocale() == 'id' ? 'text-primary' : 'text-on-surface-variant hover:text-on-surface' }} transition-colors">ID</a>
-                    <span class="text-outline-variant">|</span>
-                    <a href="{{ route('lang.switch', 'en') }}" class="{{ app()->getLocale() == 'en' ? 'text-primary' : 'text-on-surface-variant hover:text-on-surface' }} transition-colors">EN</a>
+                <div class="relative" x-data="{ langOpen: false }" @click.away="langOpen = false">
+                    <button @click="langOpen = !langOpen" class="flex items-center gap-2 border border-outline-variant/30 rounded-full px-3 py-1.5 bg-white/50 backdrop-blur-md text-xs font-bold text-on-surface hover:bg-surface-container-low transition-colors notranslate" translate="no">
+                        @if(app()->getLocale() == 'id')
+                            <img src="https://flagcdn.com/w20/id.png" alt="ID" class="w-4 h-3 object-cover rounded-[2px] shadow-sm">
+                            <span>ID</span>
+                        @else
+                            <img src="https://flagcdn.com/w20/gb.png" alt="EN" class="w-4 h-3 object-cover rounded-[2px] shadow-sm">
+                            <span>EN</span>
+                        @endif
+                        <span class="material-symbols-outlined text-[14px] transition-transform duration-200" :class="langOpen ? 'rotate-180' : ''">expand_more</span>
+                    </button>
+                    <div x-show="langOpen" 
+                         x-transition:enter="transition ease-out duration-200"
+                         x-transition:enter-start="opacity-0 translate-y-2"
+                         x-transition:enter-end="opacity-100 translate-y-0"
+                         x-transition:leave="transition ease-in duration-150"
+                         x-transition:leave-start="opacity-100 translate-y-0"
+                         x-transition:leave-end="opacity-0 translate-y-2"
+                         class="absolute right-0 mt-2 w-36 bg-white rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.1)] border border-slate-100 py-2 z-50 notranslate" style="display:none;" translate="no">
+                        <a href="{{ route('lang.switch', 'id') }}" class="flex items-center gap-3 px-4 py-2.5 hover:bg-slate-50 transition-colors {{ app()->getLocale() == 'id' ? 'text-primary font-black bg-primary/5 border-l-2 border-primary' : 'text-slate-600 font-semibold border-l-2 border-transparent' }}">
+                            <img src="https://flagcdn.com/w20/id.png" alt="ID" class="w-5 h-3.5 object-cover rounded-[3px] shadow-[0_1px_2px_rgba(0,0,0,0.1)]">
+                            <span class="text-[11px] uppercase tracking-wider">Indonesia</span>
+                        </a>
+                        <a href="{{ route('lang.switch', 'en') }}" class="flex items-center gap-3 px-4 py-2.5 hover:bg-slate-50 transition-colors {{ app()->getLocale() == 'en' ? 'text-primary font-black bg-primary/5 border-l-2 border-primary' : 'text-slate-600 font-semibold border-l-2 border-transparent' }}">
+                            <img src="https://flagcdn.com/w20/gb.png" alt="EN" class="w-5 h-3.5 object-cover rounded-[3px] shadow-[0_1px_2px_rgba(0,0,0,0.1)]">
+                            <span class="text-[11px] uppercase tracking-wider">English</span>
+                        </a>
+                    </div>
                 </div>
                 <a href="{{ url('/#kontak') }}" class="btn-primary shadow-md">
                     {{ __('Konsultasi Gratis') }}
@@ -100,10 +123,29 @@
             </div>
 
             <div class="mt-4 grid gap-2">
-                <div class="flex gap-2 text-xs font-bold px-4 mb-4">
-                    <a href="{{ route('lang.switch', 'id') }}" class="{{ app()->getLocale() == 'id' ? 'text-primary' : 'text-on-surface-variant' }}">ID</a>
-                    <span class="text-slate-300">|</span>
-                    <a href="{{ route('lang.switch', 'en') }}" class="{{ app()->getLocale() == 'en' ? 'text-primary' : 'text-on-surface-variant' }}">EN</a>
+                <div class="px-4 mb-4" x-data="{ langOpenMob: false }">
+                    <button @click="langOpenMob = !langOpenMob" class="flex items-center justify-between w-full rounded-xl border border-outline-variant/30 px-4 py-3 bg-white/50 text-xs font-bold text-on-surface hover:bg-surface-container-low transition-colors notranslate" translate="no">
+                        <div class="flex items-center gap-2.5">
+                            @if(app()->getLocale() == 'id')
+                                <img src="https://flagcdn.com/w20/id.png" alt="ID" class="w-5 h-3.5 object-cover rounded-[3px] shadow-sm">
+                                <span>Indonesia</span>
+                            @else
+                                <img src="https://flagcdn.com/w20/gb.png" alt="EN" class="w-5 h-3.5 object-cover rounded-[3px] shadow-sm">
+                                <span>English</span>
+                            @endif
+                        </div>
+                        <span class="material-symbols-outlined text-[16px] transition-transform duration-200" :class="langOpenMob ? 'rotate-180' : ''">expand_more</span>
+                    </button>
+                    <div x-show="langOpenMob" class="mt-2 flex flex-col gap-1 pl-2 notranslate" style="display:none;" translate="no">
+                        <a href="{{ route('lang.switch', 'id') }}" class="flex items-center gap-3 px-4 py-2.5 rounded-lg hover:bg-slate-50 {{ app()->getLocale() == 'id' ? 'text-primary font-black bg-primary/5' : 'text-slate-600 font-semibold' }}">
+                            <img src="https://flagcdn.com/w20/id.png" alt="ID" class="w-5 h-3.5 object-cover rounded-[3px] shadow-sm">
+                            <span class="text-xs">Indonesia</span>
+                        </a>
+                        <a href="{{ route('lang.switch', 'en') }}" class="flex items-center gap-3 px-4 py-2.5 rounded-lg hover:bg-slate-50 {{ app()->getLocale() == 'en' ? 'text-primary font-black bg-primary/5' : 'text-slate-600 font-semibold' }}">
+                            <img src="https://flagcdn.com/w20/gb.png" alt="EN" class="w-5 h-3.5 object-cover rounded-[3px] shadow-sm">
+                            <span class="text-xs">English</span>
+                        </a>
+                    </div>
                 </div>
                 <a href="/"
                     class="rounded-xl px-4 py-3 font-semibold text-on-surface-variant hover:bg-surface-container-low hover:text-primary">{{ __('Beranda') }}</a>
@@ -126,27 +168,27 @@
     </main>
 
     <!-- Footer -->
-    <footer class="w-full border-t border-white/10 bg-[#171c20] py-16 text-white">
+    <footer class="w-full border-t border-primary/15 bg-[#15100a] py-16 text-white">
         <div class="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-4 md:grid-cols-4 md:px-8 lg:px-20">
             <div class="col-span-1 md:col-span-2">
                 <div class="flex items-center gap-3 mb-4">
-                    <img src="{{ $settings->logo_path ? asset('storage/' . $settings->logo_path) : asset('images/logo-rakira.png') }}"
-                        alt="{{ $settings->company_name ?? 'Rakira Digital' }}" class="w-10 h-10">
-                    <h3 class="text-2xl font-bold">{{ $settings->company_name ?? 'Rakira Digital Nusantara' }}</h3>
+                    <img src="{{ isset($settings) && $settings->logo_path ? asset('storage/' . $settings->logo_path) : asset('images/logo_aka.png') }}"
+                        alt="{{ $settings->company_name ?? 'AKA Consulting, Konsultan Terpercaya' }}" class="h-10 w-auto object-contain">
+                    <h3 class="text-2xl font-bold">{{ $settings->company_name ?? 'AKA Consulting, Konsultan Terpercaya' }}</h3>
                 </div>
                 @if($settings->motto)
-                    <p class="text-white/60 max-w-md mb-4 italic text-[#009fe3]">"{{ $settings->motto }}"</p>
+                    <p class="text-white/60 max-w-md mb-4 italic text-primary-container">"{{ $settings->motto }}"</p>
                 @endif
                 <p class="text-white/60 max-w-md">
-                    {{ Str::limit($settings->about_us ?? 'Solusi teknologi premium untuk bisnis modern. Pengembangan web, aplikasi kustom, dan transformasi digital yang scalable.', 150) }}
+                    {{ Str::limit($settings->about_us ?? 'AKA Consulting menyediakan layanan konsultasi hukum, perizinan, dan manajemen kepatuhan untuk membantu bisnis beroperasi sesuai regulasi dan tumbuh berkelanjutan.', 150) }}
                 </p>
             </div>
             <div>
                 <h4 class="font-bold mb-4 uppercase text-primary-container">Layanan</h4>
                 <ul class="space-y-2 text-white/60">
-                    <li><a href="/layanan" class="hover:text-white transition-colors">Web Development</a></li>
-                    <li><a href="/layanan" class="hover:text-white transition-colors">Mobile Apps</a></li>
-                    <li><a href="/layanan" class="hover:text-white transition-colors">UI/UX Design</a></li>
+                    <li><a href="/layanan" class="hover:text-white transition-colors">Konsultasi Hukum</a></li>
+                    <li><a href="/layanan" class="hover:text-white transition-colors">Perizinan Usaha</a></li>
+                    <li><a href="/layanan" class="hover:text-white transition-colors">Kepatuhan Bisnis</a></li>
                 </ul>
             </div>
             <div>
@@ -159,7 +201,7 @@
             </div>
         </div>
         <div class="mt-12 pt-8 border-t border-white/10 text-center text-white/40 text-sm">
-            &copy; {{ date('Y') }} {{ $settings->company_name ?? 'Rakira Digital Nusantara' }}. Hak Cipta Dilindungi.
+            &copy; {{ date('Y') }} {{ $settings->company_name ?? 'AKA Consulting, Konsultan Terpercaya' }}. Hak Cipta Dilindungi.
         </div>
     </footer>
 
@@ -197,7 +239,7 @@
              x-transition:leave="transition ease-in duration-300"
              class="absolute bottom-20 right-0 w-60 bg-white p-4 rounded-2xl shadow-xl border border-slate-100 mb-2">
             <div class="flex items-center gap-2 mb-1.5">
-                <span class="w-2.5 h-2.5 bg-primary rounded-full animate-pulse shadow-[0_0_8px_rgba(0,159,227,0.5)]"></span>
+                <span class="w-2.5 h-2.5 bg-primary rounded-full animate-pulse shadow-[0_0_8px_rgba(141,100,8,0.5)]"></span>
                 <span class="text-[9px] font-black text-primary uppercase tracking-widest">Online Support</span>
             </div>
             <p class="text-[11px] text-slate-700 leading-relaxed font-semibold">Halo! Ada yang bisa kami bantu hari ini?</p>
@@ -210,13 +252,13 @@
              x-transition:enter-start="opacity-0 scale-95 translate-y-8"
              x-transition:enter-end="opacity-100 scale-100 translate-y-0"
              x-transition:leave="transition ease-in duration-200"
-             class="absolute bottom-20 right-0 w-[320px] md:w-[350px] bg-white rounded-[2rem] shadow-[0_20px_60px_rgba(0,0,0,0.15)] border border-slate-100 overflow-hidden flex flex-col">
+            class="absolute bottom-20 right-0 w-[320px] md:w-[350px] bg-white rounded-[2rem] shadow-[0_20px_60px_rgba(32,22,15,0.15)] border border-slate-100 overflow-hidden flex flex-col">
             
             <!-- Header -->
             <div class="p-6 border-b border-slate-50 bg-white">
                 <div class="flex items-center justify-between mb-3">
                     <div class="flex items-center gap-2">
-                        <span class="w-2.5 h-2.5 bg-primary rounded-full shadow-[0_0_8px_rgba(0,159,227,0.4)]"></span>
+                        <span class="w-2.5 h-2.5 bg-primary rounded-full shadow-[0_0_8px_rgba(141,100,8,0.4)]"></span>
                         <span class="text-[10px] font-black text-primary uppercase tracking-[0.2em]">Online Support</span>
                     </div>
                     <button @click="open = false" aria-label="Tutup Panel Chat" class="text-slate-300 hover:text-slate-600 transition-colors">
@@ -256,7 +298,7 @@
                         <a href="https://wa.me/6287868184742" target="_blank" class="flex items-center justify-center gap-2 py-2.5 bg-white border border-slate-100 rounded-lg text-[11px] font-bold text-slate-600 hover:border-green-500 hover:text-green-600 transition-all shadow-sm">
                             <img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" class="w-3.5 h-3.5" alt="WA"> WhatsApp
                         </a>
-                        <a href="https://www.instagram.com/rakiradigital?igsh=MWRpdnR3Ym8wazMxbQ%3D%3D&utm_source=qr" target="_blank" class="flex items-center justify-center gap-2 py-2.5 bg-white border border-slate-100 rounded-lg text-[11px] font-bold text-slate-600 hover:border-pink-500 hover:text-pink-600 transition-all shadow-sm">
+                        <a href="https://www.instagram.com/akaconsulting" target="_blank" class="flex items-center justify-center gap-2 py-2.5 bg-white border border-slate-100 rounded-lg text-[11px] font-bold text-slate-600 hover:border-primary hover:text-primary transition-all duration-300 shadow-sm">
                             <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" class="w-3.5 h-3.5" alt="IG"> Instagram
                         </a>
                     </div>

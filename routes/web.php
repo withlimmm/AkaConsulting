@@ -116,6 +116,7 @@ Route::get('/', function () {
     $services = collect();
     if (Schema::hasTable('services')) {
         $services = \App\Models\Service::where('status', 'active')
+            ->whereNotNull('category')
             ->latest()
             ->get()
             ->map(function ($service) {
@@ -137,7 +138,11 @@ Route::get('/', function () {
 Route::get('/layanan', function () {
     $services = collect();
     if (Schema::hasTable('services')) {
-        $services = \App\Models\Service::where('status', 'active')->latest()->get();
+        $services = \App\Models\Service::where('status', 'active')
+            ->whereNotNull('category')
+            ->orderBy('sort_order')
+            ->latest()
+            ->get();
     }
 
     return view('services', compact('services'));
@@ -174,7 +179,9 @@ Route::get('/tentang-kami', function () {
         $teams = Team::latest()->get();
     }
 
-    return view('about', compact('teams'));
+    $settings = \App\Models\CompanySetting::first();
+
+    return view('about', compact('teams', 'settings'));
 })->name('about');
 
 Route::get('/blog', function () {
@@ -234,6 +241,28 @@ Route::get('/dashboard', function () {
 
 /*
 |--------------------------------------------------------------------------
+| Legal Pages (Privacy & Terms)
+|--------------------------------------------------------------------------
+*/
+Route::view('/kebijakan-privasi', 'legal.privacy')->name('privacy');
+Route::view('/syarat-ketentuan', 'legal.terms')->name('terms');
+
+/*
+|--------------------------------------------------------------------------
+| SEO Sitemap
+|--------------------------------------------------------------------------
+*/
+Route::get('/sitemap.xml', function () {
+    $services = Schema::hasTable('services') ? Service::where('status', 'active')->get() : collect();
+    $portfolios = Schema::hasTable('portfolios') ? Portfolio::all() : collect();
+    $articles = Schema::hasTable('articles') ? Article::where('status', 'published')->get() : collect();
+    
+    $content = view('sitemap', compact('services', 'portfolios', 'articles'))->render();
+    return response($content, 200)->header('Content-Type', 'text/xml');
+})->name('sitemap');
+
+/*
+|--------------------------------------------------------------------------
 | Admin CMS Routes (Protected by Auth)
 |--------------------------------------------------------------------------
 */
@@ -257,6 +286,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(
 });
 
 Route::post('/konsultasi', function (Request $request) {
+    // Honeypot Anti-Spam Check
+    if (!empty($request->input('_website_url'))) {
+        abort(403, 'Spam terdeteksi.');
+    }
+
     $validated = $request->validate([
         'sender_name' => 'required|string|max:150',
         'sender_email' => 'required|email|max:150',
@@ -271,9 +305,48 @@ Route::post('/konsultasi', function (Request $request) {
 
     \App\Models\Message::create($validated);
 
+    // Kirim Email Transaksional Konfirmasi ke Klien (Silent fail jika SMTP belum dikonfigurasi)
+    try {
+        \Illuminate\Support\Facades\Mail::raw(
+            "Halo {$validated['sender_name']},\n\n" .
+            "Terima kasih telah menghubungi AKA Consulting.\n" .
+            "Kami telah menerima tiket konsultasi Anda terkait layanan: {$validated['service']}.\n\n" .
+            "Tim legal kami akan segera menghubungi Anda melalui WhatsApp atau Email ini dalam waktu 1x24 jam kerja untuk diskusi lebih lanjut.\n\n" .
+            "Salam Hormat,\nTim AKA Consulting",
+            function ($message) use ($validated) {
+                $message->to($validated['sender_email'])
+                        ->subject('Konfirmasi Tiket Konsultasi - AKA Consulting');
+            }
+        );
+
+        // Notifikasi ke Admin
+        $adminEmail = env('MAIL_FROM_ADDRESS', 'admin@akaconsulting.com');
+        \Illuminate\Support\Facades\Mail::raw(
+            "Halo Admin,\n\n" .
+            "Ada tiket konsultasi baru masuk dari website:\n\n" .
+            "Nama: {$validated['sender_name']}\n" .
+            "Email: {$validated['sender_email']}\n" .
+            "WhatsApp: {$validated['phone']}\n" .
+            "Layanan: {$validated['service']}\n\n" .
+            "Pesan: {$validated['message_body']}\n\n" .
+            "Silakan cek di Panel Admin.",
+            function ($message) use ($adminEmail) {
+                $message->to($adminEmail)
+                        ->subject('Lead Konsultasi Baru Masuk!');
+            }
+        );
+    } catch (\Exception $e) {
+        \Illuminate\Support\Facades\Log::error('Gagal mengirim email transaksional: ' . $e->getMessage());
+    }
+
     return redirect()->route('home')->with('success', 'Terima kasih! Pesan konsultasi Anda telah terkirim. Tim kami akan segera menghubungi Anda.');
-})->name('konsultasi.store')->middleware('throttle:3,1');
+})->name('konsultasi.store')->middleware('throttle:5,1');
 Route::post('/review', function (Illuminate\Http\Request $request) {
+    // Honeypot Anti-Spam Check
+    if (!empty($request->input('_website_url'))) {
+        abort(403, 'Spam terdeteksi.');
+    }
+
     $validated = $request->validate([
         'name' => 'required|string|max:150',
         'company' => 'nullable|string|max:150',
@@ -286,4 +359,4 @@ Route::post('/review', function (Illuminate\Http\Request $request) {
     \App\Models\Review::create($validated);
 
     return redirect()->route('home')->with('success_review', 'Terima kasih! Ulasan Anda telah terkirim dan menunggu moderasi admin.');
-})->name('review.store')->middleware('throttle:3,1');
+})->name('review.store')->middleware('throttle:5,1');
