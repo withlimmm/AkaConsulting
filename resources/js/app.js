@@ -41,14 +41,39 @@ const setupMobileMenu = () => {
 		return;
 	}
 
+	// iOS-compatible scroll lock
+	let savedScrollY = 0;
+
+	const lockScroll = () => {
+		savedScrollY = window.scrollY;
+		document.body.style.position = 'fixed';
+		document.body.style.top = `-${savedScrollY}px`;
+		document.body.style.left = '0';
+		document.body.style.right = '0';
+		document.body.style.overflow = 'hidden';
+	};
+
+	const unlockScroll = () => {
+		document.body.style.position = '';
+		document.body.style.top = '';
+		document.body.style.left = '';
+		document.body.style.right = '';
+		document.body.style.overflow = '';
+		window.scrollTo(0, savedScrollY);
+	};
+
 	const closePanel = () => {
 		panel.classList.add('hidden');
 		toggle.setAttribute('aria-expanded', 'false');
+		unlockScroll();
 	};
 
 	const openPanel = () => {
 		panel.classList.remove('hidden');
 		toggle.setAttribute('aria-expanded', 'true');
+		lockScroll();
+		// Scroll panel ke atas saat dibuka
+		panel.scrollTop = 0;
 	};
 
 	toggle.addEventListener('click', () => {
@@ -77,6 +102,34 @@ const setupMobileMenu = () => {
 		}
 
 		closePanel();
+	});
+};
+
+const setupMobileTapFeedback = () => {
+	const panel = document.querySelector('[data-mobile-nav-panel]');
+	if (!panel) return;
+
+	const items = panel.querySelectorAll('a, button');
+	items.forEach((el) => {
+		let moved = false;
+
+		el.addEventListener('touchstart', () => {
+			moved = false;
+			el.classList.add('is-pressing');
+		}, { passive: true });
+
+		el.addEventListener('touchmove', () => {
+			moved = true;
+			el.classList.remove('is-pressing');
+		}, { passive: true });
+
+		el.addEventListener('touchend', () => {
+			setTimeout(() => el.classList.remove('is-pressing'), 150);
+		}, { passive: true });
+
+		el.addEventListener('touchcancel', () => {
+			el.classList.remove('is-pressing');
+		}, { passive: true });
 	});
 };
 
@@ -168,6 +221,7 @@ const setupWhatsAppLauncher = () => {
 document.addEventListener('DOMContentLoaded', () => {
 	setupRevealAnimations();
 	setupMobileMenu();
+	setupMobileTapFeedback();
 	setupStickyNavState();
 	setupHeroParallax();
 	setupSelectableCards();

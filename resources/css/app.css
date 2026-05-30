@@ -114,6 +114,31 @@
 
     .mobile-nav-panel {
         @apply fixed inset-x-4 top-20 z-50 rounded-3xl border border-primary/10 bg-white/95 p-4 shadow-2xl backdrop-blur-xl lg:hidden;
+        max-height: calc(100dvh - 5.5rem);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
+    }
+
+    /* Touch tap feedback untuk item mobile nav */
+    .mobile-nav-panel a,
+    .mobile-nav-panel button {
+        -webkit-tap-highlight-color: transparent;
+        touch-action: pan-y;
+    }
+
+    .mobile-nav-panel a.is-pressing,
+    .mobile-nav-panel button.is-pressing {
+        background-color: rgba(141, 100, 8, 0.12);
+        color: #8d6408;
+        transform: scale(0.97);
+        transition: none;
+    }
+
+    .mobile-nav-panel .btn-primary.is-pressing {
+        background-color: rgba(141, 100, 8, 0.85);
+        transform: scale(0.97);
+        transition: none;
     }
 
     [data-aos] {

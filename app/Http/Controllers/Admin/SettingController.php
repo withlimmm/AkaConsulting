@@ -17,15 +17,16 @@ class SettingController extends Controller
     public function update(Request $request)
     {
         $validated = $request->validate([
-            'company_name' => 'required|string|max:200',
-            'email'        => 'required|email|max:150',
-            'phone'        => 'required|string|max:50',
-            'address'      => 'required|string',
-            'about_us'     => 'required|string',
-            'vision'       => 'nullable|string',
-            'mission'      => 'nullable|string',
-            'motto'        => 'nullable|string',
-            'maps_url'     => 'nullable|url',
+            'company_name'  => 'required|string|max:200',
+            'email'         => 'required|email|max:150',
+            'phone'         => 'required|string|max:50',
+            'address'       => 'required|string',
+            'about_us'      => 'required|string',
+            'vision'        => 'nullable|string',
+            'mission'       => 'nullable|string',
+            'motto'         => 'nullable|string',
+            'maps_url'      => 'nullable|url',
+            'instagram_url' => 'nullable|url|max:255',
         ]);
 
         $setting = CompanySetting::first();
