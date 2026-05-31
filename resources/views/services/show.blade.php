@@ -54,10 +54,77 @@
     }
     .prose-content p { margin-bottom: 1rem; line-height: 1.8; }
     .sticky-sidebar { position: sticky; top: 7rem; }
+
+    /* ── Floating Back Button ── */
+    #floating-back-btn {
+        position: fixed;
+        top: 5.5rem;
+        left: 1.25rem;
+        z-index: 50;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.55rem 1.1rem 0.55rem 0.75rem;
+        border-radius: 9999px;
+        background: rgba(255, 255, 255, 0.82);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(220, 202, 162, 0.55);
+        box-shadow: 0 8px 28px rgba(28, 20, 12, 0.13);
+        color: #4a3620;
+        font-size: 0.75rem;
+        font-weight: 900;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        text-decoration: none;
+        cursor: pointer;
+        opacity: 0;
+        transform: translateY(-8px) scale(0.96);
+        transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.25s ease, background 0.25s ease;
+        pointer-events: none;
+    }
+    #floating-back-btn.visible {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        pointer-events: auto;
+    }
+    #floating-back-btn:hover {
+        background: rgba(255, 255, 255, 0.97);
+        box-shadow: 0 12px 36px rgba(28, 20, 12, 0.19);
+        transform: translateY(-2px) scale(1);
+        color: #8d6408;
+    }
+    #floating-back-btn .back-icon {
+        width: 1.75rem;
+        height: 1.75rem;
+        border-radius: 50%;
+        background: #1c140c;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.25s;
+        flex-shrink: 0;
+    }
+    #floating-back-btn:hover .back-icon {
+        background: #8d6408;
+    }
+    #floating-back-btn .back-icon span {
+        color: #fff;
+        font-size: 1rem;
+    }
 </style>
 @endpush
 
 @section('content')
+
+{{-- ═══════════════════════ FLOATING BACK BUTTON ═══════════════════════ --}}
+<a id="floating-back-btn" href="{{ route('services') }}" aria-label="{{ __t('Kembali ke Layanan || Back to Services') }}">
+    <span class="back-icon">
+        <span class="material-symbols-outlined">arrow_back</span>
+    </span>
+    <span class="hidden sm:inline">{{ __t('Semua Layanan || All Services') }}</span>
+    <span class="sm:hidden">{{ __t('Kembali || Back') }}</span>
+</a>
 
 {{-- ═══════════════════════ HERO — FULL WIDTH ═══════════════════════ --}}
 <section class="relative w-full min-h-[70vh] flex items-end overflow-hidden bg-[#1c140c]">
@@ -345,5 +412,31 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+<script>
+(function() {
+    const btn = document.getElementById('floating-back-btn');
+    if (!btn) return;
+
+    let ticking = false;
+    const THRESHOLD = 80; // px scrolled before button appears
+
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            window.requestAnimationFrame(function() {
+                if (window.scrollY > THRESHOLD) {
+                    btn.classList.add('visible');
+                } else {
+                    btn.classList.remove('visible');
+                }
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }, { passive: true });
+})();
+</script>
+@endpush
 
 @endsection

@@ -7,7 +7,7 @@
     <meta name="google" content="notranslate">
     <title>@yield('title', 'AKA Consulting, Konsultan Terpercaya')</title>
     <meta name="description" content="@yield('meta_description', $settings->about_us ?? 'AKA Consulting menyediakan layanan konsultasi hukum, perizinan, dan manajemen kepatuhan untuk membantu bisnis beroperasi sesuai regulasi dan tumbuh berkelanjutan.')">
-    <meta name="keywords" content="@yield('meta_keywords', 'konsultan hukum perusahaan, jasa perizinan usaha, konsultan kepatuhan bisnis, manajemen risiko usaha, layanan konsultasi bisnis, aka consulting')">
+    <meta name="keywords" content="@yield('meta_keywords', 'konsultan hukum jakarta, jasa perizinan usaha jakarta, konsultan legalitas perusahaan, pendirian pt cv, konsultan hukum bisnis, jasa konsultan jakarta, konsultan kepatuhan bisnis, konsultan perizinan bandung, konsultan hukum surabaya, jasa legalitas usaha, sertifikasi halal bpom, konsultan tender, konsultasi hukum online, aka consulting, konsultan terpercaya indonesia')">
     <link rel="canonical" href="{{ url()->current() }}">
 
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -33,15 +33,76 @@
     <meta name="twitter:card" content="summary_large_image">
 
     <!-- Structured Data (JSON-LD) -->
+    {{-- JSON-LD: LocalBusiness Schema — Local SEO untuk semua kota target --}}
     <script type="application/ld+json">
     {
       "@@context": "https://schema.org",
-      "@@type": "Organization",
-    "name": "{{ $settings->company_name ?? 'AKA Consulting, Konsultan Terpercaya' }}",
-    "alternateName": "AKA Consulting",
+      "@@type": "LegalService",
+      "name": "{{ $settings->company_name ?? 'AKA Consulting' }}",
+      "alternateName": ["AKA Consulting", "AKA Group Consulting", "Konsultan AKA"],
       "url": "{{ url('/') }}",
       "logo": "{{ isset($settings) && $settings->logo_path ? asset('storage/' . $settings->logo_path) : asset('images/logo_aka.png') }}",
-    "description": "{{ $settings->about_us ?? 'AKA Consulting menyediakan layanan konsultasi hukum, perizinan, dan manajemen kepatuhan untuk membantu bisnis beroperasi sesuai regulasi dan tumbuh berkelanjutan.' }}",
+      "image": "{{ isset($settings) && $settings->logo_path ? asset('storage/' . $settings->logo_path) : asset('images/logo_aka.png') }}",
+      "description": "{{ $settings->about_us ?? 'AKA Consulting adalah konsultan hukum dan perizinan usaha terpercaya di Indonesia. Melayani jasa pendirian PT CV, perizinan OSS, sertifikasi halal BPOM, litigasi, tender, dan pertanahan untuk seluruh wilayah Indonesia.' }}",
+      "priceRange": "$$",
+      "telephone": "+{{ $settings->phone ?? '6287868184742' }}",
+      "email": "{{ $settings->email ?? 'info@akagroupconsulting.com' }}",
+      "address": {
+        "@@type": "PostalAddress",
+        "streetAddress": "{{ $settings->address ?? 'Jakarta' }}",
+        "addressLocality": "Jakarta",
+        "addressRegion": "DKI Jakarta",
+        "addressCountry": "ID"
+      },
+      "geo": {
+        "@@type": "GeoCoordinates",
+        "latitude": "-6.208763",
+        "longitude": "106.845599"
+      },
+      "areaServed": [
+        { "@@type": "City", "name": "Jakarta" },
+        { "@@type": "City", "name": "Jakarta Selatan" },
+        { "@@type": "City", "name": "Jakarta Utara" },
+        { "@@type": "City", "name": "Jakarta Barat" },
+        { "@@type": "City", "name": "Jakarta Timur" },
+        { "@@type": "City", "name": "Jakarta Pusat" },
+        { "@@type": "City", "name": "Bogor" },
+        { "@@type": "City", "name": "Depok" },
+        { "@@type": "City", "name": "Tangerang" },
+        { "@@type": "City", "name": "Bekasi" },
+        { "@@type": "City", "name": "Bandung" },
+        { "@@type": "City", "name": "Surabaya" },
+        { "@@type": "City", "name": "Semarang" },
+        { "@@type": "City", "name": "Yogyakarta" },
+        { "@@type": "City", "name": "Medan" },
+        { "@@type": "City", "name": "Makassar" },
+        { "@@type": "City", "name": "Bali" },
+        { "@@type": "City", "name": "Denpasar" },
+        { "@@type": "City", "name": "Palembang" },
+        { "@@type": "City", "name": "Batam" },
+        { "@@type": "State", "name": "Jawa Barat" },
+        { "@@type": "State", "name": "Jawa Tengah" },
+        { "@@type": "State", "name": "Jawa Timur" },
+        { "@@type": "Country", "name": "Indonesia" }
+      ],
+      "serviceArea": {
+        "@@type": "Country",
+        "name": "Indonesia"
+      },
+      "hasOfferCatalog": {
+        "@@type": "OfferCatalog",
+        "name": "Layanan Konsultasi AKA Consulting",
+        "itemListElement": [
+          { "@@type": "Offer", "itemOffered": { "@@type": "Service", "name": "Jasa Pendirian PT dan CV" } },
+          { "@@type": "Offer", "itemOffered": { "@@type": "Service", "name": "Perizinan OSS dan NIB" } },
+          { "@@type": "Offer", "itemOffered": { "@@type": "Service", "name": "Sertifikasi Halal BPOM" } },
+          { "@@type": "Offer", "itemOffered": { "@@type": "Service", "name": "Konsultasi Hukum Perusahaan" } },
+          { "@@type": "Offer", "itemOffered": { "@@type": "Service", "name": "Litigasi dan Sengketa Hukum" } },
+          { "@@type": "Offer", "itemOffered": { "@@type": "Service", "name": "Pengurusan Tender dan Pengadaan" } },
+          { "@@type": "Offer", "itemOffered": { "@@type": "Service", "name": "Konsultasi Pertanahan" } },
+          { "@@type": "Offer", "itemOffered": { "@@type": "Service", "name": "Legal Compliance dan Kepatuhan" } }
+        ]
+      },
       "contactPoint": {
         "@@type": "ContactPoint",
         "telephone": "+{{ $settings->phone ?? '6287868184742' }}",
@@ -51,6 +112,14 @@
       },
       "sameAs": [
         "{{ $settings->instagram_url ?? '' }}"
+      ],
+      "openingHoursSpecification": [
+        {
+          "@@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+          "opens": "08:00",
+          "closes": "17:00"
+        }
       ]
     }
     </script>
@@ -503,6 +572,26 @@
             </div>
         </div>
 
+        {{-- ═══ WILAYAH LAYANAN (Local SEO Section) ═══ --}}
+        <div class="border-t border-white/5 py-8">
+            <div class="mx-auto max-w-7xl px-4 md:px-8 lg:px-20">
+                <p class="text-[9px] font-black uppercase tracking-[0.3em] text-[#d9a11a]/60 mb-4">{{ __('Wilayah Layanan') }}</p>
+                <p class="text-white/20 text-xs leading-relaxed max-w-5xl">
+                    {{ __('AKA Consulting melayani jasa konsultasi hukum, perizinan usaha, pendirian PT dan CV, sertifikasi, litigasi, dan pertanahan di seluruh Indonesia — termasuk') }}
+                    <span class="text-white/35">
+                        Jakarta, Jakarta Selatan, Jakarta Utara, Jakarta Barat, Jakarta Timur, Jakarta Pusat,
+                        Bogor, Depok, Tangerang, Tangerang Selatan, Bekasi,
+                        Bandung, Cimahi, Karawang, Purwakarta,
+                        Surabaya, Sidoarjo, Gresik, Malang,
+                        Semarang, Yogyakarta, Solo,
+                        Medan, Deli Serdang, Palembang, Pekanbaru, Batam,
+                        Makassar, Bali, Denpasar, Balikpapan, Samarinda.
+                    </span>
+                    {{ __('Konsultasi online dan luar kota tersedia.') }}
+                </p>
+            </div>
+        </div>
+
         {{-- ═══ BOTTOM BAR ═══ --}}
         <div class="border-t border-white/5">
             <div class="mx-auto max-w-7xl px-4 md:px-8 lg:px-20 py-5 flex flex-col md:flex-row items-center justify-between gap-4">
@@ -723,6 +812,32 @@
             </div>
         </div>
     </div>
+
+    {{-- ═══ BACK TO TOP BUTTON (Global) ═══ --}}
+    <button id="back-to-top"
+            aria-label="Kembali ke atas"
+            onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+            style="position:fixed;bottom:1.75rem;left:1.75rem;z-index:55;width:3rem;height:3rem;border-radius:9999px;background:rgba(28,20,12,0.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(217,161,26,0.25);box-shadow:0 8px 28px rgba(28,20,12,0.28);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(14px) scale(0.88);transition:opacity 0.35s cubic-bezier(.4,0,.2,1),transform 0.35s cubic-bezier(.4,0,.2,1),box-shadow 0.25s ease,background 0.25s ease;pointer-events:none;">
+        <span class="material-symbols-outlined notranslate" translate="no"
+              style="color:#f7d78a;font-size:1.3rem;line-height:1;display:block;">keyboard_arrow_up</span>
+    </button>
+
+    <script>
+    (function(){
+        var b=document.getElementById('back-to-top');
+        if(!b)return;
+        var T=400,t=false;
+        function u(){
+            if(window.scrollY>T){b.style.opacity='1';b.style.transform='translateY(0) scale(1)';b.style.pointerEvents='auto';}
+            else{b.style.opacity='0';b.style.transform='translateY(14px) scale(0.88)';b.style.pointerEvents='none';}
+        }
+        window.addEventListener('scroll',function(){if(!t){window.requestAnimationFrame(function(){u();t=false;});t=true;}},{passive:true});
+        b.addEventListener('mouseenter',function(){b.style.background='rgba(141,100,8,0.95)';b.style.boxShadow='0 12px 36px rgba(217,161,26,0.35),0 0 0 4px rgba(217,161,26,0.12)';if(parseFloat(b.style.opacity)>0)b.style.transform='translateY(-3px) scale(1.08)';});
+        b.addEventListener('mouseleave',function(){b.style.background='rgba(28,20,12,0.88)';b.style.boxShadow='0 8px 28px rgba(28,20,12,0.28)';if(parseFloat(b.style.opacity)>0)b.style.transform='translateY(0) scale(1)';});
+        b.addEventListener('mousedown',function(){b.style.transform='scale(0.94)';});
+        b.addEventListener('mouseup',function(){b.style.transform='translateY(-3px) scale(1.08)';});
+    })();
+    </script>
 
     @stack('scripts')
 </body>

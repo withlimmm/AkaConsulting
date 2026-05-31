@@ -91,13 +91,39 @@
 
     <section class="page-section pt-6">
         <div class="content-container space-y-12">
-                <div class="sticky top-24 z-20 rounded-[1.75rem] border border-[#dccaa2] bg-white/90 px-4 py-4 shadow-sm backdrop-blur-md">
-                <div class="flex flex-wrap gap-2">
-                    @foreach($groupedServices->keys() as $category)
-                        <a href="#{{ Str::slug($category) }}" class="rounded-full border border-[#e6d7b7] bg-[#fbf8f1] px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-[#5a4327] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#8d6408] hover:text-[#8d6408]">
-                            {{ Str::limit($category, 30) }}
-                        </a>
-                    @endforeach
+
+            {{-- ── Category Filter Bar ── --}}
+            {{-- Mobile: static (tidak sticky), horizontal scroll | Desktop: sticky --}}
+            <div class="lg:sticky lg:top-24 lg:z-20">
+                {{-- Wrapper with gradient fade on edges for mobile scroll hint --}}
+                <div class="relative">
+                    {{-- Left fade edge (mobile only) --}}
+                    <div class="pointer-events-none absolute left-0 top-0 bottom-0 w-6 bg-gradient-to-r from-[#f7f2e8] to-transparent z-10 lg:hidden"></div>
+                    {{-- Right fade edge (mobile only) --}}
+                    <div class="pointer-events-none absolute right-0 top-0 bottom-0 w-6 bg-gradient-to-l from-[#f7f2e8] to-transparent z-10 lg:hidden"></div>
+
+                    {{-- Scrollable pill container --}}
+                    <div id="service-filter-bar"
+                         class="flex gap-2 overflow-x-auto lg:overflow-x-visible lg:flex-wrap
+                                scroll-smooth snap-x snap-mandatory
+                                rounded-[1.75rem] border border-[#dccaa2] bg-white/90 px-4 py-3 lg:py-4
+                                shadow-sm backdrop-blur-md
+                                [-webkit-overflow-scrolling:touch]
+                                [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                        @foreach($groupedServices->keys() as $index => $category)
+                            <a href="#{{ Str::slug($category) }}"
+                               data-filter-pill="{{ $index }}"
+                               class="service-filter-pill flex-shrink-0 snap-start
+                                      rounded-full border border-[#e6d7b7] bg-[#fbf8f1]
+                                      px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-[#5a4327]
+                                      transition-all duration-200
+                                      hover:border-[#8d6408] hover:text-[#8d6408] hover:bg-[#fdf5e5]
+                                      active:scale-95
+                                      whitespace-nowrap select-none">
+                                {{ Str::limit($category, 28) }}
+                            </a>
+                        @endforeach
+                    </div>
                 </div>
             </div>
 
@@ -180,4 +206,67 @@
         </div>
     </section>
 </div>
+
+@push('scripts')
+<script>
+(function () {
+    // ── Active-pill highlight on scroll (Intersection Observer) ──
+    const pills   = document.querySelectorAll('.service-filter-pill');
+    const bar     = document.getElementById('service-filter-bar');
+    const sections = Array.from(document.querySelectorAll('[id]')).filter(el =>
+        Array.from(pills).some(p => p.getAttribute('href') === '#' + el.id)
+    );
+
+    if (!pills.length || !sections.length) return;
+
+    const activateIndex = (idx) => {
+        pills.forEach((p, i) => {
+            if (i === idx) {
+                p.classList.add('!border-[#8d6408]', '!text-[#8d6408]', '!bg-[#fdf5e5]');
+                // Scroll ONLY the filter bar horizontally (never touch page scroll)
+                if (bar && window.innerWidth < 1024) {
+                    const pillLeft   = p.offsetLeft;
+                    const pillWidth  = p.offsetWidth;
+                    const barWidth   = bar.offsetWidth;
+                    const targetScroll = pillLeft - (barWidth / 2) + (pillWidth / 2);
+                    bar.scrollTo({ left: targetScroll, behavior: 'smooth' });
+                }
+            } else {
+                p.classList.remove('!border-[#8d6408]', '!text-[#8d6408]', '!bg-[#fdf5e5]');
+            }
+        });
+    };
+
+    // Activate first pill by default
+    activateIndex(0);
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const idx = sections.indexOf(entry.target);
+                if (idx !== -1) activateIndex(idx);
+            }
+        });
+    }, {
+        rootMargin: '-20% 0px -70% 0px',
+        threshold: 0,
+    });
+
+    sections.forEach(s => observer.observe(s));
+
+    // ── Smooth-scroll offset fix when clicking pills ──
+    pills.forEach(pill => {
+        pill.addEventListener('click', function (e) {
+            const target = document.querySelector(this.getAttribute('href'));
+            if (!target) return;
+            e.preventDefault();
+            const offset = window.innerWidth < 1024 ? 24 : 112; // no sticky offset on mobile
+            const top = target.getBoundingClientRect().top + window.scrollY - offset;
+            window.scrollTo({ top, behavior: 'smooth' });
+        });
+    });
+})();
+</script>
+@endpush
+
 @endsection
