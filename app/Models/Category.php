@@ -12,6 +12,19 @@ class Category extends Model
 
     protected $guarded = ['id'];
 
+    /**
+     * Accessor: Jika nama kategori tersimpan sebagai JSON bilingual,
+     * kembalikan versi bahasa Indonesia (key 'id').
+     */
+    public function getNameAttribute($value)
+    {
+        $decoded = json_decode($value, true);
+        if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
+            return $decoded['id'] ?? $decoded['en'] ?? $value;
+        }
+        return $value;
+    }
+
     public function articles()
     {
         return $this->hasMany(Article::class)->withTrashed();

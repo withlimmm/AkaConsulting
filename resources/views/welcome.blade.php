@@ -119,14 +119,30 @@
         <div class="relative hidden lg:block" data-aos data-aos-delay="200">
             <div class="grid grid-cols-12 gap-4 items-stretch">
                 <div class="col-span-8 rounded-[2rem] overflow-hidden shadow-2xl border border-white/60 bg-white aspect-[4/5]">
-                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=2426" alt="Consulting Meeting" class="h-full w-full object-cover">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=75&w=960"
+                         alt="Tim AKA Consulting - Konsultasi Profesional"
+                         width="960" height="1200"
+                         fetchpriority="high"
+                         loading="eager"
+                         decoding="async"
+                         class="h-full w-full object-cover">
                 </div>
                 <div class="col-span-4 flex flex-col gap-4">
                     <div class="rounded-[1.5rem] overflow-hidden shadow-xl border border-white/60 bg-white aspect-[1/1.1]">
-                        <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&q=80&w=900" alt="Legal discussion" class="h-full w-full object-cover">
+                        <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&q=70&w=480"
+                             alt="Diskusi Legal AKA Consulting"
+                             width="480" height="528"
+                             loading="lazy"
+                             decoding="async"
+                             class="h-full w-full object-cover">
                     </div>
                     <div class="rounded-[1.5rem] overflow-hidden shadow-xl border border-white/60 bg-white aspect-[1/1.1]">
-                        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=900" alt="Corporate meeting" class="h-full w-full object-cover">
+                        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=70&w=480"
+                             alt="Rapat Korporat AKA Consulting"
+                             width="480" height="528"
+                             loading="lazy"
+                             decoding="async"
+                             class="h-full w-full object-cover">
                     </div>
                 </div>
             </div>
@@ -163,7 +179,7 @@
         {{-- Statis di tengah jika logo sedikit --}}
         <div class="flex flex-wrap justify-center items-center gap-12 md:gap-20 pt-8 pb-4 px-4">
             @foreach ($client_logos as $client)
-                <div class="group relative h-12 md:h-16 flex-shrink-0 flex items-center cursor-pointer">
+                <div class="group relative h-16 md:h-24 flex-shrink-0 flex items-center cursor-pointer">
                     @if($client->company_logo)
                         <img src="{{ asset('storage/' . $client->company_logo) }}" alt="{{ $client->company_name }}" 
                              class="h-full w-auto object-contain transition-all duration-500 group-hover:scale-110 grayscale hover:grayscale-0">
@@ -187,7 +203,7 @@
                     $displayRow = $client_logos->concat($client_logos)->concat($client_logos)->concat($client_logos); 
                 @endphp
                 @foreach ($displayRow as $client)
-                    <div class="marquee-item group relative h-12 md:h-16 flex-shrink-0 flex items-center px-4 cursor-pointer">
+                    <div class="marquee-item group relative h-16 md:h-24 flex-shrink-0 flex items-center px-4 cursor-pointer">
                         @if($client->company_logo)
                             <img src="{{ asset('storage/' . $client->company_logo) }}" alt="{{ $client->company_name }}" 
                                  class="h-full w-auto object-contain transition-all duration-500 group-hover:scale-110">
@@ -212,7 +228,7 @@
                     $displayRow1 = $row1->concat($row1)->concat($row1)->concat($row1); 
                 @endphp
                 @foreach ($displayRow1 as $client)
-                    <div class="marquee-item group relative h-12 md:h-16 flex-shrink-0 flex items-center px-4 cursor-pointer">
+                    <div class="marquee-item group relative h-16 md:h-24 flex-shrink-0 flex items-center px-4 cursor-pointer">
                         @if($client->company_logo)
                             <img src="{{ asset('storage/' . $client->company_logo) }}" alt="{{ $client->company_name }}" 
                                  class="h-full w-auto object-contain transition-all duration-500 group-hover:scale-110">
@@ -236,7 +252,7 @@
                     $displayRow2 = $row2->concat($row2)->concat($row2)->concat($row2);
                 @endphp
                 @foreach ($displayRow2 as $client)
-                    <div class="marquee-item group relative h-12 md:h-16 flex-shrink-0 flex items-center px-4 cursor-pointer">
+                    <div class="marquee-item group relative h-16 md:h-24 flex-shrink-0 flex items-center px-4 cursor-pointer">
                         @if($client->company_logo)
                             <img src="{{ asset('storage/' . $client->company_logo) }}" alt="{{ $client->company_name }}" 
                                  class="h-full w-auto object-contain transition-all duration-500 group-hover:scale-110">
@@ -327,7 +343,12 @@
             </div>
         </div>
         <div class="relative h-[420px] md:h-[500px] rounded-3xl overflow-hidden shadow-2xl" data-aos data-aos-delay="150">
-            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=2070" alt="Tim AKA Consulting" class="w-full h-full object-cover">
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=70&w=960"
+                 alt="Tim AKA Consulting"
+                 width="960" height="600"
+                 loading="lazy"
+                 decoding="async"
+                 class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-[#15100a]/80 via-transparent to-transparent"></div>
             <div class="absolute bottom-6 left-6 right-6">
                 <div class="glass-panel p-5 rounded-xl">

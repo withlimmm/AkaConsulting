@@ -27,6 +27,11 @@ class SettingController extends Controller
             'motto'         => 'nullable|string',
             'maps_url'      => 'nullable|url',
             'instagram_url' => 'nullable|url|max:255',
+            'facebook_url'  => 'nullable|url|max:255',
+            'linkedin_url'  => 'nullable|url|max:255',
+            'tiktok_url'    => 'nullable|url|max:255',
+            'youtube_url'   => 'nullable|url|max:255',
+            'twitter_url'   => 'nullable|url|max:255',
         ]);
 
         $setting = CompanySetting::first();

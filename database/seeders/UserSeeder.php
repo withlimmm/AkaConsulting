@@ -14,9 +14,9 @@ class UserSeeder extends Seeder
         User::updateOrCreate(
             ['email' => 'admin@akaconsulting.com'],
             [
-                'name' => 'Super Admin AKA',
+                'name' => 'Super Admin Rakira',
                 'password' => Hash::make('password123'),
-                'role' => 'super_admin',
+                'role' => 'super_admin', // Sesuai migration
             ]
         );
 
@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
         User::updateOrCreate(
             ['email' => 'editor@akaconsulting.com'],
             [
-                'name' => 'Editor AKA',
+                'name' => 'Editor Rakira',
                 'password' => Hash::make('password123'),
                 'role' => 'editor',
             ]
