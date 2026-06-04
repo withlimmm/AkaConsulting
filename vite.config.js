@@ -18,19 +18,7 @@ export default defineConfig({
                 pure_funcs: ['console.log', 'console.info', 'console.debug'],
             },
         },
-        // Optimasi chunk splitting
-        rollupOptions: {
-            output: {
-                // Pisahkan vendor library (Alpine) ke chunk terpisah agar bisa di-cache browser
-                manualChunks: {
-                    alpine: ['alpinejs'],
-                },
-                // Nama file dengan hash untuk long-term caching
-                entryFileNames: 'assets/[name]-[hash].js',
-                chunkFileNames: 'assets/[name]-[hash].js',
-                assetFileNames: 'assets/[name]-[hash].[ext]',
-            },
-        },
+        // Optimasi chunk splitting (di-handle otomatis oleh Vite/Rolldown)
         // Kurangi ukuran CSS
         cssMinify: true,
         // Warn jika chunk > 500kb
