@@ -196,10 +196,10 @@
 
     <!-- Default Navigation Bar -->
     <nav class="fixed top-0 z-50 w-full border-b border-primary/10 bg-glass-fill shadow-soft backdrop-blur-xl transition-all duration-300 data-[scrolled=true]:border-outline-variant/30 data-[scrolled=true]:bg-white/92">
-        <div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 md:px-8 lg:px-20">
-            <a href="/" class="flex items-center group">
-                <img src="/images/logo_aka.png" alt="AKA Consulting Logo" width="200" height="80"
-                    class="h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105 md:h-20">
+        <div class="mx-auto flex h-24 max-w-7xl items-center justify-between px-4 md:px-8 lg:px-20">
+            <a href="/" class="flex items-center group overflow-visible">
+                <img src="/images/logo_aka.png" alt="AKA Consulting Logo"
+                    style="height: 140px; width: auto; max-width: none; object-fit: contain;">
             </a>
             <div class="hidden items-center space-x-8 md:flex">
                 <a href="/"

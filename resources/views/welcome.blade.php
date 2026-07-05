@@ -400,6 +400,108 @@
     </div>
 </section>
 
+@if(isset($packages) && $packages->isNotEmpty())
+{{-- ═══════════════════════════════════════════════
+    PAKET LAYANAN & HARGA (Packages)
+═══════════════════════════════════════════════ --}}
+<section class="page-section bg-[#fdfbf7] pt-12 pb-24 relative overflow-hidden" id="paket">
+    <!-- Decorative Background Elements -->
+    <div class="absolute top-0 right-0 w-96 h-96 bg-[#d9a11a]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+    <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#8d6408]/5 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3 pointer-events-none"></div>
+
+    <div class="content-container relative z-10">
+        <div class="text-center max-w-2xl mx-auto space-y-4 mb-16" data-aos="fade-up">
+            <span class="inline-flex items-center gap-2 rounded-full border border-[#d9a11a]/30 bg-white px-5 py-2 text-[10px] font-black uppercase tracking-[0.25em] text-[#8d6408] shadow-sm">
+                <span class="material-symbols-outlined text-[16px]">local_offer</span>
+                Pilihan Paket
+            </span>
+            <h2 class="text-4xl md:text-5xl font-black leading-tight tracking-tight text-on-surface">Paket Layanan Yang Tepat <br>Untuk Anda</h2>
+            <p class="text-on-surface-variant text-base md:text-lg mx-auto">Pilih paket layanan konsultasi atau pendirian usaha yang sesuai dengan skala dan kebutuhan bisnis Anda.</p>
+        </div>
+
+        @php
+            $groupedPackages = $packages->groupBy('category');
+            $categories = $groupedPackages->keys();
+        @endphp
+
+        <div x-data="{ activeTab: '{{ $categories->first() }}' }">
+            @if($categories->count() > 1)
+            {{-- Category Tabs --}}
+            <div class="flex flex-wrap justify-center gap-3 mb-16" data-aos="fade-up" data-aos-delay="100">
+                @foreach($categories as $category)
+                <button 
+                    @click="activeTab = '{{ $category }}'"
+                    :class="activeTab === '{{ $category }}' ? 'bg-[#8d6408] text-white shadow-xl shadow-[#8d6408]/20 scale-105' : 'bg-white text-on-surface hover:bg-slate-50 border border-slate-200'"
+                    class="px-8 py-3.5 rounded-full font-bold text-sm md:text-base transition-all duration-300">
+                    {{ $category ?: 'Semua Paket' }}
+                </button>
+                @endforeach
+            </div>
+            @endif
+
+            {{-- Tab Contents --}}
+            <div>
+                @foreach($groupedPackages as $category => $categoryPackages)
+                <div x-show="activeTab === '{{ $category }}'" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 translate-y-8" x-transition:enter-end="opacity-100 translate-y-0" style="display: none;">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch">
+                        @foreach($categoryPackages as $package)
+                        <div class="relative rounded-[2.5rem] p-8 md:p-10 transition-all duration-500 flex flex-col group
+                            {{ $package->is_popular 
+                                ? 'bg-gradient-to-br from-[#1c140c] to-[#3a2a19] text-white shadow-2xl shadow-[#1c140c]/30 scale-[1.03] lg:-translate-y-4 z-10 border border-[#4a3620]' 
+                                : 'bg-white border border-slate-100 shadow-lg hover:shadow-2xl hover:-translate-y-2' }}">
+                            
+                            @if($package->is_popular)
+                            <div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#d9a11a] to-[#b38515] text-white text-[10px] font-black uppercase tracking-[0.2em] px-5 py-2.5 rounded-full shadow-[0_8px_20px_rgba(217,161,26,0.3)] flex items-center gap-1.5 z-20 whitespace-nowrap border border-[#f4c85c]/30">
+                                <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span> PALING POPULER
+                            </div>
+                            @endif
+
+                            <div class="mb-6 {{ $package->is_popular ? 'mt-4' : '' }}">
+                                <h3 class="text-2xl font-black mb-3 tracking-tight {{ $package->is_popular ? 'text-white' : 'text-on-surface' }}">{{ $package->name }}</h3>
+                                <p class="text-sm leading-relaxed h-12 {{ $package->is_popular ? 'text-white/70' : 'text-on-surface-variant' }}">{{ $package->description }}</p>
+                            </div>
+
+                            <div class="mb-8 pb-8 border-b {{ $package->is_popular ? 'border-white/10' : 'border-slate-100' }}">
+                                <div class="flex items-baseline gap-1">
+                                    <span class="text-4xl font-black tracking-tighter {{ $package->is_popular ? 'text-white' : 'text-on-surface' }}">{{ $package->price }}</span>
+                                </div>
+                            </div>
+
+                            <div class="flex-1 mb-10">
+                                <ul class="space-y-5 text-sm font-medium">
+                                    @if(is_array($package->features))
+                                        @foreach($package->features as $feature)
+                                        <li class="flex items-start gap-3">
+                                            <div class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 {{ $package->is_popular ? 'bg-[#d9a11a]/20 text-[#d9a11a]' : 'bg-emerald-50 text-emerald-500' }}">
+                                                <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">check</span>
+                                            </div>
+                                            <span class="leading-relaxed {{ $package->is_popular ? 'text-white/90' : 'text-slate-600' }}">{{ $feature }}</span>
+                                        </li>
+                                        @endforeach
+                                    @endif
+                                </ul>
+                            </div>
+
+                            <a href="https://wa.me/{{ $whatsAppNumber }}?text={{ urlencode('Halo, saya tertarik dengan layanan ' . $package->name . '. Mohon info lebih lanjut.') }}" 
+                               target="_blank" 
+                               class="w-full py-4 rounded-2xl text-center font-bold flex items-center justify-center gap-2 transition-all duration-300 text-sm tracking-wide
+                               {{ $package->is_popular 
+                                  ? 'bg-[#d9a11a] text-white hover:bg-[#b38515] shadow-[0_8px_25px_rgba(217,161,26,0.25)] hover:shadow-[0_12px_35px_rgba(217,161,26,0.35)] hover:-translate-y-1' 
+                                  : 'bg-white border-2 border-slate-200 text-slate-700 hover:border-[#8d6408] hover:text-[#8d6408] hover:bg-slate-50' }}">
+                                Pilih Paket Ini
+                                <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                            </a>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+</section>
+@endif
+
 {{-- ═══════════════════════════════════════════════
     TESTIMONIAL CLIENTS (Dinamis dari Admin)
 ═══════════════════════════════════════════════ --}}

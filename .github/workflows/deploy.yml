@@ -56,7 +56,7 @@ jobs:
           remote_user: u408052271
           remote_key: ${{ secrets.HOSTINGER_SSH_PRIVATE_KEY }}
 
-      - name: Copy public content to public_html and fix index.php
+      - name: Copy public content to public_html safely
         uses: appleboy/ssh-action@v1.2.2
         with:
           host: ${{ secrets.HOSTINGER_HOST }}
@@ -64,10 +64,8 @@ jobs:
           username: u408052271
           key: ${{ secrets.HOSTINGER_SSH_PRIVATE_KEY }}
           script: |
-            rm -rf /home/u408052271/domains/akagroupconsulting.com/public_html/*
-            cp -r /home/u408052271/domains/akagroupconsulting.com/companyprofile/public/* /home/u408052271/domains/akagroupconsulting.com/public_html/
-            sed -i 's|__DIR__."/../bootstrap/app.php|__DIR__."/../companyprofile/bootstrap/app.php|g' /home/u408052271/domains/akagroupconsulting.com/public_html/index.php
-            sed -i 's|__DIR__."/../vendor/autoload.php|__DIR__."/../companyprofile/vendor/autoload.php|g' /home/u408052271/domains/akagroupconsulting.com/public_html/index.php
+            # Sync asset dari /public ke /public_html TANPA menyentuh index.php, .htaccess, dan storage
+            rsync -avz --exclude='index.php' --exclude='.htaccess' --exclude='storage' /home/u408052271/domains/akagroupconsulting.com/companyprofile/public/ /home/u408052271/domains/akagroupconsulting.com/public_html/
 
       - name: Run migrations, cache & storage link
         uses: appleboy/ssh-action@v1.2.2
@@ -86,55 +84,3 @@ jobs:
             php artisan event:cache
             php artisan optimize
             php artisan db:seed --class=ServiceSeeder --force
-
-      - name: Setup .htaccess for caching & performance
-        uses: appleboy/ssh-action@v1.2.2
-        with:
-          host: ${{ secrets.HOSTINGER_HOST }}
-          port: ${{ secrets.HOSTINGER_PORT }}
-          username: u408052271
-          key: ${{ secrets.HOSTINGER_SSH_PRIVATE_KEY }}
-          script: |
-            # Copy default Laravel .htaccess
-            cp /home/u408052271/domains/akagroupconsulting.com/companyprofile/public/.htaccess /home/u408052271/domains/akagroupconsulting.com/public_html/.htaccess
-            
-            # Append performance headers
-            cat >> /home/u408052271/domains/akagroupconsulting.com/public_html/.htaccess << 'HTEOF'
-
-            # ── Gzip Compression ──────────────────────────────
-            <IfModule mod_deflate.c>
-                AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
-                AddOutputFilterByType DEFLATE text/javascript application/javascript application/x-javascript
-                AddOutputFilterByType DEFLATE application/json application/xml application/xhtml+xml
-                AddOutputFilterByType DEFLATE image/svg+xml font/ttf font/otf application/font-woff application/font-woff2
-            </IfModule>
-
-            # ── Browser Caching ───────────────────────────────
-            <IfModule mod_expires.c>
-                ExpiresActive On
-                ExpiresByType image/jpeg "access plus 1 year"
-                ExpiresByType image/png  "access plus 1 year"
-                ExpiresByType image/gif  "access plus 1 year"
-                ExpiresByType image/webp "access plus 1 year"
-                ExpiresByType image/svg+xml "access plus 1 year"
-                ExpiresByType image/x-icon "access plus 1 year"
-                ExpiresByType font/ttf   "access plus 1 year"
-                ExpiresByType font/woff  "access plus 1 year"
-                ExpiresByType font/woff2 "access plus 1 year"
-                ExpiresByType application/font-woff  "access plus 1 year"
-                ExpiresByType application/font-woff2 "access plus 1 year"
-                ExpiresByType text/css              "access plus 1 year"
-                ExpiresByType application/javascript "access plus 1 year"
-                ExpiresByType text/javascript        "access plus 1 year"
-                ExpiresByType text/html "access plus 0 seconds"
-            </IfModule>
-
-            <IfModule mod_headers.c>
-                <FilesMatch "\.(ico|jpg|jpeg|png|gif|webp|svg|css|js|woff|woff2|ttf|eot)$">
-                    Header set Cache-Control "max-age=31536000, public, immutable"
-                </FilesMatch>
-                Header set X-Content-Type-Options "nosniff"
-                Header set X-Frame-Options "SAMEORIGIN"
-                Header set Referrer-Policy "strict-origin-when-cross-origin"
-            </IfModule>
-            HTEOF

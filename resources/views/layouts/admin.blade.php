@@ -89,6 +89,11 @@
                 <span class="text-sm font-bold tracking-tight">Layanan</span>
             </a>
 
+            <a href="{{ route('admin.packages.index') }}" class="flex items-center gap-3 rounded-xl px-4 py-3 transition-all duration-300 group {{ request()->routeIs('admin.packages.*') ? 'bg-primary text-white shadow-lg shadow-primary/20' : 'text-on-surface-variant hover:bg-surface-container-low hover:text-primary' }}">
+                <span class="material-symbols-outlined {{ request()->routeIs('admin.packages.*') ? 'fill-1' : 'group-hover:text-primary' }}">local_offer</span>
+                <span class="text-sm font-bold tracking-tight">Manajemen Paket</span>
+            </a>
+
             <a href="{{ route('admin.teams.index') }}" class="flex items-center gap-3 rounded-xl px-4 py-3 transition-all duration-300 group {{ request()->routeIs('admin.teams.*') ? 'bg-primary text-white shadow-lg shadow-primary/20' : 'text-on-surface-variant hover:bg-surface-container-low hover:text-primary' }}">
                 <span class="material-symbols-outlined {{ request()->routeIs('admin.teams.*') ? 'fill-1' : 'group-hover:text-primary' }}">badge</span>
                 <span class="text-sm font-bold tracking-tight">Tim Kami</span>

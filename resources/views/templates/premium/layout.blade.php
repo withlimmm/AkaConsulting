@@ -113,10 +113,10 @@
     <!-- Floating Top Navigation Bar -->
     <div class="fixed top-4 left-0 z-50 w-full px-4 md:px-8">
         <nav class="mx-auto max-w-7xl premium-glass rounded-2xl shadow-2xl transition-all duration-300">
-            <div class="flex h-20 items-center justify-between px-6 md:px-10">
-                <a href="/?theme=premium" class="flex items-center group">
+            <div class="flex h-24 items-center justify-between px-6 md:px-10">
+                <a href="/?theme=premium" class="flex items-center group overflow-visible">
                     <img src="/images/logo_aka.png" alt="AKA Consulting"
-                        class="h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105 md:h-20">
+                        style="height: 140px; width: auto; max-width: none; object-fit: contain;">
                 </a>
 
                 <div class="hidden items-center space-x-8 md:flex">
@@ -230,7 +230,7 @@
     </div>
 
     <!-- Main Content Area -->
-    <main class="min-h-screen pt-20">
+    <main class="min-h-screen pt-28">
         @yield('content')
     </main>
 

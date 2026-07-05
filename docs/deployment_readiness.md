@@ -56,3 +56,17 @@ Sistem saat ini bergantung pada kredensial lingkungan. Sebelum diluncurkan, file
 ---
 **KESIMPULAN FINAL:**
 Aplikasi Anda sudah **95% siap tempur** di tingkat *source code*. Sisa **5%** terletak murni pada pengaturan administrasi server (*Environment Config, SSL, SMTP Mailer*) dan pembersihan data uji coba (*Data Entry*).
+
+---
+
+## ⚠️ ATURAN EMAS DEPLOYMENT KE DEPANNYA
+Agar insiden *error* tidak pernah terulang lagi saat Anda melakukan *update* website dari laptop ke server, ingat 3 pantangan utama ini:
+
+1. **JANGAN PERNAH meng-upload folder `storage`**
+   - Folder ini berisi gambar/portofolio/file asli dari server. Menimpanya akan membuat semua gambar Anda hilang/rusak.
+2. **JANGAN PERNAH menimpa file `.env`**
+   - File ini berisi kata sandi database dan kunci enkripsi (`APP_KEY`) rahasia. Menimpanya akan merusak sesi pengunjung dan membuat website memunculkan *Error 500*.
+3. **JANGAN PERNAH menimpa file `index.php` dan `.htaccess` di `public_html`**
+   - File ini mengatur *routing* dan optimasi *cache* khusus Hostinger. Menimpanya dapat merusak sistem server.
+
+**💡 Tips:** Saat Anda memperbaiki website, cukup *upload* file kode yang Anda ubah saja (misalnya satu file `.blade.php` atau file *controller*). Biarkan folder-folder sistem (*vendor, node_modules, storage*) tetap utuh di server.

@@ -10,6 +10,7 @@ use App\Models\Review;
 use App\Models\Team;
 use App\Models\Service;
 use App\Models\Portfolio;
+use App\Models\Package;
 use App\Models\CompanySetting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +30,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\TeamController;
+use App\Http\Controllers\Admin\PackageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -132,7 +134,12 @@ Route::get('/', function () {
     $whatsAppText = 'Halo, saya ingin konsultasi layanan digital untuk website dan company profile.';
     $whatsAppUrl = 'https://wa.me/' . $whatsAppNumber . '?text=' . urlencode($whatsAppText);
 
-    return view('welcome', compact('clients', 'client_logos', 'faqs', 'services', 'whatsAppNumber', 'whatsAppText', 'whatsAppUrl'));
+    $packages = collect();
+    if (Schema::hasTable('packages')) {
+        $packages = \App\Models\Package::where('status', 'active')->orderBy('sort_order')->get();
+    }
+
+    return view('welcome', compact('clients', 'client_logos', 'faqs', 'services', 'packages', 'whatsAppNumber', 'whatsAppText', 'whatsAppUrl'));
 })->name('home');
 
 Route::get('/layanan', function () {
@@ -280,6 +287,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(
     Route::resource('reviews', ReviewController::class);
     Route::resource('faqs', FaqController::class);
     Route::resource('teams', TeamController::class);
+    Route::resource('packages', PackageController::class);
 
     Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
     Route::post('/settings', [SettingController::class, 'update'])->name('settings.update');
