@@ -17,7 +17,8 @@ class PackageController extends Controller
 
     public function create()
     {
-        return view('admin.packages.create');
+        $categories = Package::whereNotNull('category')->distinct()->pluck('category');
+        return view('admin.packages.create', compact('categories'));
     }
 
     public function store(Request $request)
@@ -55,7 +56,8 @@ class PackageController extends Controller
     {
         // Convert JSON array back to string for textarea
         $package->features_text = is_array($package->features) ? implode("\n", $package->features) : '';
-        return view('admin.packages.edit', compact('package'));
+        $categories = Package::whereNotNull('category')->distinct()->pluck('category');
+        return view('admin.packages.edit', compact('package', 'categories'));
     }
 
     public function update(Request $request, Package $package)

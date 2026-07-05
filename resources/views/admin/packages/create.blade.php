@@ -19,8 +19,13 @@
 
             <div>
                 <label class="block text-sm font-bold text-on-surface mb-2">Kategori (Tab) *</label>
-                <input type="text" name="category" value="{{ old('category') }}" placeholder="Contoh: Pendirian Badan Usaha" required
-                    class="w-full rounded-xl border border-outline-variant/50 px-4 py-2.5 focus:border-primary focus:ring-2 focus:ring-primary/20">
+                <input type="text" name="category" list="category_list" value="{{ old('category') }}" placeholder="Contoh: Pendirian Badan Usaha" required
+                    class="w-full rounded-xl border border-outline-variant/50 px-4 py-2.5 focus:border-primary focus:ring-2 focus:ring-primary/20" autocomplete="off">
+                <datalist id="category_list">
+                    @foreach($categories as $cat)
+                        <option value="{{ $cat }}"></option>
+                    @endforeach
+                </datalist>
                 @error('category') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
             </div>
 
