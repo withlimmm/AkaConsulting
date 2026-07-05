@@ -14,8 +14,8 @@
     <meta name="author" content="AKA Consulting">
     
     <!-- Google Search Console Verification -->
-    @if(env('GOOGLE_SITE_VERIFICATION'))
-    <meta name="google-site-verification" content="{{ env('GOOGLE_SITE_VERIFICATION') }}">
+    @if(isset($settings) && $settings->google_site_verification)
+    <meta name="google-site-verification" content="{{ $settings->google_site_verification }}">
     @endif
 
     <!-- Local SEO (GEO Tags) -->

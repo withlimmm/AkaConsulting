@@ -44,6 +44,8 @@ Route::get('/lang/{locale}', function ($locale) {
     return redirect()->back();
 })->name('lang.switch');
 
+Route::get('/sitemap.xml', [\App\Http\Controllers\SitemapController::class, 'index'])->name('sitemap');
+
 Route::get('/', function () {
     $public_reviews = collect();
     if (Schema::hasTable('reviews')) {

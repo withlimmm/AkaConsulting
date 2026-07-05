@@ -333,6 +333,31 @@
             </div>
         </div>
 
+        {{-- ══════════════════════ SEO & PENGATURAN LANJUTAN ══════════════════════ --}}
+        <div class="bg-white border border-outline-variant/30 rounded-2xl shadow-sm overflow-hidden">
+            <div class="flex items-center gap-3 px-8 py-5 border-b border-outline-variant/20 bg-surface-container-lowest/50">
+                <div class="w-9 h-9 rounded-xl bg-purple-500/10 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[20px] text-purple-600">search_insights</span>
+                </div>
+                <div>
+                    <h3 class="text-sm font-black text-on-surface">SEO &amp; Pengaturan Lanjutan</h3>
+                    <p class="text-xs text-on-surface-variant">Konfigurasi optimasi mesin pencari dan pihak ketiga</p>
+                </div>
+            </div>
+            <div class="p-8 space-y-6">
+                <div class="space-y-1.5">
+                    <label for="google_site_verification" class="flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-on-surface-variant">
+                        <span class="material-symbols-outlined text-[14px]">google</span> Google Site Verification (GSC)
+                    </label>
+                    <input type="text" name="google_site_verification" id="google_site_verification"
+                           value="{{ old('google_site_verification', $settings->google_site_verification) }}"
+                           placeholder="Contoh: vH_abcdefghijklmn-12345678"
+                           class="w-full bg-surface-container-lowest border border-outline-variant/50 rounded-xl px-4 py-3 text-sm focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all">
+                    <p class="text-[11px] text-on-surface-variant mt-1">Masukkan ID verifikasi (huruf acak dari Google Search Console) tanpa tag HTML lengkap.</p>
+                </div>
+            </div>
+        </div>
+
         {{-- ══════════════════════ SIMPAN ══════════════════════ --}}
         <div class="flex items-center justify-between bg-white border border-outline-variant/30 rounded-2xl px-8 py-5 shadow-sm">
             <p class="text-xs text-on-surface-variant">

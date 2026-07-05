@@ -9,6 +9,11 @@
     <meta name="keywords" content="@yield('meta_keywords', 'konsultan hukum perusahaan, jasa perizinan usaha, konsultan kepatuhan bisnis, manajemen risiko usaha, layanan konsultasi bisnis, aka consulting')">
     <link rel="canonical" href="{{ url()->current() }}">
 
+    <!-- Google Search Console Verification -->
+    @if(isset($settings) && $settings->google_site_verification)
+    <meta name="google-site-verification" content="{{ $settings->google_site_verification }}">
+    @endif
+
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
     {

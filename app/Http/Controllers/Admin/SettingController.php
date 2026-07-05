@@ -32,6 +32,7 @@ class SettingController extends Controller
             'tiktok_url'    => 'nullable|url|max:255',
             'youtube_url'   => 'nullable|url|max:255',
             'twitter_url'   => 'nullable|url|max:255',
+            'google_site_verification' => 'nullable|string|max:255',
         ]);
 
         $setting = CompanySetting::first();
