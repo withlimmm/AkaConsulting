@@ -61,6 +61,8 @@ class TeamController extends Controller
                 Storage::disk('public')->delete($team->photo);
             }
             $data['photo'] = $request->file('photo')->store('teams', 'public');
+        } else {
+            unset($data['photo']);
         }
 
         $team->update($data);

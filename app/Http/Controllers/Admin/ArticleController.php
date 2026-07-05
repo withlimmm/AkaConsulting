@@ -77,6 +77,8 @@ class ArticleController extends Controller
             }
             $path = $request->file('cover_image')->store('articles', 'public');
             $validated['cover_image'] = $path;
+        } else {
+            unset($validated['cover_image']);
         }
 
         if ($request->status == 'published' && !$article->published_at) {

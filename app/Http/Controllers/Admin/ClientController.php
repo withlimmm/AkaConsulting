@@ -69,6 +69,8 @@ class ClientController extends Controller
             }
             $path = $request->file('company_logo')->store('clients/logos', 'public');
             $validated['company_logo'] = $path;
+        } else {
+            unset($validated['company_logo']);
         }
 
         $client->update($validated);

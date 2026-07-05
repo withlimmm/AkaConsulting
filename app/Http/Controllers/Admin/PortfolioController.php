@@ -85,6 +85,8 @@ class PortfolioController extends Controller
                 Storage::disk('public')->delete($portfolio->thumbnail_image);
             }
             $validated['thumbnail_image'] = $request->file('thumbnail_image')->store('portfolios/thumbnails', 'public');
+        } else {
+            unset($validated['thumbnail_image']);
         }
 
         if ($request->hasFile('gallery_images')) {
@@ -98,6 +100,8 @@ class PortfolioController extends Controller
                 $gallery[] = $file->store('portfolios/gallery', 'public');
             }
             $validated['gallery_images'] = $gallery;
+        } else {
+            unset($validated['gallery_images']);
         }
 
         $portfolio->update($validated);
