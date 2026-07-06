@@ -458,7 +458,7 @@
 
                             <div class="mb-6 {{ $package->is_popular ? 'mt-4' : '' }}">
                                 <h3 class="text-2xl font-black mb-3 tracking-tight {{ $package->is_popular ? 'text-white' : 'text-on-surface' }}">{{ $package->name }}</h3>
-                                <p class="text-sm leading-relaxed h-12 {{ $package->is_popular ? 'text-white/70' : 'text-on-surface-variant' }}">{{ $package->description }}</p>
+                                <p class="text-sm leading-relaxed {{ $package->is_popular ? 'text-white/70' : 'text-on-surface-variant' }}">{{ $package->description }}</p>
                             </div>
 
                             <div class="mb-8 pb-8 border-b {{ $package->is_popular ? 'border-white/10' : 'border-slate-100' }}">
