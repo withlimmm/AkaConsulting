@@ -33,7 +33,18 @@ class SettingController extends Controller
             'youtube_url'   => 'nullable|url|max:255',
             'twitter_url'   => 'nullable|url|max:255',
             'google_site_verification' => 'nullable|string|max:255',
+            'whatsapp_text' => 'nullable|string',
+            'whatsapp_admins' => 'nullable|array',
+            'whatsapp_admins.*.name' => 'nullable|string',
+            'whatsapp_admins.*.phone' => 'nullable|string',
         ]);
+
+        if (isset($validated['whatsapp_admins'])) {
+            $validated['whatsapp_admins'] = array_filter($validated['whatsapp_admins'], function ($admin) {
+                return !empty($admin['name']) && !empty($admin['phone']);
+            });
+            $validated['whatsapp_admins'] = array_values($validated['whatsapp_admins']);
+        }
 
         $setting = CompanySetting::first();
         if (!$setting) {

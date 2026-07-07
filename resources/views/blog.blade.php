@@ -155,11 +155,18 @@
                         {{ __('Konsultasi Gratis') }}
                         <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
                     </a>
-                    <a href="https://wa.me/6282318390714?text={{ urlencode(__('Halo AKA Consulting, saya ingin konsultasi.')) }}" target="_blank"
+                    @php
+                        $mainPhone = preg_replace('/[^0-9]/', '', $settings->phone ?? '');
+                        if (str_starts_with($mainPhone, '0')) $mainPhone = '62' . substr($mainPhone, 1);
+                        $waText = $settings->whatsapp_text ?? 'Halo AKA Consulting, saya ingin konsultasi.';
+                    @endphp
+                    @if($mainPhone)
+                    <a href="https://wa.me/{{ $mainPhone }}?text={{ urlencode(__($waText)) }}" target="_blank"
                        class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3.5 font-black text-sm text-white hover:bg-white/10 transition-all">
                         <span class="material-symbols-outlined text-[18px]">chat</span>
                         {{ __('WhatsApp') }}
                     </a>
+                    @endif
                 </div>
             </div>
         </div>

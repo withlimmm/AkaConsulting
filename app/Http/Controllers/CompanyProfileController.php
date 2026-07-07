@@ -101,8 +101,12 @@ class CompanyProfileController extends Controller
         }
 
         $settings = \App\Models\CompanySetting::first();
-        $whatsAppNumber = $settings?->phone ?? '6287868184742';
-        $whatsAppText = 'Halo, saya ingin konsultasi layanan digital untuk website dan company profile.';
+        $phone = $settings?->phone ?? '6287868184742';
+        $whatsAppNumber = preg_replace('/[^0-9]/', '', $phone);
+        if (str_starts_with($whatsAppNumber, '0')) {
+            $whatsAppNumber = '62' . substr($whatsAppNumber, 1);
+        }
+        $whatsAppText = $settings?->whatsapp_text ?? 'Halo AKA Consulting, saya ingin konsultasi layanan.';
         $whatsAppUrl = 'https://wa.me/' . $whatsAppNumber . '?text=' . urlencode($whatsAppText);
 
         // 2. Cek parameter 'theme' di URL dan simpan ke session

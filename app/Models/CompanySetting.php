@@ -10,4 +10,8 @@ class CompanySetting extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+
+    protected $casts = [
+        'whatsapp_admins' => 'array',
+    ];
 }

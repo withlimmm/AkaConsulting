@@ -36,7 +36,9 @@
     $metaTitle       = $service->meta_title ?: ($serviceTitle . ' - AKA Consulting');
     $metaDescription = $service->meta_description ?: \Illuminate\Support\Str::limit(strip_tags($serviceShortDescription ?: $serviceFullDescription), 155);
     $metaKeywords    = $service->meta_keywords ?: ($serviceTitle . ', AKA Consulting, ' . __t('konsultasi hukum || legal consultation') . ', ' . __t('perizinan usaha || business licensing'));
-    $waUrl = 'https://wa.me/' . ($settings->phone ?? '6287868184742') . '?text=' . urlencode(__t('Halo AKA Consulting, saya ingin konsultasi tentang || Hello AKA Consulting, I would like to consult about ') . $serviceTitle);
+    $mainPhone = preg_replace('/[^0-9]/', '', $settings->phone ?? '');
+    if (str_starts_with($mainPhone, '0')) $mainPhone = '62' . substr($mainPhone, 1);
+    $waUrl = 'https://wa.me/' . $mainPhone . '?text=' . urlencode(__t('Halo AKA Consulting, saya ingin konsultasi tentang || Hello AKA Consulting, I would like to consult about ') . $serviceTitle);
 @endphp
 
 @section('title', $metaTitle)

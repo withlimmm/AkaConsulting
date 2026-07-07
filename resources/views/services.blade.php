@@ -60,10 +60,17 @@
                         {{ __('Konsultasi Gratis') }}
                         <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
                     </a>
-                    <a href="https://wa.me/{{ $settings->phone ?? '6287868184742' }}?text={{ urlencode(__('Halo AKA Consulting, saya ingin konsultasi layanan hukum dan perizinan.')) }}" target="_blank" class="inline-flex items-center justify-center gap-2 rounded-full border border-[#8d6408]/20 bg-white/80 px-7 py-4 font-black text-[#4a3620] shadow-sm backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#8d6408] hover:text-[#8d6408]">
-                        {{ __('Hubungi WhatsApp') }}
-                        <span class="material-symbols-outlined text-[18px]">chat</span>
+                    @php
+                        $mainPhone = preg_replace('/[^0-9]/', '', $settings->phone ?? '');
+                        if (str_starts_with($mainPhone, '0')) $mainPhone = '62' . substr($mainPhone, 1);
+                        $waText = $settings->whatsapp_text ?? 'Halo AKA Consulting, saya ingin konsultasi layanan hukum dan perizinan.';
+                    @endphp
+                    @if($mainPhone)
+                    <a href="https://wa.me/{{ $mainPhone }}?text={{ urlencode(__($waText)) }}" target="_blank" class="inline-flex items-center justify-center gap-2 rounded-full border border-[#8d6408]/20 bg-white/80 px-7 py-4 font-black text-[#4a3620] shadow-sm backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#8d6408] hover:text-[#8d6408]">
+                        {{ __('Konsultasi Sekarang') }}
+                        <span class="material-symbols-outlined text-[20px]">chat</span>
                     </a>
+                    @endif
                 </div>
             </div>
 
@@ -191,15 +198,22 @@
                         <h2 class="text-3xl md:text-5xl font-black leading-tight">{{ __('Sampaikan kebutuhan legal Anda, kami susun solusi yang paling sesuai.') }}</h2>
                         <p class="max-w-2xl text-white/75 leading-relaxed">{{ __('Jika kebutuhan Anda belum masuk daftar di atas, tim kami dapat menyiapkan penanganan khusus yang tetap rapi, responsif, dan siap untuk kebutuhan corporate.') }}</p>
                     </div>
-                    <div class="lg:col-span-4 flex flex-col gap-4 lg:items-end">
-                        <a href="{{ url('/#kontak') }}" class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-4 font-black text-[#1c140c] transition-all duration-300 hover:-translate-y-1 hover:bg-[#fbf8f1]">
-                            {{ __('Isi Form Konsultasi') }}
-                            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
-                        </a>
-                        <a href="https://wa.me/{{ $settings->phone ?? '6287868184742' }}?text={{ urlencode(__('Halo AKA Consulting, saya ingin diskusi kebutuhan layanan khusus.')) }}" target="_blank" class="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-7 py-4 font-black text-white transition-all duration-300 hover:-translate-y-1 hover:border-white/40 hover:bg-white/10">
-                            {{ __('WhatsApp Cepat') }}
-                            <span class="material-symbols-outlined text-[18px]">chat</span>
-                        </a>
+                    <div class="lg:col-span-4 flex flex-col gap-4 items-end">
+                        @php
+                            $waText2 = $settings->whatsapp_text ?? 'Halo AKA Consulting, saya ingin diskusi kebutuhan layanan khusus.';
+                        @endphp
+                        @if($mainPhone)
+                        <div class="flex flex-col sm:flex-row items-center gap-4">
+                            <a href="{{ url('/#kontak') }}" class="inline-flex items-center justify-center gap-2 rounded-full bg-[#d9a11a] px-7 py-4 font-black text-[#1c140c] shadow-lg shadow-[#d9a11a]/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#f0c930]">
+                                {{ __('Isi Form Permintaan') }}
+                                <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+                            </a>
+                            <a href="https://wa.me/{{ $mainPhone }}?text={{ urlencode(__($waText2)) }}" target="_blank" class="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-7 py-4 font-black text-white transition-all duration-300 hover:-translate-y-1 hover:border-white/40 hover:bg-white/10">
+                                {{ __('Chat via WhatsApp') }}
+                                <span class="material-symbols-outlined text-[20px]">forum</span>
+                            </a>
+                        </div>
+                        @endif
                     </div>
                 </div>
             </section>

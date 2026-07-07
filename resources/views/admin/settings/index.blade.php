@@ -333,6 +333,75 @@
             </div>
         </div>
 
+        {{-- ══════════════════════ WHATSAPP SETTINGS ══════════════════════ --}}
+        <div class="bg-white border border-outline-variant/30 rounded-2xl shadow-sm overflow-hidden">
+            <div class="flex items-center gap-3 px-8 py-5 border-b border-outline-variant/20 bg-surface-container-lowest/50">
+                <div class="w-9 h-9 rounded-xl bg-emerald-500/10 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[20px] text-emerald-600">forum</span>
+                </div>
+                <div>
+                    <h3 class="text-sm font-black text-on-surface">Pengaturan WhatsApp</h3>
+                    <p class="text-xs text-on-surface-variant">Konfigurasi pesan default dan daftar admin CS</p>
+                </div>
+            </div>
+            <div class="p-8 space-y-6">
+                <div class="space-y-1.5">
+                    <label for="whatsapp_text" class="flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-on-surface-variant">
+                        <span class="material-symbols-outlined text-[14px]">chat</span> Pesan Sapaan Default
+                    </label>
+                    <textarea name="whatsapp_text" id="whatsapp_text" rows="2"
+                              placeholder="Contoh: Halo Admin, saya ingin bertanya tentang layanan AKA Consulting..."
+                              class="w-full bg-surface-container-lowest border border-outline-variant/50 rounded-xl px-4 py-3 text-sm focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all resize-none">{{ old('whatsapp_text', $settings->whatsapp_text) }}</textarea>
+                    <p class="text-[11px] text-on-surface-variant">Teks ini akan otomatis muncul ketika pengguna mengklik tombol WhatsApp umum.</p>
+                </div>
+
+                <div class="pt-4 border-t border-outline-variant/20 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-bold text-on-surface">Daftar Admin Customer Service</p>
+                            <p class="text-xs text-on-surface-variant">Tambahkan admin yang akan muncul di widget chat dan footer.</p>
+                        </div>
+                        <button type="button" onclick="addAdminField()" class="inline-flex items-center gap-1 bg-emerald-50 text-emerald-600 border border-emerald-200 px-3 py-1.5 rounded-lg text-xs font-bold hover:bg-emerald-100 transition">
+                            <span class="material-symbols-outlined text-[16px]">add</span> Tambah Admin
+                        </button>
+                    </div>
+
+                    <div id="wa-admins-container" class="space-y-3">
+                        @php $admins = old('whatsapp_admins', $settings->whatsapp_admins ?? []); @endphp
+                        @if(empty($admins))
+                            <div class="admin-field flex gap-3 items-start">
+                                <div class="flex-1">
+                                    <input type="text" name="whatsapp_admins[0][name]" placeholder="Nama Admin (mis: CS 1)" class="w-full bg-surface-container-lowest border border-outline-variant/50 rounded-xl px-4 py-2.5 text-sm">
+                                </div>
+                                <div class="flex-1 relative">
+                                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">+62</span>
+                                    <input type="text" name="whatsapp_admins[0][phone]" placeholder="8123..." class="w-full bg-surface-container-lowest border border-outline-variant/50 rounded-xl pl-10 pr-4 py-2.5 text-sm">
+                                </div>
+                                <button type="button" onclick="this.parentElement.remove()" class="w-10 h-10 shrink-0 flex items-center justify-center text-red-500 hover:bg-red-50 rounded-xl border border-transparent hover:border-red-100 transition">
+                                    <span class="material-symbols-outlined text-[20px]">delete</span>
+                                </button>
+                            </div>
+                        @else
+                            @foreach($admins as $index => $admin)
+                            <div class="admin-field flex gap-3 items-start">
+                                <div class="flex-1">
+                                    <input type="text" name="whatsapp_admins[{{ $index }}][name]" value="{{ $admin['name'] ?? '' }}" placeholder="Nama Admin" class="w-full bg-surface-container-lowest border border-outline-variant/50 rounded-xl px-4 py-2.5 text-sm">
+                                </div>
+                                <div class="flex-1 relative">
+                                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">+62</span>
+                                    <input type="text" name="whatsapp_admins[{{ $index }}][phone]" value="{{ $admin['phone'] ?? '' }}" placeholder="8123..." class="w-full bg-surface-container-lowest border border-outline-variant/50 rounded-xl pl-10 pr-4 py-2.5 text-sm">
+                                </div>
+                                <button type="button" onclick="this.parentElement.remove()" class="w-10 h-10 shrink-0 flex items-center justify-center text-red-500 hover:bg-red-50 rounded-xl border border-transparent hover:border-red-100 transition">
+                                    <span class="material-symbols-outlined text-[20px]">delete</span>
+                                </button>
+                            </div>
+                            @endforeach
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+
         {{-- ══════════════════════ SEO & PENGATURAN LANJUTAN ══════════════════════ --}}
         <div class="bg-white border border-outline-variant/30 rounded-2xl shadow-sm overflow-hidden">
             <div class="flex items-center gap-3 px-8 py-5 border-b border-outline-variant/20 bg-surface-container-lowest/50">
@@ -376,6 +445,27 @@
 
 @push('scripts')
 <script>
+    let adminIndex = {{ empty($admins) ? 1 : count($admins) }};
+    function addAdminField() {
+        const container = document.getElementById('wa-admins-container');
+        const html = `
+            <div class="admin-field flex gap-3 items-start">
+                <div class="flex-1">
+                    <input type="text" name="whatsapp_admins[${adminIndex}][name]" placeholder="Nama Admin" class="w-full bg-surface-container-lowest border border-outline-variant/50 rounded-xl px-4 py-2.5 text-sm">
+                </div>
+                <div class="flex-1 relative">
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">+62</span>
+                    <input type="text" name="whatsapp_admins[${adminIndex}][phone]" placeholder="8123..." class="w-full bg-surface-container-lowest border border-outline-variant/50 rounded-xl pl-10 pr-4 py-2.5 text-sm">
+                </div>
+                <button type="button" onclick="this.parentElement.remove()" class="w-10 h-10 shrink-0 flex items-center justify-center text-red-500 hover:bg-red-50 rounded-xl border border-transparent hover:border-red-100 transition">
+                    <span class="material-symbols-outlined text-[20px]">delete</span>
+                </button>
+            </div>
+        `;
+        container.insertAdjacentHTML('beforeend', html);
+        adminIndex++;
+    }
+
     // Character counter
     function updateCount(inputId, countId) {
         const el = document.getElementById(inputId);

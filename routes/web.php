@@ -132,8 +132,12 @@ Route::get('/', function () {
     });
 
     $settings = \App\Models\CompanySetting::first();
-    $whatsAppNumber = $settings?->phone ?? '6287868184742';
-    $whatsAppText = 'Halo, saya ingin konsultasi layanan digital untuk website dan company profile.';
+    $phone = $settings?->phone ?? '6287868184742';
+    $whatsAppNumber = preg_replace('/[^0-9]/', '', $phone);
+    if (str_starts_with($whatsAppNumber, '0')) {
+        $whatsAppNumber = '62' . substr($whatsAppNumber, 1);
+    }
+    $whatsAppText = $settings?->whatsapp_text ?? 'Halo AKA Consulting, saya ingin konsultasi layanan.';
     $whatsAppUrl = 'https://wa.me/' . $whatsAppNumber . '?text=' . urlencode($whatsAppText);
 
     $packages = collect();
@@ -216,7 +220,7 @@ Route::get('/blog', function () {
 })->name('blog');
 
 Route::get('/blog/{slug}', function (string $slug) {
-    if (! Schema::hasTable('articles')) {
+    if (!Schema::hasTable('articles')) {
         abort(404);
     }
 
@@ -265,7 +269,7 @@ Route::get('/sitemap.xml', function () {
     $services = Schema::hasTable('services') ? Service::where('status', 'active')->get() : collect();
     $portfolios = Schema::hasTable('portfolios') ? Portfolio::all() : collect();
     $articles = Schema::hasTable('articles') ? Article::where('status', 'published')->get() : collect();
-    
+
     $content = view('sitemap', compact('services', 'portfolios', 'articles'))->render();
     return response($content, 200)->header('Content-Type', 'text/xml');
 })->name('sitemap');
@@ -325,7 +329,7 @@ Route::post('/konsultasi', function (Request $request) {
             "Salam Hormat,\nTim AKA Consulting",
             function ($message) use ($validated) {
                 $message->to($validated['sender_email'])
-                        ->subject('Konfirmasi Tiket Konsultasi - AKA Consulting');
+                    ->subject('Konfirmasi Tiket Konsultasi - AKA Consulting');
             }
         );
 
@@ -342,7 +346,7 @@ Route::post('/konsultasi', function (Request $request) {
             "Silakan cek di Panel Admin.",
             function ($message) use ($adminEmail) {
                 $message->to($adminEmail)
-                        ->subject('Lead Konsultasi Baru Masuk!');
+                    ->subject('Lead Konsultasi Baru Masuk!');
             }
         );
     } catch (\Exception $e) {

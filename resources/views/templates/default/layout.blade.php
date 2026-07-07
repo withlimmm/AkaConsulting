@@ -300,9 +300,15 @@
                 <div class="mt-6 flex flex-col items-center gap-3">
                     <p class="text-[9px] text-slate-400 font-black uppercase tracking-[0.2em]">Atau Hubungi Langsung</p>
                     <div class="grid grid-cols-2 gap-2 w-full">
-                        <a href="https://wa.me/6287868184742" target="_blank" class="flex items-center justify-center gap-2 py-2.5 bg-white border border-slate-100 rounded-lg text-[11px] font-bold text-slate-600 hover:border-green-500 hover:text-green-600 transition-all shadow-sm">
+                        @php
+                            $mainPhone = preg_replace('/[^0-9]/', '', $settings->phone ?? '');
+                            if (str_starts_with($mainPhone, '0')) $mainPhone = '62' . substr($mainPhone, 1);
+                        @endphp
+                        @if($mainPhone)
+                        <a href="https://wa.me/{{ $mainPhone }}" target="_blank" class="flex items-center justify-center gap-2 py-2.5 bg-white border border-slate-100 rounded-lg text-[11px] font-bold text-slate-600 hover:border-green-500 hover:text-green-600 transition-all shadow-sm">
                             <img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" class="w-3.5 h-3.5" alt="WA"> WhatsApp
                         </a>
+                        @endif
                         <a href="https://www.instagram.com/akaconsulting" target="_blank" class="flex items-center justify-center gap-2 py-2.5 bg-white border border-slate-100 rounded-lg text-[11px] font-bold text-slate-600 hover:border-primary hover:text-primary transition-all duration-300 shadow-sm">
                             <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" class="w-3.5 h-3.5" alt="IG"> Instagram
                         </a>

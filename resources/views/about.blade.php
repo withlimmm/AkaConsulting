@@ -366,12 +366,19 @@
                             {{ __('Isi Form Konsultasi') }}
                             <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
                         </a>
-                        <a href="https://wa.me/6282318390714?text={{ urlencode(__('Halo AKA Consulting, saya ingin konsultasi layanan hukum dan perizinan.')) }}"
-                           target="_blank"
-                           class="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-7 py-4 font-black text-white transition-all duration-300 hover:-translate-y-1 hover:bg-white/10">
+                        @php
+                            $mainPhone = preg_replace('/[^0-9]/', '', $settings->phone ?? '');
+                            if (str_starts_with($mainPhone, '0')) $mainPhone = '62' . substr($mainPhone, 1);
+                            $waText = $settings->whatsapp_text ?? 'Halo AKA Consulting, saya ingin konsultasi layanan hukum dan perizinan.';
+                        @endphp
+                        @if($mainPhone)
+                        <a href="https://wa.me/{{ $mainPhone }}?text={{ urlencode(__($waText)) }}"
+                            target="_blank" rel="noopener noreferrer"
+                            class="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-7 py-4 font-black text-white transition-all duration-300 hover:-translate-y-1 hover:bg-white/10">
                             {{ __('WhatsApp Admin') }}
                             <span class="material-symbols-outlined text-[18px]">chat</span>
                         </a>
+                        @endif
                     </div>
                 </div>
             </div>
