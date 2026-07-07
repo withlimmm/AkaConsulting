@@ -41,13 +41,18 @@
                         @error('company_name')<p class="text-xs text-red-500 mt-1">{{ $message }}</p>@enderror
                     </div>
                     <div class="space-y-1.5">
-                        <label for="motto" class="flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-on-surface-variant">
-                            <span class="material-symbols-outlined text-[14px]">format_quote</span> Motto / Tagline
+                        <label class="flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-on-surface-variant mb-1.5">
+                            <span class="material-symbols-outlined text-[14px]">format_quote</span> Motto / Tagline (Maks 3)
                         </label>
-                        <input type="text" name="motto" id="motto"
-                               value="{{ old('motto', $settings->motto) }}"
-                               placeholder="Contoh: Professional Legal Partner"
-                               class="w-full bg-surface-container-lowest border border-outline-variant/50 rounded-xl px-4 py-3 text-sm focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all">
+                        <div class="space-y-2">
+                            @php $mottos = old('motto', $settings->motto ?? []); @endphp
+                            @for($i = 0; $i < 3; $i++)
+                                <input type="text" name="motto[]" 
+                                       value="{{ $mottos[$i] ?? '' }}"
+                                       placeholder="Motto {{ $i + 1 }}..."
+                                       class="w-full bg-surface-container-lowest border border-outline-variant/50 rounded-xl px-4 py-2.5 text-sm focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all">
+                            @endfor
+                        </div>
                     </div>
                 </div>
 

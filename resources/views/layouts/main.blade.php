@@ -523,9 +523,40 @@
                     </a>
 
                     @if(isset($settings) && $settings->motto)
-                        <p class="text-[11px] font-bold uppercase tracking-[0.22em] text-[#d9a11a] mb-3">
-                            &ldquo;{{ $settings->motto }}&rdquo;
-                        </p>
+                        @php $mottos = is_array($settings->motto) ? $settings->motto : [$settings->motto]; @endphp
+                        @if(count($mottos) > 0)
+                            <div class="relative h-6 mb-3 overflow-hidden motto-slideshow-container">
+                                @foreach($mottos as $index => $m)
+                                    <p class="absolute top-0 left-0 w-full text-[11px] font-bold uppercase tracking-[0.22em] text-[#d9a11a] transition-all duration-1000 motto-slide" 
+                                       style="opacity: {{ $index === 0 ? '1' : '0' }}; transform: translateY({{ $index === 0 ? '0' : '10px' }});">
+                                        &ldquo;{{ $m }}&rdquo;
+                                    </p>
+                                @endforeach
+                            </div>
+                            @if(count($mottos) > 1)
+                                <script>
+                                    document.addEventListener('DOMContentLoaded', function() {
+                                        const containers = document.querySelectorAll('.motto-slideshow-container');
+                                        containers.forEach(container => {
+                                            const slides = container.querySelectorAll('.motto-slide');
+                                            let current = 0;
+                                            setInterval(() => {
+                                                slides[current].style.opacity = '0';
+                                                slides[current].style.transform = 'translateY(-10px)';
+                                                current = (current + 1) % slides.length;
+                                                slides[current].style.opacity = '1';
+                                                slides[current].style.transform = 'translateY(0)';
+                                                // Reset the previous one's position after transition
+                                                setTimeout(() => {
+                                                    let prev = (current === 0) ? slides.length - 1 : current - 1;
+                                                    slides[prev].style.transform = 'translateY(10px)';
+                                                }, 1000);
+                                            }, 4000);
+                                        });
+                                    });
+                                </script>
+                            @endif
+                        @endif
                     @endif
 
                     <p class="text-white/45 text-sm leading-relaxed mb-6 max-w-xs">

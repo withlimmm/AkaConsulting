@@ -182,7 +182,42 @@
                     <h3 class="text-2xl font-bold">{{ $settings->company_name ?? 'AKA Consulting, Konsultan Terpercaya' }}</h3>
                 </div>
                 @if($settings->motto)
-                    <p class="text-white/60 max-w-md mb-4 italic text-primary-container">"{{ $settings->motto }}"</p>
+                    @php $mottos = is_array($settings->motto) ? $settings->motto : [$settings->motto]; @endphp
+                    @if(count($mottos) > 0)
+                        <div class="relative h-6 mb-4 overflow-hidden motto-slideshow-container">
+                            @foreach($mottos as $index => $m)
+                                <p class="absolute top-0 left-0 w-full text-white/60 max-w-md italic text-primary-container transition-all duration-1000 motto-slide" 
+                                   style="opacity: {{ $index === 0 ? '1' : '0' }}; transform: translateY({{ $index === 0 ? '0' : '10px' }});">
+                                    "{{ $m }}"
+                                </p>
+                            @endforeach
+                        </div>
+                        @if(count($mottos) > 1 && !View::hasSection('motto_script_added'))
+                            @section('motto_script_added', true)
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    const containers = document.querySelectorAll('.motto-slideshow-container');
+                                    containers.forEach(container => {
+                                        const slides = container.querySelectorAll('.motto-slide');
+                                        let current = 0;
+                                        if (slides.length > 1) {
+                                            setInterval(() => {
+                                                slides[current].style.opacity = '0';
+                                                slides[current].style.transform = 'translateY(-10px)';
+                                                current = (current + 1) % slides.length;
+                                                slides[current].style.opacity = '1';
+                                                slides[current].style.transform = 'translateY(0)';
+                                                setTimeout(() => {
+                                                    let prev = (current === 0) ? slides.length - 1 : current - 1;
+                                                    slides[prev].style.transform = 'translateY(10px)';
+                                                }, 1000);
+                                            }, 4000);
+                                        }
+                                    });
+                                });
+                            </script>
+                        @endif
+                    @endif
                 @endif
                 <p class="text-white/60 max-w-md">
                     {{ Str::limit($settings->about_us ?? 'AKA Consulting menyediakan layanan konsultasi hukum, perizinan, dan manajemen kepatuhan untuk membantu bisnis beroperasi sesuai regulasi dan tumbuh berkelanjutan.', 150) }}

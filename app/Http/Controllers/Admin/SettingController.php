@@ -24,7 +24,8 @@ class SettingController extends Controller
             'about_us'      => 'required|string',
             'vision'        => 'nullable|string',
             'mission'       => 'nullable|string',
-            'motto'         => 'nullable|string',
+            'motto'         => 'nullable|array',
+            'motto.*'       => 'nullable|string|max:255',
             'maps_url'      => 'nullable|url',
             'instagram_url' => 'nullable|url|max:255',
             'facebook_url'  => 'nullable|url|max:255',
@@ -44,6 +45,12 @@ class SettingController extends Controller
                 return !empty($admin['name']) && !empty($admin['phone']);
             });
             $validated['whatsapp_admins'] = array_values($validated['whatsapp_admins']);
+        }
+
+        if (isset($validated['motto']) && is_array($validated['motto'])) {
+            $validated['motto'] = array_values(array_filter($validated['motto'], function($m) {
+                return !empty(trim($m ?? ''));
+            }));
         }
 
         $setting = CompanySetting::first();
