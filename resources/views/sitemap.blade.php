@@ -7,6 +7,11 @@
         <priority>1.0</priority>
     </url>
     <url>
+        <loc>{{ url('/konsultan-hukum-jakarta') }}</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
         <loc>{{ url('/layanan') }}</loc>
         <lastmod>{{ now()->setTimezone('UTC')->toAtomString() }}</lastmod>
         <changefreq>weekly</changefreq>

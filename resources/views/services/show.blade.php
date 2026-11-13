@@ -33,7 +33,7 @@
         ->when($service->category, fn ($q) => $q->where('category', $service->category))
         ->orderBy('sort_order')->latest()->take(3)->get();
 
-    $metaTitle       = $service->meta_title ?: ($serviceTitle . ' - AKA Consulting');
+    $metaTitle       = $service->meta_title ?: ($serviceTitle . ' di Jakarta | AKA Consulting');
     $metaDescription = $service->meta_description ?: \Illuminate\Support\Str::limit(strip_tags($serviceShortDescription ?: $serviceFullDescription), 155);
     $metaKeywords    = $service->meta_keywords ?: ($serviceTitle . ', AKA Consulting, ' . __t('konsultasi hukum || legal consultation') . ', ' . __t('perizinan usaha || business licensing'));
     $mainPhone = preg_replace('/[^0-9]/', '', $settings->phone ?? '');
@@ -44,6 +44,28 @@
 @section('title', $metaTitle)
 @section('meta_description', $metaDescription)
 @section('meta_keywords', $metaKeywords)
+
+@push('schema')
+<script type="application/ld+json">{!! \App\Support\Seo::encode([
+    '@context' => 'https://schema.org',
+    '@type' => 'Service',
+    'name' => $serviceTitle,
+    'serviceType' => __t($service->category ?? '') ?: $serviceTitle,
+    'description' => $metaDescription,
+    'url' => route('services.show', $service->slug),
+    'provider' => ['@id' => \App\Support\Seo::businessId()],
+    'areaServed' => [['@type' => 'City', 'name' => 'Jakarta'], ['@type' => 'Country', 'name' => 'Indonesia']],
+]) !!}</script>
+<script type="application/ld+json">{!! \App\Support\Seo::encode(\App\Support\Seo::breadcrumb([
+    [__('Beranda'), url('/')],
+    [__('Layanan'), route('services')],
+    [$serviceTitle, route('services.show', $service->slug)],
+])) !!}</script>
+@php $serviceFaqSchema = \App\Support\Seo::faqPage($faqItems); @endphp
+@if($serviceFaqSchema)
+<script type="application/ld+json">{!! \App\Support\Seo::encode($serviceFaqSchema) !!}</script>
+@endif
+@endpush
 
 @push('styles')
 <style>

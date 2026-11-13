@@ -10,7 +10,11 @@
         content="@yield('meta_description', $settings->about_us ?? 'AKA Consulting menyediakan layanan konsultasi hukum, perizinan, dan manajemen kepatuhan untuk membantu bisnis beroperasi sesuai regulasi dan tumbuh berkelanjutan.')">
     <meta name="keywords"
         content="@yield('meta_keywords', 'konsultan hukum jakarta, jasa perizinan usaha jakarta, konsultan legalitas perusahaan, pendirian pt cv, konsultan hukum bisnis, jasa konsultan jakarta, konsultan kepatuhan bisnis, konsultan perizinan bandung, konsultan hukum surabaya, jasa legalitas usaha, sertifikasi halal bpom, konsultan tender, konsultasi hukum online, aka consulting, konsultan terpercaya indonesia')">
-    <link rel="canonical" href="{{ url()->current() }}">
+    @php
+        // Canonical selalu ke domain utama (APP_URL), tanpa query string, agar versi www / index.php tidak dianggap duplikat.
+        $canonicalUrl = rtrim(config('app.url'), '/') . (request()->path() === '/' ? '' : '/' . ltrim(request()->path(), '/'));
+    @endphp
+    <link rel="canonical" href="@yield('canonical', $canonicalUrl)">
 
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="author" content="AKA Consulting">
@@ -32,102 +36,17 @@
         content="@yield('meta_description', $settings->about_us ?? 'AKA Consulting menyediakan layanan konsultasi hukum, perizinan, dan manajemen kepatuhan.')">
     <meta property="og:image"
         content="@yield('og_image', isset($settings) && $settings->logo_path ? asset('storage/' . $settings->logo_path) : asset('images/logo_aka.png'))">
-    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:url" content="@yield('canonical', $canonicalUrl)">
+    <meta property="og:site_name" content="AKA Consulting">
+    <meta property="og:locale" content="{{ app()->getLocale() === 'en' ? 'en_US' : 'id_ID' }}">
     <meta property="og:type" content="@yield('og_type', 'website')">
     <meta name="twitter:card" content="summary_large_image">
 
     <!-- Structured Data (JSON-LD) -->
-    {{-- JSON-LD: LocalBusiness Schema — Local SEO untuk semua kota target --}}
-    <script type="application/ld+json">
-    {
-      "@@context": "https://schema.org",
-      "@@type": "LegalService",
-      "name": "{{ $settings->company_name ?? 'AKA Consulting' }}",
-      "alternateName": ["AKA Consulting", "AKA Group Consulting", "Konsultan AKA"],
-      "url": "{{ url('/') }}",
-      "logo": "{{ isset($settings) && $settings->logo_path ? asset('storage/' . $settings->logo_path) : asset('images/logo_aka.png') }}",
-      "image": "{{ isset($settings) && $settings->logo_path ? asset('storage/' . $settings->logo_path) : asset('images/logo_aka.png') }}",
-      "description": "{{ $settings->about_us ?? 'AKA Consulting adalah konsultan hukum dan perizinan usaha terpercaya di Indonesia. Melayani jasa pendirian PT CV, perizinan OSS, sertifikasi halal BPOM, litigasi, tender, dan pertanahan untuk seluruh wilayah Indonesia.' }}",
-      "priceRange": "$$",
-      "telephone": "+{{ preg_replace('/^0/', '62', preg_replace('/[^0-9]/', '', $settings->phone ?? '')) }}",
-      "email": "{{ $settings->email ?? 'info@akagroupconsulting.com' }}",
-      "address": {
-        "@@type": "PostalAddress",
-        "streetAddress": "{{ $settings->address ?? 'Jakarta' }}",
-        "addressLocality": "Jakarta",
-        "addressRegion": "DKI Jakarta",
-        "addressCountry": "ID"
-      },
-      "geo": {
-        "@@type": "GeoCoordinates",
-        "latitude": "-6.208763",
-        "longitude": "106.845599"
-      },
-      "areaServed": [
-        { "@@type": "City", "name": "Jakarta" },
-        { "@@type": "City", "name": "Jakarta Selatan" },
-        { "@@type": "City", "name": "Jakarta Utara" },
-        { "@@type": "City", "name": "Jakarta Barat" },
-        { "@@type": "City", "name": "Jakarta Timur" },
-        { "@@type": "City", "name": "Jakarta Pusat" },
-        { "@@type": "City", "name": "Bogor" },
-        { "@@type": "City", "name": "Depok" },
-        { "@@type": "City", "name": "Tangerang" },
-        { "@@type": "City", "name": "Bekasi" },
-        { "@@type": "City", "name": "Bandung" },
-        { "@@type": "City", "name": "Surabaya" },
-        { "@@type": "City", "name": "Semarang" },
-        { "@@type": "City", "name": "Yogyakarta" },
-        { "@@type": "City", "name": "Medan" },
-        { "@@type": "City", "name": "Makassar" },
-        { "@@type": "City", "name": "Bali" },
-        { "@@type": "City", "name": "Denpasar" },
-        { "@@type": "City", "name": "Palembang" },
-        { "@@type": "City", "name": "Batam" },
-        { "@@type": "State", "name": "Jawa Barat" },
-        { "@@type": "State", "name": "Jawa Tengah" },
-        { "@@type": "State", "name": "Jawa Timur" },
-        { "@@type": "Country", "name": "Indonesia" }
-      ],
-      "serviceArea": {
-        "@@type": "Country",
-        "name": "Indonesia"
-      },
-      "hasOfferCatalog": {
-        "@@type": "OfferCatalog",
-        "name": "Layanan Konsultasi AKA Consulting",
-        "itemListElement": [
-          { "@@type": "Offer", "itemOffered": { "@@type": "Service", "name": "Jasa Pendirian PT dan CV" } },
-          { "@@type": "Offer", "itemOffered": { "@@type": "Service", "name": "Perizinan OSS dan NIB" } },
-          { "@@type": "Offer", "itemOffered": { "@@type": "Service", "name": "Sertifikasi Halal BPOM" } },
-          { "@@type": "Offer", "itemOffered": { "@@type": "Service", "name": "Konsultasi Hukum Perusahaan" } },
-          { "@@type": "Offer", "itemOffered": { "@@type": "Service", "name": "Litigasi dan Sengketa Hukum" } },
-          { "@@type": "Offer", "itemOffered": { "@@type": "Service", "name": "Pengurusan Tender dan Pengadaan" } },
-          { "@@type": "Offer", "itemOffered": { "@@type": "Service", "name": "Konsultasi Pertanahan" } },
-          { "@@type": "Offer", "itemOffered": { "@@type": "Service", "name": "Legal Compliance dan Kepatuhan" } }
-        ]
-      },
-      "contactPoint": {
-        "@@type": "ContactPoint",
-        "telephone": "+{{ preg_replace('/^0/', '62', preg_replace('/[^0-9]/', '', $settings->phone ?? '')) }}",
-        "contactType": "customer service",
-        "areaServed": "ID",
-        "availableLanguage": ["id", "en"]
-      },
-      "sameAs": [
-        @php $sameAs = array_filter([$settings->instagram_url ?? '', $settings->facebook_url ?? '', $settings->linkedin_url ?? '', $settings->tiktok_url ?? '', $settings->youtube_url ?? '', $settings->twitter_url ?? '']); @endphp
-        {{ implode(',', array_map(fn($u) => '"' . $u . '"', $sameAs)) }}
-      ],
-      "openingHoursSpecification": [
-        {
-          "@@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
-          "opens": "08:00",
-          "closes": "17:00"
-        }
-      ]
-    }
-    </script>
+    {{-- JSON-LD: LocalBusiness (LegalService) + WebSite, dibangun di App\Support\Seo agar selalu valid --}}
+    <script type="application/ld+json">{!! \App\Support\Seo::encode(\App\Support\Seo::localBusiness($settings ?? null)) !!}</script>
+    <script type="application/ld+json">{!! \App\Support\Seo::encode(\App\Support\Seo::website()) !!}</script>
+    @stack('schema')
 
     <!-- DNS Prefetch & Preconnect untuk semua resource eksternal -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -658,6 +577,13 @@
                                     class="text-white/35 hover:text-white transition-colors text-sm">{{ __('Lihat Semua Layanan') }}</a>
                             </li>
                         @endforelse
+                        <li>
+                            <a href="{{ route('landing.jakarta') }}"
+                                class="group flex items-center gap-2 text-white/35 hover:text-white transition-colors text-sm">
+                                <span class="w-1 h-1 rounded-full bg-[#d9a11a]/30 group-hover:bg-[#d9a11a] transition-colors shrink-0"></span>
+                                <span class="line-clamp-1">{{ __('Konsultan Hukum Jakarta') }}</span>
+                            </a>
+                        </li>
                         <li class="pt-1">
                             <a href="/layanan"
                                 class="inline-flex items-center gap-1.5 text-[11px] font-black text-[#d9a11a] hover:text-[#f0c930] transition-colors">

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Foundation\Console\ServeCommand;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
@@ -15,6 +16,16 @@ class AppServiceProvider extends ServiceProvider
     {
         if (file_exists(app_path('Helpers/TranslationHelper.php'))) {
             require_once app_path('Helpers/TranslationHelper.php');
+        }
+
+        // Windows: `php artisan serve` only passes PATH/SYSTEMROOT (uppercase) to the
+        // child server, but Windows names them Path/SystemRoot. Without SystemRoot the
+        // curl extension (PHP 8.5) fails with "Unable to start curl module".
+        if (PHP_OS_FAMILY === 'Windows' && $this->app->runningInConsole()) {
+            ServeCommand::$passthroughVariables = array_values(array_unique(array_merge(
+                ServeCommand::$passthroughVariables,
+                ['Path', 'SystemRoot', 'windir', 'TEMP', 'TMP']
+            )));
         }
     }
 

@@ -1,2 +1,8 @@
 User-agent: *
-Disallow:
+Disallow: /admin
+Disallow: /login
+Disallow: /register
+Disallow: /forgot-password
+Disallow: /lang/
+
+Sitemap: https://akagroupconsulting.com/sitemap.xml

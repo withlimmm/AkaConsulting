@@ -55,7 +55,7 @@ Route::get('/', function () {
             ->map(function ($review) {
                 return [
                     'name' => $review->name,
-                    'company' => $review->company ?: 'Klien Rakira',
+                    'company' => $review->company ?: 'Klien AKA Consulting',
                     'testimonial' => $review->comment ?? $review->testimonial,
                     'initial' => strtoupper(substr($review->name, 0, 1)),
                     'rating' => $review->rating ?? 5,
@@ -165,6 +165,19 @@ Route::get('/layanan/{slug}', function ($slug) {
     $service = \App\Models\Service::where('slug', $slug)->firstOrFail();
     return view('services.show', compact('service'));
 })->name('services.show');
+
+/*
+| Landing page SEO lokal: target kata kunci "konsultan hukum jakarta".
+*/
+Route::get('/konsultan-hukum-jakarta', function () {
+    $services = Schema::hasTable('services')
+        ? Service::where('status', 'active')->whereNotNull('category')->orderBy('sort_order')->get()
+        : collect();
+
+    return view('landing.konsultan-hukum-jakarta', [
+        'groupedServices' => $services->groupBy('category'),
+    ]);
+})->name('landing.jakarta');
 
 Route::get('/portofolio', function () {
     $categories = collect();

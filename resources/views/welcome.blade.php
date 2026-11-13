@@ -1,7 +1,19 @@
 @extends('layouts.main')
 
-@section('title', __('AKA Consulting, Konsultan Terpercaya'))
-@section('meta_description', __('AKA Consulting, Konsultan Terpercaya adalah firma konsultasi profesional yang menyediakan layanan konsultasi hukum, perizinan, dan manajemen bisnis untuk membantu pertumbuhan dan kepatuhan perusahaan.'))
+@section('title', __('Konsultan Hukum Jakarta & Jasa Perizinan Usaha | AKA Consulting'))
+@section('meta_description', __('AKA Consulting, konsultan hukum di Jakarta untuk pendirian PT/CV, perizinan OSS & NIB, PBG/SLF, sertifikasi halal & BPOM, merek, tender, dan litigasi. Konsultasi gratis via WhatsApp.'))
+
+@push('schema')
+@php
+    $homeFaqSchema = \App\Support\Seo::faqPage(collect($faqs ?? [])->map(fn ($f) => [
+        'question' => __t(data_get($f, 'question', '')),
+        'answer' => __t(data_get($f, 'answer', '')),
+    ]));
+@endphp
+@if($homeFaqSchema)
+<script type="application/ld+json">{!! \App\Support\Seo::encode($homeFaqSchema) !!}</script>
+@endif
+@endpush
 
 @push('styles')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -96,7 +108,7 @@
             </span>
             
             <h1 class="text-4xl md:text-5xl lg:text-6xl font-black leading-[1.05] tracking-tight text-on-surface min-h-[2.2em]">
-                <span x-text="text1"></span><span class="text-[#8d6408]" x-text="text2"></span><span class="animate-pulse text-[#d9a11a]" x-show="text2.length < fullText2.length">|</span>
+                <span x-text="text1">{{ __('welcome.hero_prefix') }} </span><span class="text-[#8d6408]" x-text="text2">{{ __('welcome.hero_suffix') }}</span><span class="animate-pulse text-[#d9a11a]" x-show="text2.length < fullText2.length">|</span>
             </h1>
 
             <p class="text-base md:text-lg text-on-surface-variant max-w-xl mx-auto lg:mx-0 leading-relaxed transition-all duration-1000"

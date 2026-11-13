@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', __t($portfolio->project_name) . ' - Portofolio Rakira')
+@section('title', __t($portfolio->project_name) . ' - Portofolio AKA Consulting')
 @section('meta_description', \Illuminate\Support\Str::limit(strip_tags(__t($portfolio->description)), 150))
 @section('meta_keywords', __t($portfolio->project_name) . ', ' . __t($portfolio->category->name ?? 'Portofolio') . ', portofolio aka consulting')
 
@@ -87,7 +87,7 @@
                 <div class="bg-slate-50 rounded-[3rem] p-10 space-y-10 sticky top-32 border border-slate-100 shadow-sm">
                     <div class="space-y-2">
                         <p class="text-[11px] font-black uppercase tracking-widest text-slate-400">{{ __('Nama Klien') }}</p>
-                        <p class="text-xl font-bold text-slate-900">{{ __t($portfolio->client_name ?? 'Rakira Client') }}</p>
+                        <p class="text-xl font-bold text-slate-900">{{ __t($portfolio->client_name ?? 'AKA Consulting Client') }}</p>
                     </div>
                     
                     <div class="space-y-2">

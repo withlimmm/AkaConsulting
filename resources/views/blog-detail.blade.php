@@ -2,6 +2,25 @@
 
 @section('title', __t($article->title) . ' - AKA Consulting Blog')
 @section('meta_description', \Illuminate\Support\Str::limit(strip_tags(__t($article->content)), 150))
+@push('schema')
+<script type="application/ld+json">{!! \App\Support\Seo::encode(array_filter([
+    '@context' => 'https://schema.org',
+    '@type' => 'BlogPosting',
+    'headline' => \Illuminate\Support\Str::limit(__t($article->title), 110, ''),
+    'description' => \Illuminate\Support\Str::limit(strip_tags(__t($article->content)), 160),
+    'image' => !empty($article->cover_image) ? (str_starts_with($article->cover_image, 'http') ? $article->cover_image : asset('storage/' . $article->cover_image)) : null,
+    'datePublished' => optional($article->published_at ?? $article->created_at)->toAtomString(),
+    'dateModified' => optional($article->updated_at)->toAtomString(),
+    'author' => ['@type' => 'Person', 'name' => $article->author->name ?? 'Tim AKA Consulting'],
+    'publisher' => ['@id' => \App\Support\Seo::businessId()],
+    'mainEntityOfPage' => route('blog.show', $article->slug),
+])) !!}</script>
+<script type="application/ld+json">{!! \App\Support\Seo::encode(\App\Support\Seo::breadcrumb([
+    [__('Beranda'), url('/')],
+    ['Blog', route('blog')],
+    [__t($article->title), route('blog.show', $article->slug)],
+])) !!}</script>
+@endpush
 @section('meta_keywords', __t($article->category->name ?? 'Update') . ', ' . __t($article->title))
 
 @section('content')

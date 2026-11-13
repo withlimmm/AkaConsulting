@@ -23,7 +23,7 @@ class CompanyProfileController extends Controller
                 ->map(function ($review) {
                     return [
                         'name' => $review->name,
-                        'company' => $review->company ?: 'Klien Rakira',
+                        'company' => $review->company ?: 'Klien AKA Consulting',
                         'testimonial' => $review->comment ?? $review->testimonial,
                         'initial' => strtoupper(substr($review->name, 0, 1)),
                         'rating' => $review->rating ?? 5,
